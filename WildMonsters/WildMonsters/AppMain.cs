@@ -29,9 +29,6 @@ namespace WildMonsters
 		{
 			Initialize();
 			
-			quit = false;
-			timer = new Timer();
-			
 			while (!quit)
 			{
 				deltaTime = (float)timer.Milliseconds();
@@ -52,6 +49,9 @@ namespace WildMonsters
 		
 		public static void Initialize ()
 		{
+			quit = false;
+			timer = new Timer();
+			
 			//Set up director
 			Director.Initialize ();
 			UISystem.Initialize(Director.Instance.GL.Context);

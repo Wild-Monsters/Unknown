@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\AppMain.cs">
     <Files>
-      <File FileName="WildMonsters\AppMain.cs" Line="23" Column="3" />
+      <File FileName="WildMonsters\AppMain.cs" Line="39" Column="32" />
       <File FileName="WildMonsters\GameScene.cs" Line="25" Column="4" />
       <File FileName="WildMonsters\MenuScene.cs" Line="19" Column="4" />
       <File FileName="WildMonsters\CollisionHandler.cs" Line="14" Column="1" />
