@@ -58,3 +58,5 @@ C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\obj\Debug\shaders\shaders\Simpl
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\obj\Debug\app.exe
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\obj\Debug\app.pdb
+C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\TestSprite.png
+C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\TestSprite.png
