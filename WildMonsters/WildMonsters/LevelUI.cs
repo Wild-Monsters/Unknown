@@ -13,20 +13,21 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
 namespace WildMonsters
 {
-	public class GameScene : Scene
+	public class LevelUI
 	{
-		private LevelManager levelManager;
-
-		public GameScene()
+		public Divider divider;
+		public Sidebar sidebar;
+		
+		public LevelUI (Scene _scene)
 		{
-			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
-			
-			levelManager = new LevelManager(this);
+			divider = new Divider(_scene);
+			sidebar = new Sidebar(_scene);
 		}
 		
-		public override void Update(float deltaTime)
+		public void Update(float t)
 		{
-			levelManager.Update(deltaTime);
+			divider.Update (t);
 		}
 	}
 }
+

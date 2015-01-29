@@ -12,24 +12,28 @@ namespace WildMonsters
 		enum Colour {Red, Blue, Yellow, Purple, Green, Grey};
 		private SpriteUV sprite;
 		private TextureInfo texInfo;
-		private bool alive;
+		//private bool alive;
 		private Colour colour;
 
 		
 		public Ball (Scene scene)
 		{
-			alive = false;
-			colour = Colour.Red;
+			//alive = false;
+			
+			Random rng = new Random(this.GetHashCode());
+			colour = (Colour)(int)FMath.Floor(rng.Next(6));
+			
+			//colour = Colour.Red;
 			
 			//TODO: Assign tex info to texture image file
-			texInfo = new TextureInfo("/Application/assets/testSpritesheet.png");
+			texInfo = new TextureInfo("/Application/textures/Blocks.png");
 			
 			//this.TextureInfo = new TextureInfo("/Application/assets/testSpritesheet.png");
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = new Vector2(50.0f,50.0f);
 			
 			//this.UV.S = new Vector2(0.2f, 1.0f);
-			sprite.Position = new Vector2(200.0f, 0.0f);
+			sprite.Position = new Vector2(0.0f, 0.0f);
 			//this.Position = new Vector2(0.0f, 0.0f);
 			
 			//TODO: Dynamically change part of the spritesheet to be shown, based on Colour var
@@ -87,7 +91,7 @@ namespace WildMonsters
 		{
 			texInfo.Dispose();
 			sprite = null;
-			alive = false;
+			//alive = false;
 		}
 	}
 }

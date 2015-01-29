@@ -48,6 +48,9 @@
     <Compile Include="LevelManager.cs" />
     <Compile Include="LevelGrid.cs" />
     <Compile Include="Ball.cs" />
+    <Compile Include="LevelUI.cs" />
+    <Compile Include="Divider.cs" />
+    <Compile Include="Sidebar.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -62,5 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="textures\TestSprite.png" />
+    <Content Include="textures\Blocks.png" />
+    <Content Include="textures\Divider.png" />
+    <Content Include="textures\SideBar.png" />
   </ItemGroup>
 </Project>

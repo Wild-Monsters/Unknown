@@ -16,11 +16,13 @@ namespace WildMonsters
 	{
 		private GridProperties grid1Properties, grid2Properties;
 		private LevelGrid grid1, grid2;
-
+		private LevelUI levelUI;
+		private float time = 0;
 		
 		public LevelManager (Scene _scene)
 		{
 			InitialiseGrids ();
+			levelUI = new LevelUI(_scene);
 			
 			grid1.Draw (_scene);
 			grid2.Draw (_scene);
@@ -52,6 +54,17 @@ namespace WildMonsters
 		
 		public void Update(float t)
 		{
+			//Sine Wave Movement (just for show) 
+			time += t/2;
+			float top = (float)System.Math.Sin((double)(time*2*System.Math.PI))*40 + 960/2;
+			///////
+			
+			levelUI.divider.SetTop (top);
+			levelUI.Update (t);
+			
+			grid1.SetTop (top);
+			grid2.SetTop (top);
+			
 			grid1.Update (t);
 			grid2.Update (t);
 		}
