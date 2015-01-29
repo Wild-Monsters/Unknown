@@ -15,14 +15,21 @@ namespace WildMonsters
 {
 	public class GameScene : Scene
 	{
+		Player player;
+		Player player2;
+		GamePadData gamepad;
 		public GameScene()
 		{
+			
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
+			player = new Player(this, true);
+			player2 = new Player(this, false);
 		}
-		
 		public override void Update(float deltaTime)
 		{
-			
+			gamepad  = GamePad.GetData(0);
+			player.Update(gamepad);
+			player2.Update(gamepad);
 		}
 	}
 }
