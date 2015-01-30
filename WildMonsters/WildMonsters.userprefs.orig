@@ -1,10 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+<<<<<<< HEAD
+  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\GameScene.cs">
+    <Files>
+      <File FileName="WildMonsters\AppMain.cs" Line="24" Column="31" />
+      <File FileName="WildMonsters\GameScene.cs" Line="20" Column="1" />
+      <File FileName="WildMonsters\LevelManager.cs" Line="47" Column="35" />
+      <File FileName="WildMonsters\LevelGrid.cs" Line="62" Column="55" />
+      <File FileName="Ball.cs" Line="26" Column="4" />
+=======
   <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\Player.cs">
     <Files>
       <File FileName="WildMonsters\AppMain.cs" Line="32" Column="1" />
       <File FileName="WildMonsters\GameScene.cs" Line="33" Column="4" />
       <File FileName="WildMonsters\Player.cs" Line="74" Column="4" />
+>>>>>>> origin/Alex-Branch
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
