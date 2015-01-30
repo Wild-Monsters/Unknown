@@ -58,6 +58,7 @@ C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\obj\Debug\shaders\shaders\Simpl
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\obj\Debug\app.exe
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\obj\Debug\app.pdb
+<<<<<<< HEAD
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\TestSprite.png
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\TestSprite.png
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Blocks.png
@@ -66,6 +67,7 @@ C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Divider.png
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\SideBar.png
 C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\SideBar.png
+<<<<<<< HEAD
 C:\Users\Dexiro\Desktop\Repo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.info
 C:\Users\Dexiro\Desktop\Repo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\shaders\Simple.cgx
 C:\Users\Dexiro\Desktop\Repo\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe
@@ -104,3 +106,38 @@ C:\Users\Dexiro\Desktop\Repo\Unknown\WildMonsters\WildMonsters\obj\Debug\shaders
 C:\Users\Dexiro\Desktop\Repo\Unknown\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
 C:\Users\Dexiro\Desktop\Repo\Unknown\WildMonsters\WildMonsters\obj\Debug\app.exe
 C:\Users\Dexiro\Desktop\Repo\Unknown\WildMonsters\WildMonsters\obj\Debug\app.pdb
+=======
+=======
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.info
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\shaders\Simple.cgx
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Json.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Xml.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Runtime.Serialization.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Core.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.Web.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.UI.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe.mdb
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Textures\Player\1.png
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.info
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\shaders\Simple.cgx
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Json.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Xml.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Runtime.Serialization.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Core.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.Web.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.UI.dll
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe.mdb
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Textures\Player\1.png
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters.psdp
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\obj\Debug\shaders\shaders\Simple.cgx
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\obj\Debug\app.exe
+I:\University\Second Year\Second Semester\Technical Games Production\Game\Unknown\WildMonsters\WildMonsters\obj\Debug\app.pdb
+>>>>>>> origin/Alex-Branch
+>>>>>>> origin/master

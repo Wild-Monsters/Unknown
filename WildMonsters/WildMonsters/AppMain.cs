@@ -66,7 +66,7 @@ namespace WildMonsters
 			gameScene.Camera.SetViewFromViewport();
 			
 			//Run the scene.
-			Director.Instance.RunWithScene(gameScene, true);
+			Director.Instance.RunWithScene(gameScene, false);
 		}
 	}
 }
