@@ -51,6 +51,7 @@
     <Compile Include="Divider.cs" />
     <Compile Include="Sidebar.cs" />
     <Compile Include="Input.cs" />
+    <Compile Include="Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />

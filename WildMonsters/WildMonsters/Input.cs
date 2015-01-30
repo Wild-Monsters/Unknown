@@ -6,8 +6,8 @@ namespace WildMonsters
 {
 	public static class Input
 	{
-		private static bool[] 	keyPress = new bool[16];
-		private static bool[] 	keyDown = new bool[16];
+		private static bool[] 	keyPress = new bool[130];
+		private static bool[] 	keyDown = new bool[130];
 
 		public static bool KeyDown(GamePadButtons _button)
 		{
