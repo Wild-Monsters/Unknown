@@ -1,34 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\GameScene.cs">
-    <Files>
-      <File FileName="WildMonsters\LevelGrid.cs" Line="89" Column="15" />
-      <File FileName="WildMonsters\GameScene.cs" Line="33" Column="4" />
-      <File FileName="WildMonsters\CollisionHandler.cs" Line="18" Column="7" />
-      <File FileName="WildMonsters\Ball.cs" Line="80" Column="29" />
-      <File FileName="WildMonsters\Player.cs" Line="25" Column="5" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\ParticleManager.cs">
-    <Files>
-      <File FileName="WildMonsters\GameScene.cs" Line="31" Column="4" />
-      <File FileName="WildMonsters\TitleScene.cs" Line="23" Column="38" />
-      <File FileName="WildMonsters\InstructionScene.cs" Line="21" Column="29" />
-      <File FileName="WildMonsters\MenuScene.cs" Line="81" Column="4" />
-      <File FileName="WildMonsters\Input.cs" Line="27" Column="4" />
-      <File FileName="WildMonsters\LevelManager.cs" Line="90" Column="29" />
-      <File FileName="WildMonsters\Ball.cs" Line="76" Column="4" />
-      <File FileName="WildMonsters\Player.cs" Line="71" Column="1" />
-      <File FileName="WildMonsters\AppMain.cs" Line="36" Column="45" />
-      <File FileName="WildMonsters\Sidebar.cs" Line="24" Column="23" />
-      <File FileName="WildMonsters\Particle.cs" Line="30" Column="39" />
-      <File FileName="WildMonsters\ParticleManager.cs" Line="35" Column="1" />
-      <File FileName="WildMonsters\CollisionHandler.cs" Line="17" Column="3" />
-      <File FileName="WildMonsters\Divider.cs" Line="1" Column="1" />
-      <File FileName="WildMonsters\LevelGrid.cs" Line="51" Column="19" />
->>>>>>> 07016a826bcb70d2e16aabcfc8dc9cc40c45c258
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
