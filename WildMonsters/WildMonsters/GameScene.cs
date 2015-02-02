@@ -28,7 +28,15 @@ namespace WildMonsters
 		
 		public override void Update(float deltaTime)
 		{
+			List<TouchData> touches = Touch.GetData(0);
+			
+			foreach(TouchData data in touches)
+			{
+				ParticleManager.AddParticle (this, new Vector2(data.X, data.Y));
+			}
+			
 			levelManager.Update(deltaTime);
+			ParticleManager.Update();
 		}
 	}
 }

@@ -54,6 +54,8 @@
     <Compile Include="Player.cs" />
     <Compile Include="TitleScene.cs" />
     <Compile Include="InstructionScene.cs" />
+    <Compile Include="Particle.cs" />
+    <Compile Include="ParticleManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -73,5 +75,6 @@
     <Content Include="textures\SideBar.png" />
     <Content Include="textures\PlaceholderTitleScreen.png" />
     <Content Include="textures\PlaceholderMenuScreen.png" />
+    <Content Include="textures\Particle.png" />
   </ItemGroup>
 </Project>

@@ -144,3 +144,5 @@ F:\Unknown-master\WildMonsters\WildMonsters\obj\Debug\shaders\shaders\Simple.cgx
 F:\Unknown-master\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
 F:\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.exe
 F:\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.pdb
+F:\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Particle.png
+F:\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Particle.png
