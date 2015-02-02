@@ -19,6 +19,7 @@ namespace WildMonsters
 
 		public GameScene()
 		{
+			this.Camera.SetViewFromViewport();
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
 			
 			levelManager = new LevelManager(this);

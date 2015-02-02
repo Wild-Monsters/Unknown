@@ -52,6 +52,8 @@
     <Compile Include="Sidebar.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="TitleScene.cs" />
+    <Compile Include="InstructionScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -69,5 +71,7 @@
     <Content Include="textures\Blocks.png" />
     <Content Include="textures\Divider.png" />
     <Content Include="textures\SideBar.png" />
+    <Content Include="textures\PlaceholderTitleScreen.png" />
+    <Content Include="textures\PlaceholderMenuScreen.png" />
   </ItemGroup>
 </Project>
