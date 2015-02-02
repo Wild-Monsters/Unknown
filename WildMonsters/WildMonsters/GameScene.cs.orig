@@ -15,35 +15,29 @@ namespace WildMonsters
 {
 	public class GameScene : Scene
 	{
-<<<<<<< HEAD
+
 		private LevelManager levelManager;
 
-=======
 		Player player;
 		Player player2;
-		GamePadData gamepad;
->>>>>>> origin/Alex-Branch
+
 		public GameScene()
 		{
 			
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
-<<<<<<< HEAD
 			
 			levelManager = new LevelManager(this);
-=======
+
 			player = new Player(this, true);
 			player2 = new Player(this, false);
->>>>>>> origin/Alex-Branch
 		}
 		public override void Update(float deltaTime)
 		{
-<<<<<<< HEAD
 			levelManager.Update(deltaTime);
-=======
-			gamepad  = GamePad.GetData(0);
+
+			//Refactor to use Input class?
 			player.Update(gamepad);
 			player2.Update(gamepad);
->>>>>>> origin/Alex-Branch
 		}
 	}
 }

@@ -16,8 +16,7 @@ namespace WildMonsters
 		private bool isLeftSide = false;	//deciding which side the player is on
 		private int spriteWidth = 0;
 		private int spriteHeight = 0;
-		
-		
+
 		public Player (Scene scene, bool isLeftSides)
 		{
 			isLeftSide = isLeftSides;
@@ -40,33 +39,38 @@ namespace WildMonsters
 			scene.AddChild(sprite);
 			
 		}
-		public void Update(GamePadData gamepad)
+		public void Update()
 		{
 			if(isLeftSide)
 			{
-				if ((gamepad.Buttons & GamePadButtons.Up ) != 0) //Go left
+				if (Input.KeyDown (GamePadButtons.Up)) //Go left
 				{
 					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
 				}
-				if((gamepad.Buttons & GamePadButtons.Down) != 0) //go right
+				if(Input.KeyDown (GamePadButtons.Down)) //go right
 				{
 					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
 				}
 			}
 			if(!isLeftSide) 
 			{
-				if ((gamepad.Buttons & GamePadButtons.Triangle ) != 0) //Go left
+				if (Input.KeyDown (GamePadButtons.Triangle)) //Go left
 				{
 					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
 				}
-				if((gamepad.Buttons & GamePadButtons.Cross) != 0) //go right
+				if(Input.KeyDown (GamePadButtons.Cross)) //go right
 				{
 					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
 				}	
 			}
+			
+			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Triangle);
+			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Cross);
+			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Up);
+			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Down);
+
 			//lock it to screen 
 			ScreenCollision();
-			
 		}
 		public void ScreenCollision ()
 		{

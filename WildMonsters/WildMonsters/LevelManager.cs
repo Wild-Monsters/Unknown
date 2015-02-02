@@ -19,6 +19,13 @@ namespace WildMonsters
 		private LevelUI levelUI;
 		private float time = 0;
 		
+		private float top = 960/2;
+		private float topTarget = 960/2;
+		private float divSpeed = 20.0f;
+		
+		private Player player1;
+		private Player player2;
+		
 		public LevelManager (Scene _scene)
 		{
 			InitialiseGrids ();
@@ -26,6 +33,9 @@ namespace WildMonsters
 			
 			grid1.Draw (_scene);
 			grid2.Draw (_scene);
+			
+			player1 = new Player(_scene, true);
+			player2 = new Player(_scene, false);
 		}
 		
 		private void InitialiseGrids()
@@ -55,9 +65,33 @@ namespace WildMonsters
 		public void Update(float t)
 		{
 			//Sine Wave Movement (just for show) 
-			time += t/2;
-			float top = (float)System.Math.Sin((double)(time*2*System.Math.PI))*40 + 960/2;
-			///////
+			//time += t/2;
+			//float top = (float)System.Math.Sin((double)(time*2*System.Math.PI))*40 + 960/
+			
+			//////
+			///Bunch of random temporary code to move the divider
+			if(Input.KeyPressed (GamePadButtons.Right))
+				topTarget += 50.0f;
+			
+			
+			if(Input.KeyPressed (GamePadButtons.Left))
+				topTarget -= 50.0f;
+			
+			
+			if(top < topTarget)
+				top += FMath.Clamp ((topTarget-top)/divSpeed,0.5f,10.0f);
+			
+			
+			if(top > topTarget)
+				top -= FMath.Clamp ((top-topTarget)/divSpeed,0.5f,10.0f);
+			
+			top = FMath.Floor (top);
+			///////////
+			///////////
+			
+			player1.Update ();
+			player2.Update ();
+			
 			
 			levelUI.divider.SetTop (top);
 			levelUI.Update (t);

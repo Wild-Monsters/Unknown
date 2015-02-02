@@ -44,13 +44,14 @@
     <Compile Include="GameScene.cs" />
     <Compile Include="MenuScene.cs" />
     <Compile Include="CollisionHandler.cs" />
-    <Compile Include="InputHandler.cs" />
     <Compile Include="LevelManager.cs" />
     <Compile Include="LevelGrid.cs" />
     <Compile Include="Ball.cs" />
     <Compile Include="LevelUI.cs" />
     <Compile Include="Divider.cs" />
     <Compile Include="Sidebar.cs" />
+    <Compile Include="Input.cs" />
+    <Compile Include="Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
