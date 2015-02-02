@@ -14,7 +14,7 @@ namespace WildMonsters
 {
 	public struct GridProperties
 	{
-		public int height, width, cellSize;
+		public int height, width, cellSize, startRows;
 		public float xMargin, yMargin;
 		public bool flipped;
 		public float top;
@@ -47,21 +47,24 @@ namespace WildMonsters
 			{
 				for(int b = 0; b < props.width; b++)
 				{
-					float spriteX;
-					float spriteY;
-					
-					if(props.flipped) //flipped = which way the grid is facing.
+					if(grid[a,b] != null)
 					{
-						spriteX = ((props.top - props.xMargin) - (props.cellSize*b))-props.cellSize;
-						spriteY = props.yMargin + (props.cellSize*a);
+						float spriteX;
+						float spriteY;
+						
+						if(props.flipped) //flipped = which way the grid is facing.
+						{
+							spriteX = ((props.top - props.xMargin) - (props.cellSize*b))-props.cellSize;
+							spriteY = props.yMargin + (props.cellSize*a);
+						}
+						else
+						{
+							spriteX = (props.top + props.xMargin) + (props.cellSize*b);
+							spriteY = props.yMargin + (props.cellSize*a);
+						}
+						
+						grid[a,b].Sprite.Position = new Vector2 (spriteX,spriteY);
 					}
-					else
-					{
-						spriteX = (props.top + props.xMargin) + (props.cellSize*b);
-						spriteY = props.yMargin + (props.cellSize*a);
-					}
-					
-					grid[a,b].Sprite.Position = new Vector2 (spriteX,spriteY);
 				}
 			}
 		}
@@ -77,7 +80,7 @@ namespace WildMonsters
 			//Adds objects to the scene, the Director handles the actual drawing automatically
 			for(int a = 0; a < props.height; a++)
 			{
-				for(int b = 0; b < props.width; b++)
+				for(int b = 0; b < props.startRows; b++)
 				{
 					Ball ball = new Ball(_scene);
 					
@@ -86,7 +89,7 @@ namespace WildMonsters
 				}
 			}
 		}
-		public Array[,] getBalls()
+		public Ball[,] getBalls()
 		{
 			return this.grid;
 		}
