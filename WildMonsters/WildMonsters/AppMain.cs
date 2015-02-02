@@ -19,6 +19,8 @@ namespace WildMonsters
 		
 		private static GameScene	gameScene;
 		private static MenuScene	menuScene;
+		private static TitleScene   	titleScene;
+		private static InstructionScene instructionScene;
 		//private static Scene		currentScene;
 		
 		private static Timer		timer;
@@ -60,13 +62,17 @@ namespace WildMonsters
 			UISystem.SetScene(blankUI);
 			
 			//Create Game Scenes
-			menuScene = new MenuScene();
-			gameScene = new GameScene();
-			menuScene.Camera.SetViewFromViewport();
-			gameScene.Camera.SetViewFromViewport();
+			//menuScene = new MenuScene();
+			//gameScene = new GameScene();
+			titleScene = new TitleScene();
+			//instructionScene = new InstructionScene();
+			//menuScene.Camera.SetViewFromViewport();
+			//gameScene.Camera.SetViewFromViewport();
+			titleScene.Camera.SetViewFromViewport();
+			//instructionScene.Camera.SetViewFromViewport();
 			
 			//Run the scene.
-			Director.Instance.RunWithScene(gameScene, false);
+			Director.Instance.RunWithScene(titleScene, false);
 		}
 	}
 }
