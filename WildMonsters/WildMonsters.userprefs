@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\Input.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\GameScene.cs">
     <Files>
-      <File FileName="WildMonsters\GameScene.cs" Line="30" Column="35" />
-      <File FileName="WildMonsters\Input.cs" Line="29" Column="5" />
-      <File FileName="WildMonsters\LevelManager.cs" Line="90" Column="15" />
-      <File FileName="WildMonsters\Ball.cs" Line="76" Column="4" />
-      <File FileName="WildMonsters\Player.cs" Line="71" Column="1" />
+      <File FileName="WildMonsters\LevelGrid.cs" Line="89" Column="15" />
+      <File FileName="WildMonsters\GameScene.cs" Line="33" Column="4" />
+      <File FileName="WildMonsters\CollisionHandler.cs" Line="18" Column="7" />
+      <File FileName="WildMonsters\Ball.cs" Line="80" Column="29" />
+      <File FileName="WildMonsters\Player.cs" Line="25" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -14,11 +14,14 @@ namespace WildMonsters
 		private TextureInfo texInfo;
 		//private bool alive;
 		private Colour colour;
+		bool hasFired;
+		private int speed = 1;
 
-		
+		private Bounds2 bounds;
 		public Ball (Scene scene)
 		{
 			//alive = false;
+			hasFired = false;
 			
 			Random rng = new Random(this.GetHashCode());
 			colour = (Colour)(int)FMath.Floor(rng.Next(6));
@@ -74,7 +77,12 @@ namespace WildMonsters
 			//TODO: Initialise ball position to be at the position of the cannon
 			scene.AddChild(sprite);
 		}
-		
+		public Bounds2 GetBounds()
+		{
+			sprite.GetContentWorldBounds(ref bounds);
+			
+			return this.bounds;
+		}
 		public SpriteUV Sprite
 		{
 			get{ return sprite; }
@@ -82,9 +90,21 @@ namespace WildMonsters
 		}
 		
 		
-		public void Update()
+		public void Update(bool playerLeftOfScreen)
 		{
-			//TODO: Logic to travel up to and/or lock on to grid here
+			//TODO: Logic to travel up to and/or lock on to grid herel
+			if(this.hasFired)
+			{
+				if(playerLeftOfScreen)
+				{
+					sprite.Position = new Vector2(sprite.Position.X + speed, sprite.Position.Y);
+				}
+				else
+				{
+					sprite.Position = new Vector2(sprite.Position.X - speed, sprite.Position.Y);
+				}
+			}
+			
 		}
 		
 		public void Cleanup()
@@ -93,6 +113,16 @@ namespace WildMonsters
 			sprite = null;
 			//alive = false;
 		}
+		public void SetFired(bool peanut)
+		{
+			this.hasFired = peanut;
+		}
+		
+		public bool GetFired()
+		{
+			return this.hasFired;
+		}
+	
 	}
 }
 

@@ -82,8 +82,13 @@ namespace WildMonsters
 					Ball ball = new Ball(_scene);
 					
 					grid[a,b] = ball;
+					
 				}
 			}
+		}
+		public Array[,] getBalls()
+		{
+			return this.grid;
 		}
 		
 		
