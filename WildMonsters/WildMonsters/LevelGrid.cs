@@ -86,7 +86,7 @@ namespace WildMonsters
 				}
 			}
 		}
-		public Array[,] getBalls()
+		public Ball[,] getBalls()
 		{
 			return this.grid;
 		}
