@@ -1,10 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\AppMain.cs">
     <Files>
-      <File FileName="WildMonsters\AppMain.cs" Line="32" Column="1" />
-      <File FileName="WildMonsters\GameScene.cs" Line="33" Column="4" />
-      <File FileName="WildMonsters\Player.cs" Line="74" Column="4" />
+      <File FileName="WildMonsters\AppMain.cs" Line="42" Column="48" />
+      <File FileName="WildMonsters\GameScene.cs" Line="32" Column="4" />
+      <File FileName="WildMonsters\Player.cs" Line="19" Column="3" />
+      <File FileName="WildMonsters\Ball.cs" Line="19" Column="14" />
+      <File FileName="WildMonsters\LevelGrid.cs" Line="15" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

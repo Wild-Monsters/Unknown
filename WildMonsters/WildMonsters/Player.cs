@@ -17,6 +17,7 @@ namespace WildMonsters
 		private int spriteWidth = 0;
 		private int spriteHeight = 0;
 		
+		
 		public Player (Scene scene, bool isLeftSides)
 		{
 			isLeftSide = isLeftSides;
