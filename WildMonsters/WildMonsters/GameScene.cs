@@ -29,8 +29,8 @@ namespace WildMonsters
 		public GameScene()
 		{
 			this.Camera.SetViewFromViewport ();
-			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
-			
+			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);
+
 			InitialiseGrids ();
 			levelUI = new LevelUI(this);
 			
@@ -39,10 +39,8 @@ namespace WildMonsters
 			
 			player1 = new Player(this, true);
 			player2 = new Player(this, false);
-			
-			
 		}
-		
+
 		private void InitialiseGrids()
 		{
 			grid1Props = new GridProperties();
@@ -68,6 +66,7 @@ namespace WildMonsters
 			grid1 = new LevelGrid(grid1Props);
 			grid2 = new LevelGrid(grid2Props);
 		}
+
 		public override void Update(float t)
 		{
 			UpdateTop (t);
