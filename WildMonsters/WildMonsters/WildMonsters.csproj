@@ -72,12 +72,9 @@
     <Content Include="textures\Blocks.png" />
     <Content Include="textures\Divider.png" />
     <Content Include="textures\SideBar.png" />
-<<<<<<< HEAD
     <Content Include="textures\1.png" />
-=======
     <Content Include="textures\PlaceholderTitleScreen.png" />
     <Content Include="textures\PlaceholderMenuScreen.png" />
     <Content Include="textures\Particle.png" />
->>>>>>> 07016a826bcb70d2e16aabcfc8dc9cc40c45c258
   </ItemGroup>
 </Project>
