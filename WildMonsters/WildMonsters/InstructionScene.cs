@@ -22,7 +22,7 @@ namespace WildMonsters
 		{
 						
 			this.Camera.SetViewFromViewport();
-			texture = new Texture2D("Application/Textures/PlaceholderTitleScreen.png", false);
+			texture = new Texture2D("Application/Textures/InstructionsPlaceholder.png", false);
 			tInfo = new TextureInfo(texture);
 			SpriteUV instrcutionScreen = new SpriteUV(tInfo);
 			instrcutionScreen.Scale = tInfo.TextureSizef;
