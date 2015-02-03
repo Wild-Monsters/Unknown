@@ -49,9 +49,11 @@ namespace WildMonsters
 			{
 				for(int b = 0; b < props.width; b++)
 				{
-					float spriteX;
-					float spriteY;
-					
+					if(grid[a,b] != null)
+					{
+						float spriteX;
+						float spriteY;
+						
 					if(grid[a,b] != null)
 					{
 						if(props.flipped) //flipped = which way the grid is facing.
