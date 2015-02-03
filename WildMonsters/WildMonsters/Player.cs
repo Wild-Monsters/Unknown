@@ -44,13 +44,7 @@ namespace WildMonsters
 			}
 			
 			ballList = new List<Ball>();
-			
-			
 			scene.AddChild(sprite);
-			
-
-
-			
 		}
 		public void Update(Scene scene)
 		{
@@ -64,6 +58,11 @@ namespace WildMonsters
 				{
 					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
 				}
+				
+				if(Input.KeyPressed (GamePadButtons.Square))
+				{
+					Fire (scene);
+				}
 			}
 			if(!isLeftSide) 
 			{
@@ -74,32 +73,29 @@ namespace WildMonsters
 				if(Input.KeyPressed (GamePadButtons.Cross)) //go right
 				{
 					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
-				}	
+				}
+				if(Input.KeyPressed (GamePadButtons.Circle))
+				{
+					Console.WriteLine(isLeftSide);
+					Fire (scene);
+				}
 			}
-			if(Input.KeyPressed (GamePadButtons.Square))
-			{
-				Fire (scene);
-			}
+
 //			if (ball != null)
 //			{
 //				if(ball.GetFired())
 //				{
 //					ball.Update(getSide());
 //				}
-//			}
+//			
+		
 			UpdateBalls();
-			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Triangle);
-			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Cross);
-			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Up);
-			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Down);
 
 			//lock it to screen 
 			ScreenCollision();
 		}
 		public void ScreenCollision ()
 		{
-			Console.WriteLine("sprite pos x: "+sprite.Position.X);
-			Console.WriteLine("sprite pos y: "+sprite.Position.Y);
 			
 			if((sprite.Position.Y + spriteHeight )>= 544 )
 			{
@@ -109,7 +105,6 @@ namespace WildMonsters
 			{
 				sprite.Position = new Vector2(sprite.Position.X, 0);
 			}
-	
 		}
 		
 		public void Fire(Scene scene)// array of balls 
@@ -125,17 +120,21 @@ namespace WildMonsters
 		}
 		private void UpdateBalls()
 		{
-			for(int i=0; i<ballList.Count; i++)
-			{
-				if (ballList[i].GetFired())
+		
+				for(int i=0; i<ballList.Count; i++)
 				{
-					ballList[i].Update(getSide());
+					if (ballList[i].GetFired())
+					{
+						ballList[i].Update(getSide());
+					}
+
 				}
-			   // ballList[i].CheckCollision(AsteroidManager.getAsteroidArray(), this);	
-			   //delete asset
-			}
+		
 		}
-			
+		public List<Ball> getBalls()
+		{
+			return this.ballList;
+		}
 	}
 }
 

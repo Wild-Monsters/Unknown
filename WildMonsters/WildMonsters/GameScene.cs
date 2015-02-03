@@ -47,21 +47,23 @@ namespace WildMonsters
 		{
 			grid1Properties = new GridProperties();
 			grid1Properties.height = 10;
-			grid1Properties.width = 3;
+			grid1Properties.width = 20;
 			grid1Properties.cellSize = 50;
 			grid1Properties.flipped = true;
 			grid1Properties.xMargin = 50.0f;
 			grid1Properties.yMargin = 0.0f;
 			grid1Properties.top = 960.0f/2;
+			grid1Properties.startRows = 3;
 			
 			grid2Properties = new GridProperties();
 			grid2Properties.height = 10;
-			grid2Properties.width = 3;
+			grid2Properties.width = 20;
 			grid2Properties.cellSize = 50;
 			grid2Properties.flipped = false;
 			grid2Properties.xMargin = 50.0f;
 			grid2Properties.yMargin = 0.0f;
 			grid2Properties.top = 960.0f/2;
+			grid2Properties.startRows = 3;
 			
 			grid1 = new LevelGrid(grid1Properties);
 			grid2 = new LevelGrid(grid2Properties);
@@ -96,7 +98,6 @@ namespace WildMonsters
 			player1.Update (this);
 			player2.Update (this);
 			
-			
 			levelUI.divider.SetTop (top);
 			levelUI.Update (deltaTime);
 			
@@ -106,6 +107,12 @@ namespace WildMonsters
 			grid1.Update (deltaTime);
 			grid2.Update (deltaTime);
 			
+			//Collision Stuff trial 
+			CollisionHandler.CheckBlockCollision(player1.getBalls(), grid1);
+			CollisionHandler.CheckBlockCollision(player2.getBalls(), grid2);
 		}
+		
+
+		
 	}
 }
