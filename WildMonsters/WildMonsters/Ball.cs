@@ -15,7 +15,7 @@ namespace WildMonsters
 		//private bool alive;
 		private Colour colour;
 		bool hasFired;
-		private int speed = 1;
+		private int speed = 8;
 
 		private Bounds2 bounds;
 		public Ball (Scene scene)

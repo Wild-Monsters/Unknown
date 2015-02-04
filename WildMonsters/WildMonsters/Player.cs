@@ -25,7 +25,7 @@ namespace WildMonsters
 		public Player (Scene scene, bool isLeftSides)
 		{
 			isLeftSide = isLeftSides;
-			textureInfo = new TextureInfo("/Application/Textures/1.png");
+			textureInfo = new TextureInfo("/Application/textures/1.png");
 			
 			Vector2  peanut = textureInfo.TextureSizef;
 			sprite = new SpriteUV(textureInfo);
@@ -48,46 +48,41 @@ namespace WildMonsters
 		}
 		public void Update(Scene scene)
 		{
+			GamePadButtons actionButton, upButton, downButton;
+			Analog moveAnalog;
+			
+			//Set the control buttons based on which side you're on
 			if(isLeftSide)
 			{
-				if (Input.KeyPressed (GamePadButtons.Up)) //Go left
-				{
-					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
-				}
-				if(Input.KeyPressed (GamePadButtons.Down)) //go right
-				{
-					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
-				}
-				
-				if(Input.KeyPressed (GamePadButtons.Square))
-				{
-					Fire (scene);
-				}
+				actionButton = GamePadButtons.Right;
+				moveAnalog = Analog.leftY;
+				upButton = GamePadButtons.Up;
+				downButton = GamePadButtons.Down;
 			}
-			if(!isLeftSide) 
+			else
 			{
-				if (Input.KeyPressed (GamePadButtons.Triangle)) //Go left
-				{
-					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
-				}
-				if(Input.KeyPressed (GamePadButtons.Cross)) //go right
-				{
-					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
-				}
-				if(Input.KeyPressed (GamePadButtons.Circle))
-				{
-					Console.WriteLine(isLeftSide);
-					Fire (scene);
-				}
+				actionButton = GamePadButtons.Square;
+				moveAnalog = Analog.rightY;
+				upButton = GamePadButtons.Triangle;
+				downButton = GamePadButtons.Cross;
 			}
-
-//			if (ball != null)
-//			{
-//				if(ball.GetFired())
-//				{
-//					ball.Update(getSide());
-//				}
-//			
+			
+			//Use analog or the buttons to move the character
+			if (Input.AnalogPress(moveAnalog, false, 0.5f, 12.0f) || Input.KeyPressed (upButton, 12.0f)) //Go left (up)
+			{
+				sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
+			}
+			
+			if (Input.AnalogPress(moveAnalog, true, 0.5f, 12.0f) || Input.KeyPressed (downButton, 12.0f)) //go right (down)
+			{
+				sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
+			}
+			
+			//Perform action
+			if(Input.KeyPressed(actionButton))
+			{
+				Fire (scene);
+			}
 		
 			UpdateBalls();
 
@@ -96,7 +91,6 @@ namespace WildMonsters
 		}
 		public void ScreenCollision ()
 		{
-			
 			if((sprite.Position.Y + spriteHeight )>= 544 )
 			{
 				sprite.Position = new Vector2(sprite.Position.X, 544 - spriteHeight);

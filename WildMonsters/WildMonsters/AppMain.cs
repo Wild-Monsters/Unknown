@@ -64,15 +64,15 @@ namespace WildMonsters
 			//Create Game Scenes
 			//menuScene = new MenuScene();
 			//gameScene = new GameScene();
-			titleScene = new TitleScene();
+			gameScene = new GameScene();
 			//instructionScene = new InstructionScene();
 			//menuScene.Camera.SetViewFromViewport();
 			//gameScene.Camera.SetViewFromViewport();
-			titleScene.Camera.SetViewFromViewport();
+			gameScene.Camera.SetViewFromViewport();
 			//instructionScene.Camera.SetViewFromViewport();
 			
 			//Run the scene.
-			Director.Instance.RunWithScene(titleScene, false);
+			Director.Instance.RunWithScene(gameScene, false);
 		}
 	}
 }

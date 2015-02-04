@@ -70,30 +70,21 @@ namespace WildMonsters
 		}
 		public override void Update(float deltaTime)
 		{
-			//Sine Wave Movement (just for show) 
-			//time += t/2;
-			//float top = (float)System.Math.Sin((double)(time*2*System.Math.PI))*40 + 960/
-			
-			//////
-			///Bunch of random temporary code to move the divider
-			if(Input.KeyPressed (GamePadButtons.Right))
+			if(Input.KeyPressed (GamePadButtons.R))
 				topTarget += 50.0f;
 			
 			
-			if(Input.KeyPressed (GamePadButtons.Left))
+			if(Input.KeyPressed (GamePadButtons.L))
 				topTarget -= 50.0f;
 			
 			
 			if(top < topTarget)
-				top += FMath.Clamp ((topTarget-top)/divSpeed,0.5f,10.0f);
+				top += 10.0f;
 			
 			
 			if(top > topTarget)
-				top -= FMath.Clamp ((top-topTarget)/divSpeed,0.5f,10.0f);
+				top -= 10.0f;
 			
-			top = FMath.Floor (top);
-			///////////
-			///////////
 			
 			player1.Update (this);
 			player2.Update (this);
