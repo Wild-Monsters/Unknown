@@ -1,43 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\InstructionScene.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\LevelGrid.cs">
     <Files>
-      <File FileName="WildMonsters\GameScene.cs" Line="31" Column="4" />
-      <File FileName="WildMonsters\TitleScene.cs" Line="19" Column="14" />
-      <File FileName="WildMonsters\InstructionScene.cs" Line="32" Column="4" />
-      <File FileName="WildMonsters\MenuScene.cs" Line="56" Column="61" />
-      <File FileName="WildMonsters\Input.cs" Line="27" Column="4" />
-      <File FileName="WildMonsters\LevelManager.cs" Line="90" Column="29" />
-      <File FileName="WildMonsters\Ball.cs" Line="76" Column="4" />
-      <File FileName="WildMonsters\Player.cs" Line="71" Column="1" />
-      <File FileName="WildMonsters\AppMain.cs" Line="36" Column="45" />
-      <File FileName="WildMonsters\Sidebar.cs" Line="24" Column="23" />
-      <File FileName="WildMonsters\Particle.cs" Line="30" Column="39" />
-      <File FileName="WildMonsters\ParticleManager.cs" Line="35" Column="1" />
-      <File FileName="WildMonsters\CollisionHandler.cs" Line="17" Column="3" />
-      <File FileName="WildMonsters\Divider.cs" Line="1" Column="1" />
-      <File FileName="WildMonsters\LevelGrid.cs" Line="51" Column="19" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\Player.cs">
-    <Files>
-      <File FileName="WildMonsters\LevelGrid.cs" Line="28" Column="3" />
-      <File FileName="WildMonsters\CollisionHandler.cs" Line="65" Column="1" />
-      <File FileName="WildMonsters\Ball.cs" Line="117" Column="4" />
-      <File FileName="WildMonsters\Divider.cs" Line="1" Column="1" />
-      <File FileName="WildMonsters\Sidebar.cs" Line="27" Column="4" />
-      <File FileName="WildMonsters\TitleScene.cs" Line="9" Column="34" />
-      <File FileName="WildMonsters\Player.cs" Line="85" Column="5" />
-      <File FileName="WildMonsters\Input.cs" Line="36" Column="18" />
-      <File FileName="WildMonsters\MenuScene.cs" Line="1" Column="1" />
-      <File FileName="WildMonsters\GameScene.cs" Line="82" Column="18" />
->>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
+      <File FileName="WildMonsters\LevelGrid.cs" Line="28" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\Input.cs" line="130" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
