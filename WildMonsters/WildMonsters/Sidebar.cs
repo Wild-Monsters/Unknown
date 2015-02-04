@@ -19,7 +19,7 @@ namespace WildMonsters
 		
 		public Sidebar (Scene _scene)
 		{
-			TextureInfo texInfo = new TextureInfo("/Application/textures/Sidebar.png");
+			TextureInfo texInfo = new TextureInfo("/Application/textures/SideBar.png");
 			
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = texInfo.TextureSizef;

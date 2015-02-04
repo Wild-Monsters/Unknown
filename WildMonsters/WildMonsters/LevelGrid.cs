@@ -24,6 +24,10 @@ namespace WildMonsters
 	{	
 		private GridProperties props;
 		private Ball[,] grid;
+<<<<<<< HEAD
+=======
+		private Bounds2 gridBounds;
+>>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
 		
 		public LevelGrid (GridProperties _properties)
 		{
@@ -42,7 +46,6 @@ namespace WildMonsters
 		
 		public void Update(float t)
 		{
-			
 			for(int a = 0; a < props.height; a++)
 			{
 				for(int b = 0; b < props.width; b++)
@@ -52,6 +55,7 @@ namespace WildMonsters
 					
 					if(props.flipped) //flipped = which way the grid is facing.
 					{
+<<<<<<< HEAD
 						spriteX = ((props.top - props.xMargin) - (props.cellSize*b))-props.cellSize;
 						spriteY = props.yMargin + (props.cellSize*a);
 					}
@@ -59,6 +63,23 @@ namespace WildMonsters
 					{
 						spriteX = (props.top + props.xMargin) + (props.cellSize*b);
 						spriteY = props.yMargin + (props.cellSize*a);
+=======
+						float spriteX;
+						float spriteY;
+						
+						if(props.flipped) //flipped = which way the grid is facing.
+						{
+							spriteX = ((props.top - props.xMargin) - (props.cellSize*b))-props.cellSize;
+							spriteY = props.yMargin + (props.cellSize*a);
+						}
+						else
+						{
+							spriteX = (props.top + props.xMargin) + (props.cellSize*b);
+							spriteY = props.yMargin + (props.cellSize*a);
+						}
+						
+						grid[a,b].Sprite.Position = new Vector2 (spriteX,spriteY);
+>>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
 					}
 					
 					grid[a,b].Sprite.Position = new Vector2 (spriteX,spriteY);
@@ -68,7 +89,7 @@ namespace WildMonsters
 		
 		public void SetTop(float x)
 		{
-			//The Top value is used to dictate where the "top" of the grid is, the center of the divider. 
+			//The Top value is used to dictate where the "top" of the grid is, the center of the divider.
 			props.top = x;
 		}
 		
