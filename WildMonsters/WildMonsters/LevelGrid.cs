@@ -29,6 +29,7 @@ namespace WildMonsters
 		private Bounds2 gridBounds;
 >>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
 		
+		
 		public LevelGrid (GridProperties _properties)
 		{
 			props = _properties;
@@ -46,6 +47,7 @@ namespace WildMonsters
 		
 		public void Update(float t)
 		{
+			
 			for(int a = 0; a < props.height; a++)
 			{
 				for(int b = 0; b < props.width; b++)
@@ -67,6 +69,8 @@ namespace WildMonsters
 						float spriteX;
 						float spriteY;
 						
+					if(grid[a,b] != null)
+					{
 						if(props.flipped) //flipped = which way the grid is facing.
 						{
 							spriteX = ((props.top - props.xMargin) - (props.cellSize*b))-props.cellSize;
@@ -89,7 +93,7 @@ namespace WildMonsters
 		
 		public void SetTop(float x)
 		{
-			//The Top value is used to dictate where the "top" of the grid is, the center of the divider.
+			//The Top value is used to dictate where the "top" of the grid is, the center of the divider. 
 			props.top = x;
 		}
 		

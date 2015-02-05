@@ -20,11 +20,8 @@ namespace WildMonsters
 		public Player (Scene scene, bool isLeftSides)
 		{
 			isLeftSide = isLeftSides;
-<<<<<<< HEAD
-			textureInfo = new TextureInfo("/Application/Textures/Player/1.png");
-=======
+
 			textureInfo = new TextureInfo("/Application/textures/1.png");
->>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
 			
 			Vector2  peanut = textureInfo.TextureSizef;
 			sprite = new SpriteUV(textureInfo);
@@ -45,46 +42,15 @@ namespace WildMonsters
 		}
 		public void Update()
 		{
-			GamePadButtons actionButton, upButton, downButton;
-			Analog moveAnalog;
-			
-			//Set the control buttons based on which side you're on
 			if(isLeftSide)
 			{
-<<<<<<< HEAD
-				if (Input.KeyDown (GamePadButtons.Up)) //Go left
-				{
-					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
-				}
-				if(Input.KeyDown (GamePadButtons.Down)) //go right
-				{
-					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
-				}
-=======
 				actionButton = GamePadButtons.Right;
 				moveAnalog = Analog.leftY;
 				upButton = GamePadButtons.Up;
 				downButton = GamePadButtons.Down;
->>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
 			}
 			else
 			{
-<<<<<<< HEAD
-				if (Input.KeyDown (GamePadButtons.Triangle)) //Go left
-				{
-					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
-				}
-				if(Input.KeyDown (GamePadButtons.Cross)) //go right
-				{
-					sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
-				}	
-			}
-			
-			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Triangle);
-			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Cross);
-			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Up);
-			Console.WriteLine ("Key Number Is::: " + (int)GamePadButtons.Down);
-=======
 				actionButton = GamePadButtons.Square;
 				moveAnalog = Analog.rightY;
 				upButton = GamePadButtons.Triangle;
@@ -101,27 +67,18 @@ namespace WildMonsters
 			{
 				sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
 			}
-			
-			//Perform action
-			if(Input.KeyPressed(actionButton))
-			{
-				Fire (scene);
-			}
-		
+
+
+
 			UpdateBalls();
->>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
+
 
 			//lock it to screen 
 			ScreenCollision();
 		}
 		public void ScreenCollision ()
 		{
-<<<<<<< HEAD
-			Console.WriteLine("sprite pos x: "+sprite.Position.X);
-			Console.WriteLine("sprite pos y: "+sprite.Position.Y);
-			
-=======
->>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
+
 			if((sprite.Position.Y + spriteHeight )>= 544 )
 			{
 				sprite.Position = new Vector2(sprite.Position.X, 544 - spriteHeight);

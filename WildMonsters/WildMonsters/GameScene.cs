@@ -28,22 +28,22 @@ namespace WildMonsters
 		
 		public override void Update(float deltaTime)
 		{
-<<<<<<< HEAD
 			List<TouchData> touches = Touch.GetData(0);
-=======
-			if(Input.KeyPressed (GamePadButtons.R))
-				topTarget += 50.0f;
->>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
-			
+
+
 			foreach(TouchData data in touches)
 			{
 				ParticleManager.AddParticle (this, new Vector2(data.X, data.Y));
 			}
 			
-<<<<<<< HEAD
+
 			levelManager.Update(deltaTime);
 			ParticleManager.Update();
-=======
+
+			if(Input.KeyPressed (GamePadButtons.R))
+				topTarget += 50.0f;
+
+
 			if(Input.KeyPressed (GamePadButtons.L))
 				topTarget -= 50.0f;
 			
@@ -55,6 +55,9 @@ namespace WildMonsters
 			if(top > topTarget)
 				top -= 10.0f;
 			
+
+			///////////
+			///////////
 			
 			player1.Update (this);
 			player2.Update (this);
@@ -71,7 +74,6 @@ namespace WildMonsters
 			//Collision Stuff trial 
 			CollisionHandler.CheckBlockCollision(player1.getBalls(), grid1);
 			CollisionHandler.CheckBlockCollision(player2.getBalls(), grid2);
->>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
 		}
 	}
 }
