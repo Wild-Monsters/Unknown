@@ -56,19 +56,40 @@ namespace WildMonsters
 				}// End of 'x' for loop
 				
 				
-				float frontOfBlock = pBalls[k].Sprite.Position.X+props.cellSize;
-				float topOfGrid = props.top-props.xMargin;
-				
-				//Set the blocks X position to 0 on the grid if it hits the top
-				if(frontOfBlock > topOfGrid
-				&& pBalls[k].GetState() == BallState.Rising)
+				if(props.flipped)
 				{
-					gridBalls[row, 0] = pBalls[k];
-					levelGrid.SearchGrid(0, row, 2);
+					float frontOfBlock = pBalls[k].Sprite.Position.X+props.cellSize;
+					float topOfGrid = props.top-props.xMargin;
 					
-					pBalls[k].SetState(BallState.Locked);
-					ballCollided = true;
+					//Set the blocks X position to 0 on the grid if it hits the top
+					if(frontOfBlock > topOfGrid
+					&& pBalls[k].GetState() == BallState.Rising)
+					{
+						gridBalls[row, 0] = pBalls[k];
+						levelGrid.SearchGrid(0, row, 2);
+						
+						pBalls[k].SetState(BallState.Locked);
+						ballCollided = true;
+					}
 				}
+				else
+				{
+					float frontOfBlock = pBalls[k].Sprite.Position.X;
+					float topOfGrid = props.top+props.xMargin;
+					
+					//Set the blocks X position to 0 on the grid if it hits the top
+					if(frontOfBlock < topOfGrid
+					&& pBalls[k].GetState() == BallState.Rising)
+					{
+						gridBalls[row, 0] = pBalls[k];
+						levelGrid.SearchGrid(0, row, 2);
+						
+						pBalls[k].SetState(BallState.Locked);
+						ballCollided = true;
+					}
+				}
+				
+
 				
 				//Remove the ball if it collided
 				if(ballCollided)
