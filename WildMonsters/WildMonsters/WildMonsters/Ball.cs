@@ -27,21 +27,12 @@ namespace WildMonsters
 			
 			hasFired = false;
 			
-			Random rng = new Random(this.GetHashCode());
-			colour = (Colour)(int)FMath.Floor(rng.Next(6));
-			
 			texInfo = new TextureInfo("/Application/textures/Blocks.png");
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = new Vector2(50.0f,50.0f);
 			sprite.Position = new Vector2(0.0f, 0.0f);
 			
-			//TODO: Dynamically change part of the spritesheet to be shown, based on Colour var
-			float spriteWidth = 1.0f / 6.0f;
-			
-			Sprite.UV.S = new Vector2(spriteWidth, 1.0f); //<--- uses 1/5 of the horizontal of the spritesheet
-			
-			//Which part of the spritesheet to draw based on the enum
-			sprite.UV.T = new Vector2(spriteWidth * (int)colour, 0.0f);				
+			SetColour (Colour.Grey);
 			
 			//TODO: Initialise ball position to be at the position of the cannon
 			scene.AddChild(sprite);
@@ -82,11 +73,18 @@ namespace WildMonsters
 			sprite = null;
 			//alive = false;
 		}
+		
+		public void RemoveObject()
+		{
+			parentScene.RemoveChild (this.Sprite, true);
+		}
+		
+		
+		//Getters and Setters
 		public void SetFired(bool peanut)
 		{
 			this.hasFired = peanut;
 		}
-		
 		public bool GetFired()
 		{
 			return this.hasFired;
@@ -97,10 +95,24 @@ namespace WildMonsters
 			return colour;
 		}
 		
-		public void RemoveObject()
+		public void SetColour(Colour col)
 		{
-			parentScene.RemoveChild (this.Sprite, true);
+			colour = col;
+			
+			float spriteWidth = 1.0f / 6.0f;
+			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
+			sprite.UV.T = new Vector2(spriteWidth * (int)colour, 0.0f);	
 		}
+		
+		public void RandomiseColour()
+		{
+			Random rng = new Random(this.GetHashCode());
+			Colour nextColour = (Colour)(int)FMath.Floor(rng.Next(6));
+			
+			SetColour (nextColour);
+		}
+		
+		
 	}
 }
 

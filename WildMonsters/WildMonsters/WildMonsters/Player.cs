@@ -12,30 +12,39 @@ namespace WildMonsters
 	public class Player
 	{
 		private SpriteUV sprite;
-		private TextureInfo textureInfo;
+		private TextureInfo texInfo;
 		private int movementSpeed = 50;
 		private bool isLeftSide = false;	//deciding which side the player is on
 		private int spriteWidth = 0;
 		private int spriteHeight = 0;
 		
+		//stuff zac added
+		private Colour nextColour;
+		private Random rng;
 									
 		//Taking the bull by the balls
 		private List <Ball> ballList;
 
-		public Player (Scene scene, bool isLeftSides)
+		public Player (Scene scene, bool _isLeftSide)
 		{
-			isLeftSide = isLeftSides;
-			textureInfo = new TextureInfo("/Application/textures/1.png");
+			isLeftSide = _isLeftSide;
 			
-			Vector2  peanut = textureInfo.TextureSizef;
-			sprite = new SpriteUV(textureInfo);
-			sprite.Quad.S  = textureInfo.TextureSizef;
-			spriteWidth = sprite.TextureInfo.Texture.Width;
-			spriteHeight = sprite.TextureInfo.Texture.Height;
+			texInfo = new TextureInfo("/Application/textures/Blocks.png");
+			sprite = new SpriteUV(texInfo);
+			sprite.Quad.S = new Vector2(50.0f,50.0f);
+			sprite.Position = new Vector2(0.0f, 0.0f);
+			
+			//Change colour of block
+			NextColour ();
+			
+//			Vector2  peanut = textureInfo.TextureSizef;
+//			sprite = new SpriteUV(textureInfo);
+//			sprite.Quad.S  = textureInfo.TextureSizef;
+//			spriteWidth = sprite.TextureInfo.Texture.Width;
+//			spriteHeight = sprite.TextureInfo.Texture.Height;
 			
 			if(isLeftSide)
 			{
-				
 				sprite.Position = new Vector2(0, 250);
 			}
 			else
@@ -106,6 +115,10 @@ namespace WildMonsters
 			Ball ball = new Ball(scene);
 			ball.SetFired(true);
 			ball.Sprite.Position = this.sprite.Position;
+			
+			ball.SetColour(nextColour);
+			NextColour ();
+			
 			ballList.Add(ball);
 		}
 		public bool getSide()
@@ -114,7 +127,6 @@ namespace WildMonsters
 		}
 		private void UpdateBalls()
 		{
-		
 				for(int i=0; i<ballList.Count; i++)
 				{
 					if (ballList[i].GetFired())
@@ -128,6 +140,16 @@ namespace WildMonsters
 		public List<Ball> getBalls()
 		{
 			return this.ballList;
+		}
+		
+		private void NextColour()
+		{
+			rng = new Random();
+			nextColour = (Colour)(int)FMath.Floor(rng.Next(6));
+			
+			float spriteWidth = 1.0f / 6.0f;
+			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
+			sprite.UV.T = new Vector2(spriteWidth * (int)nextColour, 0.0f);	
 		}
 	}
 }

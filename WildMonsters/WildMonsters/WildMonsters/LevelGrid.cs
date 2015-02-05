@@ -168,9 +168,8 @@ namespace WildMonsters
 				for(int b = 0; b < props.startRows; b++)
 				{
 					Ball ball = new Ball(_scene);
-					
+					ball.RandomiseColour();
 					grid[a,b] = ball;
-					
 				}
 			}
 		}
