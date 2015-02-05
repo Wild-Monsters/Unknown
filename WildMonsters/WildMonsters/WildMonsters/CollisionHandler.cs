@@ -18,7 +18,7 @@ namespace WildMonsters
 		// Box collision
 		
 		//Blocks colliding
-		public static void CheckBlockCollision(List<Ball> playerBalls, LevelGrid levelGrid)
+		public static void CheckBlockCollision(List<Ball> pBalls, LevelGrid levelGrid)
 		{
 			//check if each member of the list has collided 
 		
@@ -27,42 +27,56 @@ namespace WildMonsters
 			
 			int bound0 = gridBalls.GetUpperBound(0);
 			int bound1 = gridBalls.GetUpperBound(1);
-						
-			for (int k = 0 ; k<playerBalls.Count ; k++)
+			
+			bool ballCollided = false;
+			
+			for (int k = 0 ; k < pBalls.Count ; k++)
 			{	
-				int row = (int)(playerBalls[k].Sprite.Position.Y/50.0f);
+				int row = (int)(pBalls[k].Sprite.Position.Y/50.0f);
 				
 				for(int x = 0; x < 20; x++)
 				{
-					if(gridBalls[row, x] != null && playerBalls[k].GetFired())
+					if(gridBalls[row, x] != null && pBalls[k].GetState() == BallState.Rising)
 					{
-						Ball b1 = gridBalls[row,x];// this should make it iterate through the whole 2D array
-						
-						if (playerBalls[k].GetBounds().Overlaps(b1.GetBounds()))
+						if (pBalls[k].GetBounds().Overlaps(gridBalls[row,x].GetBounds()))
 						{
-							playerBalls[k].SetFired(false);
-							int gridX;
-							int gridY;
-
-							//add ball to grid pos below colided obj
-							if(props.flipped)
-							{
-								gridX = (int)( (props.top - b1.Sprite.Position.X) / 50.0f) - 1;
-								gridY = (int)(b1.Sprite.Position.Y / 50.0f);
-							}
-							else
-							{
-								gridX = (int)( (b1.Sprite.Position.X - props.top) / 50.0f);
-								gridY = (int)(b1.Sprite.Position.Y / 50.0f);
-							}
+							Vector2i gPos = GetGridPosition (gridBalls[row,x], props);
 							
-							gridBalls[gridY,gridX] = playerBalls[k];
+							//Add to the grid
+							gridBalls[gPos.Y,gPos.X] = pBalls[k];
 							
-							levelGrid.SearchGrid(gridX, gridY, 2);
+							//Search the grid
+							levelGrid.SearchGrid(gPos.X, gPos.Y, 2);
+							
+							ballCollided = true;
+							
+							pBalls[k].SetState(BallState.Locked);
 						}
-					}
+					}//End of 'y' for loop
+				}// End of 'x' for loop
+				
+				
+				float frontOfBlock = pBalls[k].Sprite.Position.X+props.cellSize;
+				float topOfGrid = props.top-props.xMargin;
+				
+				//Set the blocks X position to 0 on the grid if it hits the top
+				if(frontOfBlock > topOfGrid
+				&& pBalls[k].GetState() == BallState.Rising)
+				{
+					gridBalls[row, 0] = pBalls[k];
+					levelGrid.SearchGrid(0, row, 2);
+					
+					pBalls[k].SetState(BallState.Locked);
+					ballCollided = true;
 				}
-			}
+				
+				//Remove the ball if it collided
+				if(ballCollided)
+					pBalls.RemoveAt(k);
+				
+				
+			}//End of 'k' for loop
+
 		}
 		
 		public static void BoxHasCollided(SpriteUV ballOne, SpriteUV ballTwo)
@@ -98,6 +112,26 @@ namespace WildMonsters
 			{
 				// Do something
 			}
+		}
+		
+		private static Vector2i GetGridPosition(Ball target, GridProperties props)
+		{
+			int gridX;
+			int gridY;
+			
+			//find grid pos at collided obj
+			if(props.flipped)
+			{
+				gridX = (int)((props.top - target.Sprite.Position.X) / 50.0f) - 1 ;
+				gridY = (int)(target.Sprite.Position.Y / 50.0f);
+			}
+			else
+			{
+				gridX = (int)( (target.Sprite.Position.X - props.top) / 50.0f);
+				gridY = (int)(target.Sprite.Position.Y / 50.0f);
+			}
+			
+			return new Vector2i(gridX, gridY);
 		}
 	}
 }

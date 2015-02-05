@@ -8,24 +8,28 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 namespace WildMonsters
 {
 	public enum Colour {Red, Blue, Yellow, Purple, Green, Grey};
+	public enum BallState {Rising, Locked, Falling};
 	
 	public class Ball
 	{
-		private Scene parentScene;
+		private Scene parent;
 		
 		private SpriteUV sprite;
 		private TextureInfo texInfo;
 		//private bool alive;
 		private Colour colour;
-		bool hasFired;
-		private int speed = 8;
-
+		BallState state;
+		private int speed = 10;
 		private Bounds2 bounds;
+		
+		private int colourAmount = 5;
+		
+		
 		public Ball (Scene scene)
 		{
-			parentScene = scene;
+			parent = scene;
 			
-			hasFired = false;
+			state = BallState.Locked;
 			
 			texInfo = new TextureInfo("/Application/textures/Blocks.png");
 			sprite = new SpriteUV(texInfo);
@@ -53,7 +57,7 @@ namespace WildMonsters
 		public void Update(bool playerLeftOfScreen)
 		{
 			//TODO: Logic to travel up to and/or lock on to grid herel
-			if(this.hasFired)
+			if(state == BallState.Rising)
 			{
 				if(playerLeftOfScreen)
 				{
@@ -76,18 +80,19 @@ namespace WildMonsters
 		
 		public void RemoveObject()
 		{
-			parentScene.RemoveChild (this.Sprite, true);
+			parent.RemoveChild (this.Sprite, true);
 		}
 		
 		
 		//Getters and Setters
-		public void SetFired(bool peanut)
+		public void SetState(BallState peanut)
 		{
-			this.hasFired = peanut;
+			this.state = peanut;
 		}
-		public bool GetFired()
+		
+		public BallState GetState()
 		{
-			return this.hasFired;
+			return this.state;
 		}
 	
 		public Colour GetColour()
@@ -104,10 +109,20 @@ namespace WildMonsters
 			sprite.UV.T = new Vector2(spriteWidth * (int)colour, 0.0f);	
 		}
 		
-		public void RandomiseColour()
+		public void RandomiseColour(bool specials)
 		{
 			Random rng = new Random(this.GetHashCode());
-			Colour nextColour = (Colour)(int)FMath.Floor(rng.Next(6));
+			Colour nextColour;
+			
+			//Generate grey blocks or not? 
+			if(specials)
+			{
+				nextColour = (Colour)(int)FMath.Floor(rng.Next(6));
+			}
+			else
+			{
+				nextColour = (Colour)(int)FMath.Floor(rng.Next(5));
+			}
 			
 			SetColour (nextColour);
 		}

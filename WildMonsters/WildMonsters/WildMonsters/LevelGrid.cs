@@ -70,55 +70,90 @@ namespace WildMonsters
 		
 		public void SearchGrid(int xPos, int yPos, int matchesNeeded)
 		{
-			List<Vector2> searchList = new List<Vector2>();
-			searchList.Add (new Vector2(xPos,yPos));
+			List<Vector2i> searchList = new List<Vector2i>();
+			List<Vector2i> specialList = new List<Vector2i>();
 			
+			searchList.Add (new Vector2i(xPos,yPos));
+			
+			//The colour that we're searching for
 			Colour targetColour =  grid[yPos,xPos].GetColour();
 			
 			int searchIndex = 0;
-			Vector2 target = searchList[0];
+			Vector2i target = searchList[0];
 			
+			//Keep searching blocks until there's no more in the list
 			while(searchIndex < searchList.Count)
 			{
+				//Start searching from the next block in the list
 				target = searchList[searchIndex];
 				
+				//Search the blocks horizontally adjacent to the target
 				for(int x = -1; x <= 1; x+=2)
 				{
-					int targetY = (int)target.Y;
-					int targetX = (int)target.X+x;
-
-					if(CompareGridPosition (targetX, targetY, targetColour))
+					int targetY = target.Y;
+					int targetX = target.X+x;
+					
+					//This function checks the position of the current brick
+					if(CompareGridPosition (targetX, targetY))
 					{
-						Vector2 newVec = new Vector2(targetX, targetY);
-				
-						if(!searchList.Contains(newVec))
+						Colour thisColour = grid[targetY, targetX].GetColour();
+						
+						//Check the colour of the brick
+						if(thisColour == targetColour)
 						{
-							searchList.Add(newVec);
+							Vector2i newVec = new Vector2i(targetX, targetY);
+					
+							//If the current block isn't already in the search list then add it
+							if(!searchList.Contains(newVec))
+							{
+								searchList.Add(newVec);
+							}
+						}
+						else
+						{
+							specialList.Add(new Vector2i(targetX, targetY));
 						}
 					}
 				}
+				
+				//Search the blocks vertically adjacent to the target
 				for(int y = -1; y <= 1; y+= 2)
 				{
-					int targetY = (int)target.Y+y;
-					int targetX = (int)target.X;
+					int targetY = target.Y+y;
+					int targetX = target.X;
 					
-					if(CompareGridPosition (targetX, targetY, targetColour))
+					//This function checks the position and colour of the current brick
+					if(CompareGridPosition (targetX, targetY))
 					{
-						Vector2 newVec = new Vector2(targetX, targetY);
-				
-						if(!searchList.Contains(newVec))
+						Colour thisColour = grid[targetY, targetX].GetColour();
+						
+						//Check the colour of the brick
+						if(thisColour == targetColour)
 						{
-							searchList.Add(newVec);
+							Vector2i newVec = new Vector2i(targetX, targetY);
+					
+							//If the current block isn't already in the search list then add it
+							if(!searchList.Contains(newVec))
+							{
+								searchList.Add(newVec);
+							}
+						}
+						else
+						{
+							specialList.Add(new Vector2i(targetX, targetY));
 						}
 					}
 				}
 				
+				//"search the next block" 
 				searchIndex++;
 			}
 			
 			//If more than one matching colour was found
 			if(searchIndex+1 > matchesNeeded)
 			{
+				CheckSpecialCases (specialList);
+				
 				for(int a = 0; a < searchList.Count; a++)
 				{
 					int targetY = (int)searchList[a].Y;
@@ -131,14 +166,13 @@ namespace WildMonsters
 		}
 		
 		
-		private bool CompareGridPosition(int targetX, int targetY, Colour targetColour)
+		private bool CompareGridPosition(int targetX, int targetY)
 		{
 			//Check the search target is in-bounds
 			//and then check if the colour matches the target's colour
-			if(targetX > 0 && targetX < props.width
-			&& targetY > 0 && targetY < props.height
-			&& grid[targetY, targetX] != null
-			&& grid[targetY, targetX].GetColour() == targetColour)
+			if(targetX >= 0 && targetX < props.width
+			&& targetY >= 0 && targetY < props.height
+			&& grid[targetY, targetX] != null)
 			{
 				return true;
 			}
@@ -149,7 +183,25 @@ namespace WildMonsters
 		}
 		
 		
-		
+		private void CheckSpecialCases(List<Vector2i> specialList)
+		{
+			for(int a = 0; a <specialList.Count; a++)
+			{
+				int targetX = specialList[a].X;
+				int targetY = specialList[a].Y;
+				
+				Colour thisColour = grid[targetY, targetX].GetColour();
+				
+				switch(thisColour)
+				{
+					case Colour.Grey:
+						grid[targetY,targetX].RandomiseColour(false);
+					break;
+				}
+			}
+			
+			
+		}
 		
 
 		
@@ -168,7 +220,7 @@ namespace WildMonsters
 				for(int b = 0; b < props.startRows; b++)
 				{
 					Ball ball = new Ball(_scene);
-					ball.RandomiseColour();
+					ball.RandomiseColour(true);
 					grid[a,b] = ball;
 				}
 			}

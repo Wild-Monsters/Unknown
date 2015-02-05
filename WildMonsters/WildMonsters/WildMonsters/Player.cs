@@ -40,8 +40,8 @@ namespace WildMonsters
 //			Vector2  peanut = textureInfo.TextureSizef;
 //			sprite = new SpriteUV(textureInfo);
 //			sprite.Quad.S  = textureInfo.TextureSizef;
-//			spriteWidth = sprite.TextureInfo.Texture.Width;
-//			spriteHeight = sprite.TextureInfo.Texture.Height;
+			spriteWidth = sprite.TextureInfo.Texture.Width;
+			spriteHeight = sprite.TextureInfo.Texture.Height;
 			
 			if(isLeftSide)
 			{
@@ -76,13 +76,17 @@ namespace WildMonsters
 				downButton = GamePadButtons.Cross;
 			}
 			
+			float analogDelay = 8.0f;
+			float buttonDelay = 8.0f;
+			float deadzone = 0.5f;
+			
 			//Use analog or the buttons to move the character
-			if (Input.AnalogPress(moveAnalog, false, 0.5f, 12.0f) || Input.KeyPressed (upButton, 12.0f)) //Go left (up)
+			if (Input.AnalogPress(moveAnalog, false, deadzone, analogDelay) || Input.KeyPressed (upButton, buttonDelay)) //Go left (up)
 			{
 				sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
 			}
 			
-			if (Input.AnalogPress(moveAnalog, true, 0.5f, 12.0f) || Input.KeyPressed (downButton, 12.0f)) //go right (down)
+			if (Input.AnalogPress(moveAnalog, true, deadzone, analogDelay) || Input.KeyPressed (downButton, buttonDelay)) //go right (down)
 			{
 				sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
 			}
@@ -102,7 +106,7 @@ namespace WildMonsters
 		{
 			if((sprite.Position.Y + spriteHeight )>= 544 )
 			{
-				sprite.Position = new Vector2(sprite.Position.X, 544 - spriteHeight);
+				sprite.Position = new Vector2(sprite.Position.X, 544 - spriteHeight - 44);
 			}
 			if((sprite.Position.Y ) < 0 )
 			{
@@ -113,7 +117,7 @@ namespace WildMonsters
 		public void Fire(Scene scene)// array of balls 
 		{
 			Ball ball = new Ball(scene);
-			ball.SetFired(true);
+			ball.SetState(BallState.Rising);
 			ball.Sprite.Position = this.sprite.Position;
 			
 			ball.SetColour(nextColour);
@@ -129,7 +133,7 @@ namespace WildMonsters
 		{
 				for(int i=0; i<ballList.Count; i++)
 				{
-					if (ballList[i].GetFired())
+					if (ballList[i].GetState() == BallState.Rising)
 					{
 						ballList[i].Update(getSide());
 					}
@@ -145,7 +149,7 @@ namespace WildMonsters
 		private void NextColour()
 		{
 			rng = new Random();
-			nextColour = (Colour)(int)FMath.Floor(rng.Next(6));
+			nextColour = (Colour)(int)FMath.Floor(rng.Next(5));
 			
 			float spriteWidth = 1.0f / 6.0f;
 			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
