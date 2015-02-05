@@ -146,97 +146,132 @@ F:\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.exe
 F:\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.pdb
 F:\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Particle.png
 F:\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Particle.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.info
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\shaders\Simple.cgx
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Json.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Xml.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Runtime.Serialization.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Core.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.Web.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.UI.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe.mdb
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\TestSprite.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Blocks.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Divider.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\SideBar.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\PlaceholderTitleScreen.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\PlaceholderMenuScreen.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Particle.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.info
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\shaders\Simple.cgx
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Json.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Xml.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Runtime.Serialization.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Core.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.Web.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.UI.dll
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe.mdb
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\TestSprite.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Blocks.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Divider.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\SideBar.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\PlaceholderTitleScreen.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\PlaceholderMenuScreen.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Particle.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters.psdp
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\obj\Debug\shaders\shaders\Simple.cgx
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\obj\Debug\app.exe
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\obj\Debug\app.pdb
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\TitleScreen.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\TitleScreen.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\InstructionsPlaceholder.png
-E:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\InstructionsPlaceholder.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.info
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\shaders\Simple.cgx
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Json.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Xml.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Runtime.Serialization.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Core.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.Web.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.UI.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe.mdb
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\TestSprite.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Blocks.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Divider.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\SideBar.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\PlaceholderTitleScreen.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\PlaceholderMenuScreen.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Particle.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\TitleScreen.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\InstructionsPlaceholder.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.info
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\shaders\Simple.cgx
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Json.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Xml.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Runtime.Serialization.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Core.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.Web.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.UI.dll
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe.mdb
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\TestSprite.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Blocks.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Divider.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\SideBar.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\PlaceholderTitleScreen.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\PlaceholderMenuScreen.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Particle.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\TitleScreen.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\InstructionsPlaceholder.png
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\bin\Debug\WildMonsters.psdp
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\obj\Debug\shaders\shaders\Simple.cgx
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\obj\Debug\app.exe
-F:\TGP Source\Unknown\WildMonsters\WildMonsters\obj\Debug\app.pdb
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.info
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\shaders\Simple.cgx
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Json.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Xml.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Runtime.Serialization.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Core.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.Web.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.UI.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe.mdb
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\TestSprite.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Blocks.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Divider.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\SideBar.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\PlaceholderTitleScreen.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\PlaceholderMenuScreen.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Particle.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.info
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\shaders\Simple.cgx
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Json.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Xml.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Runtime.Serialization.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Core.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.Web.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.UI.dll
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe.mdb
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\TestSprite.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Blocks.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Divider.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\SideBar.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\PlaceholderTitleScreen.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\PlaceholderMenuScreen.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Particle.png
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters.psdp
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\shaders\shaders\Simple.cgx
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.exe
+E:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.pdb
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.info
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\shaders\Simple.cgx
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Json.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Xml.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Runtime.Serialization.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Core.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.Web.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.UI.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe.mdb
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\TestSprite.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Blocks.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Divider.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\SideBar.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\PlaceholderTitleScreen.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\PlaceholderMenuScreen.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Particle.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.info
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\shaders\Simple.cgx
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Json.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Xml.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Runtime.Serialization.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Core.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.Web.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.UI.dll
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe.mdb
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\TestSprite.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Blocks.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Divider.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\SideBar.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\PlaceholderTitleScreen.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\PlaceholderMenuScreen.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Particle.png
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters.psdp
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\shaders\shaders\Simple.cgx
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.exe
+G:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.pdb
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.info
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\shaders\Simple.cgx
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Json.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Xml.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Runtime.Serialization.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.Core.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.Web.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\System.ServiceModel.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\Sce.PlayStation.HighLevel.UI.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\app.exe.mdb
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\TestSprite.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Blocks.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Divider.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\SideBar.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\PlaceholderTitleScreen.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\PlaceholderMenuScreen.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Particle.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.info
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\shaders\Simple.cgx
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.GameEngine2D.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Json.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Xml.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Runtime.Serialization.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.Core.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.Web.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\System.ServiceModel.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\Sce.PlayStation.HighLevel.UI.dll
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\app.exe.mdb
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\TestSprite.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Blocks.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Divider.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\SideBar.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\PlaceholderTitleScreen.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\PlaceholderMenuScreen.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Particle.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters.psdp
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\shaders\shaders\Simple.cgx
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.exe
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.pdb

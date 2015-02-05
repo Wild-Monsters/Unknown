@@ -28,50 +28,24 @@ namespace WildMonsters
 		
 		public override void Update(float deltaTime)
 		{
-<<<<<<< HEAD
 			List<TouchData> touches = Touch.GetData(0);
-=======
-			if(Input.KeyPressed (GamePadButtons.R))
-				topTarget += 50.0f;
->>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
 			
 			foreach(TouchData data in touches)
 			{
-				ParticleManager.AddParticle (this, new Vector2(data.X, data.Y));
+					float screenWidth = Director.Instance.GL.Context.GetViewport().
+					Width;
+			
+					float screenHeight = Director.Instance.GL.Context.GetViewport().
+					Height;
+				
+				//ParticleManager.AddParticle (this, new Vector2(data.X*960, data.Y*544));
+				ParticleManager.AddParticle (this, new Vector2((data.X + 0.5f) * screenWidth,
+					screenHeight - ((data.Y + 0.5f) * screenHeight)), 1000);
 			}
 			
-<<<<<<< HEAD
 			levelManager.Update(deltaTime);
 			ParticleManager.Update();
-=======
-			if(Input.KeyPressed (GamePadButtons.L))
-				topTarget -= 50.0f;
-			
-			
-			if(top < topTarget)
-				top += 10.0f;
-			
-			
-			if(top > topTarget)
-				top -= 10.0f;
-			
-			
-			player1.Update (this);
-			player2.Update (this);
-			
-			levelUI.divider.SetTop (top);
-			levelUI.Update (deltaTime);
-			
-			grid1.SetTop (top);
-			grid2.SetTop (top);
-			
-			grid1.Update (deltaTime);
-			grid2.Update (deltaTime);
-			
-			//Collision Stuff trial 
-			CollisionHandler.CheckBlockCollision(player1.getBalls(), grid1);
-			CollisionHandler.CheckBlockCollision(player2.getBalls(), grid2);
->>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
+			ParticleManager.Kill ();
 		}
 	}
 }

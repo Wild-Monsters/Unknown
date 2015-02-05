@@ -10,25 +10,66 @@ using Sce.PlayStation.Core.Audio;
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
-
-
 namespace WildMonsters
 {
 	public static class ParticleManager
 	{
-		private static List<Particle> objectList = new List<Particle>();
 		
-		public static void AddParticle(Scene _scene, Vector2 position)
+		private static List<Particle> objectList = new List<Particle>();
+		private static List<int> indexesToDelete = new List<int>();
+		
+		public static void AddParticle(Scene _scene, Vector2 position, int numParticle)
 		{
-			objectList.Add (new Particle(_scene, position));
+			for(int i = 0; i < numParticle; i++)
+			{
+				// Add particle to the list
+				objectList.Add (new Particle(_scene, position));
+			}
 		}
 		
 		public static void Update()
 		{
-			foreach(Particle p in objectList)
+			//List<int> indexesToDelete = new List<int>();
+			for(int i = 0; i < objectList.Count; i++)
 			{
-				p.Update();
+				objectList[i].Update();
+				
+				if(objectList[i].TTL <= 0)
+				{
+					// Add the particle that needs to be deleted to the list of to-be deleted particles
+					indexesToDelete.Add(i);
+				}
 			}
+			
+//			//If indexesToDelete is not empty, loop through
+//			if(indexesToDelete.Count > 0)
+//			{
+//				// For each element in the array...
+//				for(int i = 0; i < indexesToDelete.Count; i++)
+//				{
+//					// Delete the particle at that position
+//					objectList.RemoveAt(indexesToDelete[i]);
+//				}
+//			}
+//			// Clear the list, otherwise we'll try to delete the same element in the next pass.
+//			indexesToDelete.Clear();
+			
+		}
+		
+		public static void Kill()
+		{
+			//If indexesToDelete is not empty, loop through
+			if(indexesToDelete.Count > 0)
+			{
+				// For each element in the array...
+				for(int i = 0; i < indexesToDelete.Count; i++)
+				{
+					// Delete the particle at that position
+					objectList.RemoveAt(indexesToDelete[i]);
+				}
+			}
+			// Clear the list, otherwise we'll try to delete the same element in the next pass.
+			indexesToDelete.Clear();
 		}
 	}
 }

@@ -76,7 +76,5 @@
     <Content Include="textures\PlaceholderTitleScreen.png" />
     <Content Include="textures\PlaceholderMenuScreen.png" />
     <Content Include="textures\Particle.png" />
-    <Content Include="textures\TitleScreen.png" />
-    <Content Include="textures\InstructionsPlaceholder.png" />
   </ItemGroup>
 </Project>

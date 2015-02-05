@@ -14,11 +14,6 @@ namespace WildMonsters
 		private TextureInfo texInfo;
 		//private bool alive;
 		private Colour colour;
-<<<<<<< HEAD
-=======
-		bool hasFired;
-		private int speed = 8;
->>>>>>> 458b8efc3b413faa704e6f8b99085441ba4ccb0f
 
 		
 		public Ball (Scene scene)
