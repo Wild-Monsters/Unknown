@@ -21,7 +21,7 @@ namespace WildMonsters
 		private static MenuScene	menuScene;
 		private static TitleScene   	titleScene;
 		private static InstructionScene instructionScene;
-		//private static Scene		currentScene;
+		private static Scene		currentScene;
 		
 		private static Timer		timer;
 		private static float		deltaTime;

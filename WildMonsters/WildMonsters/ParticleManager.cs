@@ -27,17 +27,18 @@ namespace WildMonsters
 			}
 		}
 		
-		public static void Update()
+		public static void Update(Scene _scene)
 		{
 			//List<int> indexesToDelete = new List<int>();
 			for(int i = 0; i < objectList.Count; i++)
 			{
-				objectList[i].Update();
+				objectList[i].Update(_scene);
 				
 				if(objectList[i].TTL <= 0)
 				{
-					// Add the particle that needs to be deleted to the list of to-be deleted particles
-					indexesToDelete.Add(i);
+					_scene.RemoveChild(objectList[i].Sprite, false);
+					objectList.RemoveAt(i);
+					i--;
 				}
 			}
 			
@@ -54,22 +55,6 @@ namespace WildMonsters
 //			// Clear the list, otherwise we'll try to delete the same element in the next pass.
 //			indexesToDelete.Clear();
 			
-		}
-		
-		public static void Kill()
-		{
-			//If indexesToDelete is not empty, loop through
-			if(indexesToDelete.Count > 0)
-			{
-				// For each element in the array...
-				for(int i = 0; i < indexesToDelete.Count; i++)
-				{
-					// Delete the particle at that position
-					objectList.RemoveAt(indexesToDelete[i]);
-				}
-			}
-			// Clear the list, otherwise we'll try to delete the same element in the next pass.
-			indexesToDelete.Clear();
 		}
 	}
 }

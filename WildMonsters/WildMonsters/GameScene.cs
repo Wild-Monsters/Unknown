@@ -40,12 +40,12 @@ namespace WildMonsters
 				
 				//ParticleManager.AddParticle (this, new Vector2(data.X*960, data.Y*544));
 				ParticleManager.AddParticle (this, new Vector2((data.X + 0.5f) * screenWidth,
-					screenHeight - ((data.Y + 0.5f) * screenHeight)), 1000);
+					screenHeight - ((data.Y + 0.5f) * screenHeight)), 100);
 			}
 			
 			levelManager.Update(deltaTime);
-			ParticleManager.Update();
-			ParticleManager.Kill ();
+			ParticleManager.Update(this);
+			//ParticleManager.Kill ();
 		}
 	}
 }

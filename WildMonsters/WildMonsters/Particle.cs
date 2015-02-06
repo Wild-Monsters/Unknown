@@ -18,6 +18,8 @@ namespace WildMonsters
 		public float Angle { get; set; }            // The current angle of rotation of the particle
 		public float AngularVelocity { get; set; }    // The speed that the angle is changing
 		public int TTL { get; set; }                // The 'time to live' of the particle
+		public bool Alive { get; set; }
+		public SpriteUV Sprite { get{ return sprite; } }
 		
 		
 		// Accessors:
@@ -70,6 +72,7 @@ namespace WildMonsters
 			Angle = angle;
 			AngularVelocity = angularVelocity;
 			TTL = ttl;
+			Alive = true;
 			
 			TextureInfo texInfo = new TextureInfo("/Application/textures/Particle.png");
 			
@@ -78,6 +81,7 @@ namespace WildMonsters
 			sprite.Position = position;
 			
 			_scene.AddChild (sprite);
+			
 			
 			// Initialise variables:
 			//_speed = new Vector2(0.0f, -2.5f);
@@ -88,7 +92,7 @@ namespace WildMonsters
 			return sprite.Position;
 		}
 		
-		public void Update()
+		public void Update(Scene _scene)
 		{
 			//_myPos.Add (_speed);
 			//sprite.Position.Add ();
@@ -97,6 +101,11 @@ namespace WildMonsters
 			    TTL--;
     			sprite.Position += Velocity;
     			Angle += AngularVelocity;
+			
+//				if(!Alive)
+//				{
+//					_scene.RemoveChild(sprite);
+//				}
 		}
 	}
 }
