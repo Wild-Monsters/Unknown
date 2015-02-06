@@ -74,7 +74,7 @@ namespace WildMonsters
 			TTL = ttl;
 			Alive = true;
 			
-			TextureInfo texInfo = new TextureInfo("/Application/textures/Particle.png");
+			TextureInfo texInfo = new TextureInfo("/Application/textures/star.png");
 			
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = texInfo.TextureSizef;

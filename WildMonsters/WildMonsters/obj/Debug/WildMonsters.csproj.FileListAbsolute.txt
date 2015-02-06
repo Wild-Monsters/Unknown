@@ -275,3 +275,5 @@ F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonste
 F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
 F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.exe
 F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\obj\Debug\app.pdb
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\star.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\star.png
