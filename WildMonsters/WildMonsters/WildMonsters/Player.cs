@@ -148,8 +148,7 @@ namespace WildMonsters
 		
 		private void NextColour()
 		{
-			rng = new Random();
-			nextColour = (Colour)(int)FMath.Floor(rng.Next(5));
+			nextColour = (Colour)WMRandom.GetNextInt(0,5,this.GetHashCode());
 			
 			float spriteWidth = 1.0f / 6.0f;
 			sprite.UV.S = new Vector2(spriteWidth, 1.0f);

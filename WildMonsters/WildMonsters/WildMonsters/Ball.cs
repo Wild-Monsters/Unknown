@@ -111,17 +111,16 @@ namespace WildMonsters
 		
 		public void RandomiseColour(bool specials)
 		{
-			Random rng = new Random(this.GetHashCode());
 			Colour nextColour;
-			
+
 			//Generate grey blocks or not? 
 			if(specials)
 			{
-				nextColour = (Colour)(int)FMath.Floor(rng.Next(6));
+				nextColour = (Colour)(int)FMath.Floor(WMRandom.GetNextInt(0,6,this.GetHashCode ()));
 			}
 			else
 			{
-				nextColour = (Colour)(int)FMath.Floor(rng.Next(5));
+				nextColour = (Colour)(int)FMath.Floor(WMRandom.GetNextInt(0,5,this.GetHashCode ()));
 			}
 			
 			SetColour (nextColour);
