@@ -72,13 +72,18 @@ namespace WildMonsters
 			Angle = angle;
 			AngularVelocity = angularVelocity;
 			TTL = ttl;
-			Alive = true;
+			
 			
 			TextureInfo texInfo = new TextureInfo("/Application/textures/star.png");
 			
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = texInfo.TextureSizef;
 			sprite.Position = position;
+			
+			sprite.Color = new Vector4((float)rand.NextFloat(0, 1),
+            				           (float)rand.NextFloat(0, 1),
+            				  		   (float)rand.NextFloat(0, 1),
+			                  		   (float)rand.NextFloat(0, 1));
 			
 			_scene.AddChild (sprite);
 			
@@ -101,11 +106,6 @@ namespace WildMonsters
 			    TTL--;
     			sprite.Position += Velocity;
     			Angle += AngularVelocity;
-			
-//				if(!Alive)
-//				{
-//					_scene.RemoveChild(sprite);
-//				}
 		}
 	}
 }
