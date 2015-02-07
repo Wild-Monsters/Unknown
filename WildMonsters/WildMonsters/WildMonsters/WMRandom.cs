@@ -10,7 +10,7 @@ namespace WildMonsters
 		public static int GetNextInt(int min, int max, int hash)
 		{
 			randomGen = new Random(count + DateTime.Now.Millisecond + hash);
-			count = (int)(hash +randomGen.Next (2,4))/DateTime.Now.Millisecond;
+			count = (int)(hash +randomGen.Next (2,4))/(DateTime.Now.Millisecond+1);
 			return randomGen.Next (min, max);
 		}
 	}
