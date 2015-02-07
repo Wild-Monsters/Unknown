@@ -1,17 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\AppMain.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\Particle.cs">
     <Files>
-      <File FileName="WildMonsters\GameScene.cs" Line="48" Column="28" />
-      <File FileName="WildMonsters\Particle.cs" Line="20" Column="84" />
-      <File FileName="WildMonsters\ParticleManager.cs" Line="29" Column="3" />
+      <File FileName="WildMonsters\GameScene.cs" Line="46" Column="35" />
+      <File FileName="WildMonsters\Particle.cs" Line="95" Column="28" />
+      <File FileName="WildMonsters\ParticleManager.cs" Line="26" Column="52" />
       <File FileName="WildMonsters\Input.cs" Line="31" Column="6" />
-      <File FileName="WildMonsters\AppMain.cs" Line="54" Column="17" />
+      <File FileName="WildMonsters\AppMain.cs" Line="34" Column="17" />
       <File FileName="WildMonsters\Divider.cs" Line="1" Column="1" />
       <File FileName="WildMonsters\LevelGrid.cs" Line="32" Column="47" />
       <File FileName="WildMonsters\LevelManager.cs" Line="1" Column="1" />
       <File FileName="WildMonsters\LevelUI.cs" Line="1" Column="1" />
-      <File FileName="WildMonsters\MenuScene.cs" Line="25" Column="4" />
+      <File FileName="WildMonsters\MenuScene.cs" Line="32" Column="31" />
       <File FileName="WildMonsters\InstructionScene.cs" Line="1" Column="1" />
       <File FileName="WildMonsters\TitleScene.cs" Line="1" Column="1" />
       <File FileName="WildMonsters\CollisionHandler.cs" Line="43" Column="25" />

@@ -39,13 +39,22 @@ namespace WildMonsters
 					Height;
 				
 				//ParticleManager.AddParticle (this, new Vector2(data.X*960, data.Y*544));
+//				ParticleManager.AddParticle (this, new Vector2((data.X + 0.5f) * screenWidth,
+//					screenHeight - ((data.Y + 0.5f) * screenHeight)), 100);
+		
+				
 				ParticleManager.AddParticle (this, new Vector2((data.X + 0.5f) * screenWidth,
 					screenHeight - ((data.Y + 0.5f) * screenHeight)), 100);
 			}
 			
 			levelManager.Update(deltaTime);
+			//ParticleManager.Update(this);
 			ParticleManager.Update(this);
-			//ParticleManager.Kill ();
+		}
+		
+		public override void Draw ()
+		{
+			base.Draw ();
 		}
 	}
 }

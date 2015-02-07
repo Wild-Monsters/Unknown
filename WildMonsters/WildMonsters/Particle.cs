@@ -18,13 +18,13 @@ namespace WildMonsters
 		public float Angle { get; set; }            // The current angle of rotation of the particle
 		public float AngularVelocity { get; set; }    // The speed that the angle is changing
 		public int TTL { get; set; }                // The 'time to live' of the particle
-		public bool Alive { get; set; }
 		public SpriteUV Sprite { get{ return sprite; } }
 		
 		
 		// Accessors:
 		
-		public Particle (Scene _scene, Vector2 position)
+		//public Particle (Scene _scene, Vector2 position)
+		public Particle (Vector2 position)
 		{
 			Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator rand;
 			
@@ -85,7 +85,7 @@ namespace WildMonsters
             				  		   (float)rand.NextFloat(0, 1),
 			                  		   (float)rand.NextFloat(0, 1));
 			
-			_scene.AddChild (sprite);
+			//_scene.AddChild (sprite);
 			
 			
 			// Initialise variables:
@@ -97,7 +97,8 @@ namespace WildMonsters
 			return sprite.Position;
 		}
 		
-		public void Update(Scene _scene)
+		//public void Update(Scene _scene)
+		public void Update()
 		{
 			//_myPos.Add (_speed);
 			//sprite.Position.Add ();
