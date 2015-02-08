@@ -10,6 +10,7 @@ using Sce.PlayStation.Core.Audio;
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
+using Sce.PlayStation.Core.Imaging;
 
 namespace WildMonsters
 {
@@ -21,11 +22,25 @@ namespace WildMonsters
 		
 		public Divider (Scene _scene)
 		{
-			TextureInfo texInfo = new TextureInfo("/Application/textures/Divider.png");
+//			int width = Director.Instance.GL.Context.GetViewport().Width;
+//			int height = Director.Instance.GL.Context.GetViewport().Height;
+//			
+//			Image img = new Image(ImageMode.Rgba, new ImageSize(width / 2, height / 2), new ImageColor(255, 0, 0, 0));
+//			img.DrawText("Score: ", new ImageColor(255, 0, 0, 255), new Font(FontAlias.System, 170, FontStyle.Regular), new ImagePosition(0, 150));
+//			
+//			Texture2D texture = new Texture2D(width / 2, height / 2, false, PixelFormat.Rgba);
+//			texture.SetPixels(0, img.ToBuffer());
+//			img.Dispose();
 			
-			sprite = new SpriteUV(texInfo);
+			TextureInfo texInfo = new TextureInfo("/Application/textures/Divider.png");
+			//texInfo.Texture = texture;
+			
+			
+			sprite = new SpriteUV();
+			sprite.TextureInfo = texInfo;
 			sprite.Quad.S = texInfo.TextureSizef;
 			sprite.Position = new Vector2(0.0f, 0.0f);
+			
 			
 			_scene.AddChild (sprite);
 		}

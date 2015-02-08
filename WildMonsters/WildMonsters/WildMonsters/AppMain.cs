@@ -26,6 +26,7 @@ namespace WildMonsters
 		private static Timer		timer;
 		private static float		deltaTime;
 		private static bool			quit;
+		
 				
 		public static void Main (string[] args)
 		{
@@ -60,7 +61,7 @@ namespace WildMonsters
 			
 			Sce.PlayStation.HighLevel.UI.Scene blankUI = new Sce.PlayStation.HighLevel.UI.Scene();
 			UISystem.SetScene(blankUI);
-			
+
 			//Create Game Scenes
 			//menuScene = new MenuScene();
 			//gameScene = new GameScene();
@@ -71,6 +72,7 @@ namespace WildMonsters
 			gameScene.Camera.SetViewFromViewport();
 			//instructionScene.Camera.SetViewFromViewport();
 			
+
 			//Run the scene.
 			Director.Instance.RunWithScene(gameScene, false);
 		}

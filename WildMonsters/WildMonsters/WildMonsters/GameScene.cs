@@ -10,10 +10,11 @@ using Sce.PlayStation.Core.Audio;
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
+using Sce.PlayStation.HighLevel.UI;
 
 namespace WildMonsters
 {
-	public class GameScene : Scene
+	public class GameScene : Sce.PlayStation.HighLevel.GameEngine2D.Scene
 	{
 		private GridProperties grid1Properties, grid2Properties;
 		private LevelGrid grid1, grid2;
@@ -28,11 +29,28 @@ namespace WildMonsters
 		private Player player2;
 		// Fyring blocks
 		
+		private Sce.PlayStation.HighLevel.UI.Scene uiScene;
+		private Sce.PlayStation.HighLevel.UI.Label p1Score;
+		
 		
 		public GameScene()
 		{	
+			uiScene = new Sce.PlayStation.HighLevel.UI.Scene();
+			Panel panel = new Panel();
+			panel.Width = Director.Instance.GL.Context.GetViewport().Width;
+			panel.Height = Director.Instance.GL.Context.GetViewport().Height;
+
+			
+			p1Score = new Sce.PlayStation.HighLevel.UI.Label();
+			p1Score.X = 10;
+			p1Score.Y = Director.Instance.GL.Context.GetViewport().Height / 2;
+			p1Score.Width = 300;
+			p1Score.TextColor = (UIColor)Colors.Orange;
+			p1Score.Text = "Player 1 Score: ";
+			
 			this.Camera.SetViewFromViewport ();
 			levelUI = new LevelUI(this);
+
 			InitialiseGrids ();
 			
 			grid1.Draw (this);
@@ -40,11 +58,18 @@ namespace WildMonsters
 			
 			player1 = new Player(this, true);
 			player2 = new Player(this, false);
-			
+						
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
 			
+
 			levelUI.divider.Top = top;
 			levelUI.divider.TopTarget = top;
+			
+			uiScene.RootWidget.AddChildLast(panel);
+			uiScene.RootWidget.AddChildLast(p1Score);
+			
+			UISystem.SetScene(uiScene);
+			
 
 			
 		}
