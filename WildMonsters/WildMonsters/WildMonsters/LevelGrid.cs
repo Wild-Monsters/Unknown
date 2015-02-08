@@ -172,10 +172,12 @@ namespace WildMonsters
 					if(props.flipped)
 					{
 						levelUI.divider.TopTarget = levelUI.divider.TopTarget + 10;
+						levelUI.divider.P1Score += 1;
 					}
 					else
 					{
 						levelUI.divider.TopTarget = levelUI.divider.TopTarget - 10;
+						levelUI.divider.P2Score += 1;
 					}
 				}
 			}

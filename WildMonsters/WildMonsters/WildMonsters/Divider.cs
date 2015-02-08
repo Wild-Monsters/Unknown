@@ -20,6 +20,13 @@ namespace WildMonsters
 		private float top, topTarget;
 		private int speed = 2;
 		
+		private Label p1ScoreLabel;
+		private Label p2ScoreLabel;
+		
+		private int p1Score;
+		private int p2Score;
+
+		
 		public Divider (Scene _scene)
 		{
 //			int width = Director.Instance.GL.Context.GetViewport().Width;
@@ -41,8 +48,20 @@ namespace WildMonsters
 			sprite.Quad.S = texInfo.TextureSizef;
 			sprite.Position = new Vector2(0.0f, 0.0f);
 			
+			p1ScoreLabel = new Label();
+			p1ScoreLabel.Position = new Vector2(0.0f, 0.0f);
+			p1ScoreLabel.Scale = new Vector2(1.5f, 1.5f);
+			p1ScoreLabel.Text = "Player 1 Score: ";
+			
+			p2ScoreLabel = new Label();
+			p2ScoreLabel.Position = new Vector2(750.0f, 0.0f);
+			p2ScoreLabel.Scale = new Vector2(1.5f, 1.5f);
+			p2ScoreLabel.Text = "Player 2 Score: ";
 			
 			_scene.AddChild (sprite);
+			_scene.AddChild(p1ScoreLabel);
+			_scene.AddChild(p2ScoreLabel);
+
 		}
 		
 		public void Update(float t)
@@ -58,6 +77,10 @@ namespace WildMonsters
 			}
 			
 			sprite.Position = new Vector2(top-(sprite.Quad.S.X/2), 0.0f);
+			
+			p1ScoreLabel.Text = "Player 1 Score: " + p1Score;
+			p2ScoreLabel.Text = "Player 2 Score: " + p2Score;
+
 		}
 		
 		
@@ -77,6 +100,18 @@ namespace WildMonsters
 		{
 			get{ return sprite; }
 			set{ sprite = value; }
+		}
+		
+		public int P1Score
+		{
+			get{ return p1Score; }
+			set{ p1Score = value; }
+		}
+		
+		public int P2Score
+		{
+			get{ return p2Score; }
+			set{ p2Score = value; }
 		}
 	}
 }
