@@ -28,6 +28,12 @@ namespace WildMonsters
 		{
 			divider.Update (t);
 		}
+		
+		public Divider Divider
+		{
+			get{ return divider; }
+			
+		}
 	}
 }
 

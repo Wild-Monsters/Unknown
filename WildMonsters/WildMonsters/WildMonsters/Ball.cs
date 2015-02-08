@@ -32,6 +32,7 @@ namespace WildMonsters
 			state = BallState.Locked;
 			
 			texInfo = new TextureInfo("/Application/textures/Blocks.png");
+			
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = new Vector2(50.0f,50.0f);
 			sprite.Position = new Vector2(0.0f, 0.0f);

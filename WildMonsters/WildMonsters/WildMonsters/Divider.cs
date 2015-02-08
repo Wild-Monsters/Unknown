@@ -16,7 +16,8 @@ namespace WildMonsters
 	public class Divider
 	{
 		private SpriteUV sprite;
-		private float top;
+		private float top, topTarget;
+		private int speed = 2;
 		
 		public Divider (Scene _scene)
 		{
@@ -31,12 +32,36 @@ namespace WildMonsters
 		
 		public void Update(float t)
 		{
+			if(top<topTarget)
+			{
+				top+=speed;
+			}
+			
+			if(top>topTarget)
+			{
+				top -= speed;
+			}
+			
 			sprite.Position = new Vector2(top-(sprite.Quad.S.X/2), 0.0f);
 		}
 		
-		public void SetTop(float _top)
+		
+		public float TopTarget
 		{
-			top = _top;
+			set{ topTarget = value; }
+			get{ return topTarget; }
+		}
+		
+		public float Top
+		{
+			set{ top= value; }
+			get{ return top; }
+		}
+		
+		public SpriteUV Sprite
+		{
+			get{ return sprite; }
+			set{ sprite = value; }
 		}
 	}
 }

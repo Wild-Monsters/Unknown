@@ -16,6 +16,7 @@ namespace WildMonsters
 	{
 		public int height, width, cellSize, startRows;
 		public float xMargin, yMargin;
+		//to know which player we are
 		public bool flipped;
 		public float top;
 	};
@@ -24,13 +25,16 @@ namespace WildMonsters
 	{	
 		private GridProperties props;
 		private Ball[,] grid;
+		private LevelUI levelUI;
 		
-		public LevelGrid (GridProperties _properties)
+		public LevelGrid (GridProperties _properties, LevelUI _levelUI)
 		{
 			props = _properties;
 			
 			grid = new Ball[props.height, props.width];
 			
+			levelUI = _levelUI;
+						
 			for(int a = 0; a < props.height; a++)
 			{
 				for(int b = 0; b < props.width; b++)
@@ -42,6 +46,9 @@ namespace WildMonsters
 		
 		public void Update(float t)
 		{
+			levelUI.Update(t);
+			props.top = levelUI.divider.Top;
+			
 			for(int a = 0; a < props.height; a++)
 			{
 				for(int b = 0; b < props.width; b++)
@@ -161,6 +168,15 @@ namespace WildMonsters
 					
 					grid[targetY, targetX].RemoveObject();
 					grid[targetY, targetX] = null;
+					
+					if(props.flipped)
+					{
+						levelUI.divider.TopTarget = levelUI.divider.TopTarget + 10;
+					}
+					else
+					{
+						levelUI.divider.TopTarget = levelUI.divider.TopTarget - 10;
+					}
 				}
 			}
 		}

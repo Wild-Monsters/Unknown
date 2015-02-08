@@ -32,8 +32,8 @@ namespace WildMonsters
 		public GameScene()
 		{	
 			this.Camera.SetViewFromViewport ();
-			InitialiseGrids ();
 			levelUI = new LevelUI(this);
+			InitialiseGrids ();
 			
 			grid1.Draw (this);
 			grid2.Draw (this);
@@ -42,6 +42,11 @@ namespace WildMonsters
 			player2 = new Player(this, false);
 			
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
+			
+			levelUI.divider.Top = top;
+			levelUI.divider.TopTarget = top;
+
+			
 		}
 		private void InitialiseGrids()
 		{
@@ -65,35 +70,21 @@ namespace WildMonsters
 			grid2Properties.top = 960.0f/2;
 			grid2Properties.startRows = 3;
 			
-			grid1 = new LevelGrid(grid1Properties);
-			grid2 = new LevelGrid(grid2Properties);
+			grid1 = new LevelGrid(grid1Properties, levelUI);
+			grid2 = new LevelGrid(grid2Properties, levelUI);
 		}
 		public override void Update(float deltaTime)
-		{
-			if(Input.KeyPressed (GamePadButtons.R))
-				topTarget += 50.0f;
-			
-			
-			if(Input.KeyPressed (GamePadButtons.L))
-				topTarget -= 50.0f;
-			
-			
-			if(top < topTarget)
-				top += 10.0f;
-			
-			
-			if(top > topTarget)
-				top -= 10.0f;
-			
-			
+		{	
 			player1.Update (this);
 			player2.Update (this);
 			
-			levelUI.divider.SetTop (top);
 			levelUI.Update (deltaTime);
 			
-			grid1.SetTop (top);
-			grid2.SetTop (top);
+			
+			//grid top now set in LevelGrid
+			//grid's top constantly updated to be equal to the top of the 'divider'
+//			grid1.SetTop (top);
+//			grid2.SetTop (top);
 			
 			grid1.Update (deltaTime);
 			grid2.Update (deltaTime);
