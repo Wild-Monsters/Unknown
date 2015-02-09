@@ -164,13 +164,20 @@ namespace WildMonsters
 			if(searchIndex+1 > matchesNeeded)
 			{
 				CollisionHandler.BExploded = true;
+				CollisionHandler.ResetExplodeAtArray();
 				
 				CheckSpecialCases (specialList);
+				
+				// Initialise ExplodeAtArray:
+				
 				
 				for(int a = 0; a < searchList.Count; a++)
 				{
 					int targetY = (int)searchList[a].Y;
 					int targetX = (int)searchList[a].X;
+					
+					CollisionHandler.ExplodeAtArray[a] = new Vector2((float)grid[targetY, targetX].GetBounds().Min.X, 
+					                                         (float)grid[targetY, targetX].GetBounds().Min.Y);
 					
 					CollisionHandler.ExplodeAt = new Vector2((float)grid[targetY, targetX].GetBounds().Min.X, 
 					                                         (float)grid[targetY, targetX].GetBounds().Min.Y);

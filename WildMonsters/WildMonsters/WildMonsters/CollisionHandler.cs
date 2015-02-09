@@ -14,10 +14,20 @@ namespace WildMonsters
 		// Private variables:
 		private static bool bExploded = false;
 		private static Vector2 explodeAt = new Vector2(0.0f, 0.0f);
+		private static Vector2[] explodeAtArray = new Vector2[10];
 		
 		// Accessors:
 		public static bool BExploded {get{return bExploded;} set{bExploded = value;}}
 		public static Vector2 ExplodeAt {get {return explodeAt;} set{explodeAt = value;}}
+		public static Vector2[] ExplodeAtArray {get{return explodeAtArray;} set{explodeAtArray = value;}}
+		
+		public static void ResetExplodeAtArray()
+		{
+			for(int i = 0; i < 10; i++)
+			{
+				explodeAtArray[i] = new Vector2(0,0);
+			}
+		}
 		
 		// Box collision
 		

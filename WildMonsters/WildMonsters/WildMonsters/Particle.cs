@@ -103,12 +103,7 @@ namespace WildMonsters
             				    (float)rand.NextFloat(0, 1),
 			                    (float)1);
 			
-			
 			sprite.Color = spriteColor;
-//			sprite.Color = new Vector4((float)rand.NextFloat(0, 1),
-//            				           (float)rand.NextFloat(0, 1),
-//            				  		   (float)rand.NextFloat(0, 1),
-//			                  		   (float)rand.NextFloat(0, 1));
 			
 			_scene.AddChild (sprite);
 			

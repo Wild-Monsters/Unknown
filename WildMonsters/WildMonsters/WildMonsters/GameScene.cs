@@ -120,20 +120,31 @@ namespace WildMonsters
 			
 			if(CollisionHandler.BExploded)
 			{
-				ParticleGenerator(CollisionHandler.ExplodeAt);
+				ParticleGenerator(CollisionHandler.ExplodeAtArray);
 			}
 			
 			ParticleManager.Update(this);
 		}
 		
-		public void ParticleGenerator(Vector2 explodeAt)
-		{				
-				Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
-				ParticleManager.AddParticle (this, new Vector2((explodeAt.X + (float)randPos.X),
-					explodeAt.Y + (float)randPos.Y), 10);
+		public void ParticleGenerator(Vector2[] explodeAt)
+		{	
+			// Loop each element in the array
+			for(int j = 0; j < 10; j++)
+			{
+				// If the element contains a position of 0,0 - don't produce any particles at that position
+				if(explodeAt[j].X != 0.0f && explodeAt[j].Y != 0.0f)
+				{
+					// Produce 10 particles per call
+					for(int i = 0; i < 10; i++)
+					{
+						Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
+						ParticleManager.AddParticle (this, new Vector2((explodeAt[j].X + (float)randPos.X),
+							explodeAt[j].Y + (float)randPos.Y), 1);
+					}
+				}
+			}
 
 			CollisionHandler.BExploded = false;
-			//ParticleManager.Update(this);
 		}
 	}
 }
