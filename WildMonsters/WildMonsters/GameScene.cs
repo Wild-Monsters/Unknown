@@ -41,14 +41,21 @@ namespace WildMonsters
 				//ParticleManager.AddParticle (this, new Vector2(data.X*960, data.Y*544));
 //				ParticleManager.AddParticle (this, new Vector2((data.X + 0.5f) * screenWidth,
 //					screenHeight - ((data.Y + 0.5f) * screenHeight)), 100);
-		
 				
-				ParticleManager.AddParticle (this, new Vector2((data.X + 0.5f) * screenWidth,
-					screenHeight - ((data.Y + 0.5f) * screenHeight)), 100);
+			Random rand = new Random();
+				
+		    double randomNumWidth = rand.NextDouble();
+			randomNumWidth *= 50.0;
+				
+			double randomNumHeight = rand.NextDouble();
+			randomNumHeight *= 50.0;
+			
+			
+			ParticleManager.AddParticle (this, new Vector2((((data.X + 0.5f) * screenWidth) + (float)randomNumWidth),
+					screenHeight - ((data.Y + 0.5f) * screenHeight) + (float)randomNumHeight), 1);
 			}
 			
 			levelManager.Update(deltaTime);
-			//ParticleManager.Update(this);
 			ParticleManager.Update(this);
 		}
 		

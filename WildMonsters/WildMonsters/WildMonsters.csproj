@@ -77,5 +77,6 @@
     <Content Include="..\..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\textures\PlaceholderMenuScreen.png" />
     <Content Include="..\..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\textures\Particle.png" />
     <Content Include="..\..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\textures\star.png" />
+    <Content Include="..\..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WildMonsters\textures\particle_base.jpg" />
   </ItemGroup>
 </Project>
