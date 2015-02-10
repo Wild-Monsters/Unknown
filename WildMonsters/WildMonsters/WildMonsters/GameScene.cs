@@ -124,12 +124,14 @@ namespace WildMonsters
 			}
 			
 			ClickParticleGenerator();
+			MovingParticleGenerator(CollisionHandler.ExplodeAtMovingArray);
 			
 			ParticleManager.Update(this);
 		}
 		
 		public void ParticleGenerator(Vector2[] explodeAt)
-		{	
+		{
+			int quadAssign = 0;
 			// Loop each element in the array
 			for(int j = 0; j < 10; j++)
 			{
@@ -137,11 +139,16 @@ namespace WildMonsters
 				if(explodeAt[j].X != 0.0f && explodeAt[j].Y != 0.0f)
 				{
 					// Produce 10 particles per call
-					for(int i = 0; i < 10; i++)
+					for(int i = 0; i < 16; i++)
 					{
+						quadAssign++;
+						if(quadAssign >= 4)
+						{
+							quadAssign = 0;
+						}
 						Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
 						ParticleManager.AddParticle (this, new Vector2(explodeAt[j].X + (float)randPos.X,
-							explodeAt[j].Y + (float)randPos.Y), 1, 0);
+							explodeAt[j].Y + (float)randPos.Y), 1, 0, quadAssign);
 					}
 				}
 			}
@@ -152,7 +159,6 @@ namespace WildMonsters
 		
 		public void ClickParticleGenerator()
 		{
-			
 			List<TouchData> touches = Touch.GetData(0);
 			
 			foreach(TouchData data in touches)
@@ -160,16 +166,29 @@ namespace WildMonsters
 				Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
 			
 				ParticleManager.AddParticle (this, new Vector2((((data.X + 0.5f) * Constants.ScreenWidth) + (float)randPos.X),
-						Constants.ScreenHeight - ((data.Y + 0.5f) * Constants.ScreenHeight) + (float)randPos.Y), 1, 1);
+						Constants.ScreenHeight - ((data.Y + 0.5f) * Constants.ScreenHeight) + (float)randPos.Y), 1, 1, 0);
 			}
 		}
 		
-		public void MovingParticleGenerator()
-		{
-			Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
-			
-//				ParticleManager.AddParticle (this, new Vector2((((data.X + 0.5f) * Constants.ScreenWidth) + (float)randPos.X),
-//						Constants.ScreenHeight - ((data.Y + 0.5f) * Constants.ScreenHeight) + (float)randPos.Y), 1, 1);
+		public void MovingParticleGenerator(Vector2[] explodeAtMoving)
+		{	
+			// Loop each element in the array
+			for(int j = 0; j < 10; j++)
+			{
+				if(explodeAtMoving[j].X != 0.0f && explodeAtMoving[j].Y != 0.0f)
+				{
+					for(int i = 0; i < 10; i++)
+					{
+						if(CollisionHandler.BMoving)
+						{
+							// Trail on the left
+							Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
+							ParticleManager.AddParticle (this, new Vector2(explodeAtMoving[j].X,
+								explodeAtMoving[j].Y + (float)randPos.Y), 1, 2, 0);
+						}
+					}
+				}
+			}
 		}
 	}
 }

@@ -96,7 +96,11 @@ namespace WildMonsters
 			{
 				Fire (scene);
 			}
-		
+			for(int i  = 0; i < ballList.Count; i++)
+			{
+				//ballList[i].Update();
+				//ballList[i].Particles.List.Clear();
+			}
 			UpdateBalls();
 
 			//lock it to screen 
@@ -131,15 +135,27 @@ namespace WildMonsters
 		}
 		private void UpdateBalls()
 		{
+			int ballcount = 0;
 				for(int i=0; i<ballList.Count; i++)
 				{
 					if (ballList[i].GetState() == BallState.Rising)
 					{
+						ballcount++;
+						CollisionHandler.BMoving = true;
 						ballList[i].Update(getSide());
+						CollisionHandler.ExplodeAtMovingArray[i].X = ballList[i].GetBounds().Min.X;
+						CollisionHandler.ExplodeAtMovingArray[i].Y = ballList[i].GetBounds().Min.Y;
 					}
-
+					else
+					{
+						ballList.Remove(ballList[i]);
+						CollisionHandler.BMoving = false;
+					}
 				}
-		
+			if(ballList.Count > 1 && ballcount == 0) // All balls are no longer moving??
+			{
+				Console.WriteLine("No longer moving");	
+			}
 		}
 		public List<Ball> getBalls()
 		{

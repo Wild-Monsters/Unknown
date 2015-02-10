@@ -21,7 +21,7 @@ namespace WildMonsters
 		BallState state;
 		private int speed = 10;
 		private Bounds2 bounds;
-		
+
 		private int colourAmount = 5;
 		
 		
@@ -60,6 +60,8 @@ namespace WildMonsters
 			//TODO: Logic to travel up to and/or lock on to grid herel
 			if(state == BallState.Rising)
 			{
+				//CollisionHandler.BMoving = true;
+				
 				if(playerLeftOfScreen)
 				{
 					sprite.Position = new Vector2(sprite.Position.X + speed, sprite.Position.Y);

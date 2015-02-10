@@ -16,7 +16,7 @@ namespace WildMonsters
 	public static class ParticleManager
 	{
 		
-		private static List<Particle> objectList = new List<Particle>();
+		private static List<Particle> objectList = new List<Particle>();	// Change back tp private or getters/setters
 		
 		public static Vector2 CreateRandomPosition()
 		{	
@@ -24,7 +24,7 @@ namespace WildMonsters
 			
 		    double randomNumWidth = rand.NextDouble();
 			randomNumWidth *= 50.0;
-				
+			
 			double randomNumHeight = rand.NextDouble();
 			randomNumHeight *= 50.0;
 			
@@ -33,12 +33,12 @@ namespace WildMonsters
 			return randPos;
 		}		
 		
-		public static void AddParticle(Scene _scene, Vector2 position, int numParticle, int type)
+		public static void AddParticle(Scene _scene, Vector2 position, int numParticle, int type, int quadAssign)
 		{
 			for(int i = 0; i < numParticle; i++)
 			{
 				// Add particle to the list
-				objectList.Add (new Particle(_scene, position, type));
+				objectList.Add (new Particle(_scene, position, type, quadAssign));
 			}
 		}
 		
@@ -55,7 +55,6 @@ namespace WildMonsters
 					i--;
 				}
 			}
-			
 		}
 	}
 }

@@ -15,17 +15,31 @@ namespace WildMonsters
 		private static bool bExploded = false;
 		private static Vector2 explodeAt = new Vector2(0.0f, 0.0f);
 		private static Vector2[] explodeAtArray = new Vector2[10];
+		private static Vector2[] explodeAtMovingArray = new Vector2[10];
+		private static bool bMoving = false;
+		private static bool bLocked = false;
 		
 		// Accessors:
 		public static bool BExploded {get{return bExploded;} set{bExploded = value;}}
 		public static Vector2 ExplodeAt {get {return explodeAt;} set{explodeAt = value;}}
 		public static Vector2[] ExplodeAtArray {get{return explodeAtArray;} set{explodeAtArray = value;}}
+		public static Vector2[] ExplodeAtMovingArray {get{return explodeAtMovingArray;} set{explodeAtMovingArray = value;}}
+		public static bool BMoving {get{return bMoving;} set{bMoving = value;}}
+		public static bool BLocked {get{return bLocked;} set{bLocked = value;}}
 		
 		public static void ResetExplodeAtArray()
 		{
 			for(int i = 0; i < 10; i++)
 			{
 				explodeAtArray[i] = new Vector2(0,0);
+			}
+		}
+		
+		public static void ResetExplodeAtMovingArray()
+		{
+			for(int i = 0; i < 10; i++)
+			{
+				explodeAtMovingArray[i] = new Vector2(0,0);
 			}
 		}
 		
@@ -50,6 +64,7 @@ namespace WildMonsters
 				
 				for(int x = 0; x < 20; x++)
 				{
+					
 					if(gridBalls[row, x] != null && pBalls[k].GetState() == BallState.Rising)
 					{
 						if (pBalls[k].GetBounds().Overlaps(gridBalls[row,x].GetBounds()))
@@ -63,6 +78,8 @@ namespace WildMonsters
 							levelGrid.SearchGrid(gPos.X, gPos.Y, 2);
 							
 							ballCollided = true;
+							
+							bMoving = false;
 							
 							pBalls[k].SetState(BallState.Locked);
 						}
