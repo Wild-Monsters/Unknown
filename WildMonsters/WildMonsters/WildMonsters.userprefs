@@ -1,20 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\LevelGrid.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\Particle.cs">
     <Files>
-      <File FileName="WildMonsters\LevelGrid.cs" Line="180" Column="96" />
-      <File FileName="WildMonsters\CollisionHandler.cs" Line="25" Column="4" />
+      <File FileName="WildMonsters\LevelGrid.cs" Line="181" Column="6" />
+      <File FileName="WildMonsters\CollisionHandler.cs" Line="22" Column="100" />
       <File FileName="WildMonsters\Divider.cs" Line="1" Column="1" />
       <File FileName="WildMonsters\Sidebar.cs" Line="27" Column="4" />
       <File FileName="WildMonsters\TitleScene.cs" Line="9" Column="34" />
       <File FileName="WildMonsters\Player.cs" Line="153" Column="36" />
       <File FileName="WildMonsters\Input.cs" Line="36" Column="18" />
       <File FileName="WildMonsters\MenuScene.cs" Line="36" Column="4" />
-      <File FileName="WildMonsters\GameScene.cs" Line="142" Column="47" />
-      <File FileName="WildMonsters\Ball.cs" Line="65" Column="1" />
-      <File FileName="WildMonsters\WMRandom.cs" Line="13" Column="1" />
-      <File FileName="WildMonsters\ParticleManager.cs" Line="41" Column="53" />
-      <File FileName="WildMonsters\Particle.cs" Line="107" Column="4" />
+      <File FileName="WildMonsters\GameScene.cs" Line="170" Column="4" />
+      <File FileName="WildMonsters\Ball.cs" Line="62" Column="5" />
+      <File FileName="WildMonsters\WMRandom.cs" Line="19" Column="1" />
+      <File FileName="WildMonsters\ParticleManager.cs" Line="18" Column="3" />
+      <File FileName="WildMonsters\Particle.cs" Line="69" Column="4" />
       <File FileName="WildMonsters\LevelUI.cs" Line="1" Column="1" />
       <File FileName="WildMonsters\Constants.cs" Line="20" Column="3" />
     </Files>

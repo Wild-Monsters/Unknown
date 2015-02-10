@@ -33,12 +33,12 @@ namespace WildMonsters
 			return randPos;
 		}		
 		
-		public static void AddParticle(Scene _scene, Vector2 position, int numParticle)
+		public static void AddParticle(Scene _scene, Vector2 position, int numParticle, int type)
 		{
 			for(int i = 0; i < numParticle; i++)
 			{
 				// Add particle to the list
-				objectList.Add (new Particle(_scene, position));
+				objectList.Add (new Particle(_scene, position, type));
 			}
 		}
 		

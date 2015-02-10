@@ -123,6 +123,8 @@ namespace WildMonsters
 				ParticleGenerator(CollisionHandler.ExplodeAtArray);
 			}
 			
+			ClickParticleGenerator();
+			
 			ParticleManager.Update(this);
 		}
 		
@@ -138,13 +140,36 @@ namespace WildMonsters
 					for(int i = 0; i < 10; i++)
 					{
 						Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
-						ParticleManager.AddParticle (this, new Vector2((explodeAt[j].X + (float)randPos.X),
-							explodeAt[j].Y + (float)randPos.Y), 1);
+						ParticleManager.AddParticle (this, new Vector2(explodeAt[j].X + (float)randPos.X,
+							explodeAt[j].Y + (float)randPos.Y), 1, 0);
 					}
 				}
 			}
 
 			CollisionHandler.BExploded = false;
+		}
+		
+		
+		public void ClickParticleGenerator()
+		{
+			
+			List<TouchData> touches = Touch.GetData(0);
+			
+			foreach(TouchData data in touches)
+			{
+				Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
+			
+				ParticleManager.AddParticle (this, new Vector2((((data.X + 0.5f) * Constants.ScreenWidth) + (float)randPos.X),
+						Constants.ScreenHeight - ((data.Y + 0.5f) * Constants.ScreenHeight) + (float)randPos.Y), 1, 1);
+			}
+		}
+		
+		public void MovingParticleGenerator()
+		{
+			Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
+			
+//				ParticleManager.AddParticle (this, new Vector2((((data.X + 0.5f) * Constants.ScreenWidth) + (float)randPos.X),
+//						Constants.ScreenHeight - ((data.Y + 0.5f) * Constants.ScreenHeight) + (float)randPos.Y), 1, 1);
 		}
 	}
 }

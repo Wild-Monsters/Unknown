@@ -24,7 +24,7 @@ namespace WildMonsters
 		public bool bExplosion { get; set; }
 		public Vector4 SpriteColor { get{return spriteColor;} set{spriteColor = value;} }
 		
-		public Particle (Scene _scene, Vector2 position)
+		public Particle (Scene _scene, Vector2 position, int type)
 		{
 			Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator rand;
 			
@@ -32,21 +32,12 @@ namespace WildMonsters
 			rand = new Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator(DateTime.Now.Millisecond);
 			
 			// Set velocity
-			Vector2 velocity = new Vector2(1f * (float)(rand.NextFloat(1, 2)),
-            							   1f * (float)(rand.NextFloat(1, 2)));
+//			Vector2 velocity = new Vector2(1f * (float)(rand.NextFloat(1, 2)),
+//            							   1f * (float)(rand.NextFloat(1, 2)));
+			Vector2 velocity = new Vector2(1.0f, 1.0f);
 			
-			// Upward flame
-			// if input == 0
-			
-			// Explosion
-			// if input == 1
-			var gamePadData = GamePad.GetData(0);
-			if((gamePadData.Buttons & GamePadButtons.Square) != 0)
-        	{
-                bExplosion = true;
-        	}
-			
-			if(!bExplosion)
+			// If 0, it's an explosion effect
+     		if(type == 0)
 			{
 				Random r = new Random();
 				if(r.NextDouble() > 0.75f && r.NextDouble() < 1.0f)
@@ -69,6 +60,17 @@ namespace WildMonsters
 					velocity.X *= rand.NextFloat(0, 1);
 					velocity.Y *= rand.NextFloat(0, 1);
 				}
+			}
+			// If 1, it's a fire effect
+			else if(type == 1)
+			{
+				velocity = new Vector2((1f * 0),(1f * 1f));
+			}
+			
+			// If 2, left-side trail
+			else if(type == 2)
+			{
+				velocity = new Vector2((1f * 1f),(1f * 0f));
 			}
 			
 			// Shield
