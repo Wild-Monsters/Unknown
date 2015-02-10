@@ -70,6 +70,8 @@ namespace WildMonsters
 			
 			UISystem.SetScene(uiScene);
 			
+			CollisionHandler.ResetExplodeAtMovingArray();
+			
 
 			
 		}
@@ -132,6 +134,7 @@ namespace WildMonsters
 		public void ParticleGenerator(Vector2[] explodeAt)
 		{
 			int quadAssign = 0;
+			Colour colour = CollisionHandler.Colourblock;
 			// Loop each element in the array
 			for(int j = 0; j < 10; j++)
 			{
@@ -148,7 +151,7 @@ namespace WildMonsters
 						}
 						Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
 						ParticleManager.AddParticle (this, new Vector2(explodeAt[j].X + (float)randPos.X,
-							explodeAt[j].Y + (float)randPos.Y), 1, 0, quadAssign);
+							explodeAt[j].Y + (float)randPos.Y), 1, 0, quadAssign, colour);
 					}
 				}
 			}
@@ -166,25 +169,41 @@ namespace WildMonsters
 				Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
 			
 				ParticleManager.AddParticle (this, new Vector2((((data.X + 0.5f) * Constants.ScreenWidth) + (float)randPos.X),
-						Constants.ScreenHeight - ((data.Y + 0.5f) * Constants.ScreenHeight) + (float)randPos.Y), 1, 1, 0);
+						Constants.ScreenHeight - ((data.Y + 0.5f) * Constants.ScreenHeight) + (float)randPos.Y), 1, 1, 0, Colour.Yellow);
 			}
 		}
 		
 		public void MovingParticleGenerator(Vector2[] explodeAtMoving)
 		{	
+			// Keep here, will be used for having the particle the same colour as the block when moving.
+			Colour colour = CollisionHandler.Colourblock;
+			
+			// States whether the ball is fired from the left (true) or from the right (false).
+			bool bLeft = CollisionHandler.BLeft;
+			
 			// Loop each element in the array
 			for(int j = 0; j < 10; j++)
 			{
-				if(explodeAtMoving[j].X != 0.0f && explodeAtMoving[j].Y != 0.0f)
+				// Set to -100 as if I set it to 0.0f it doesn't allow particles to be created when shooting a block from the bottom of the scene.
+				if(explodeAtMoving[j].X != -100.0f && explodeAtMoving[j].Y != -100.0f)
 				{
+					// 10 particles will be created per 'batch'
 					for(int i = 0; i < 10; i++)
 					{
+						// If a block is moving...
 						if(CollisionHandler.BMoving)
 						{
 							// Trail on the left
 							Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
-							ParticleManager.AddParticle (this, new Vector2(explodeAtMoving[j].X,
-								explodeAtMoving[j].Y + (float)randPos.Y), 1, 2, 0);
+							float x = explodeAtMoving[j].X;
+							// If we're not firing the ball from the left, adjust the position of the origin of the particles to be behind
+							// the ball.
+							if(!bLeft)
+							{
+								x += 40.0f;
+							}
+							ParticleManager.AddParticle (this, new Vector2(x,
+								explodeAtMoving[j].Y + (float)randPos.Y), 1, 2, 0, colour);
 						}
 					}
 				}

@@ -59,9 +59,7 @@ namespace WildMonsters
 		{
 			//TODO: Logic to travel up to and/or lock on to grid herel
 			if(state == BallState.Rising)
-			{
-				//CollisionHandler.BMoving = true;
-				
+			{	
 				if(playerLeftOfScreen)
 				{
 					sprite.Position = new Vector2(sprite.Position.X + speed, sprite.Position.Y);

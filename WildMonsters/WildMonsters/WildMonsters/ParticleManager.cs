@@ -23,22 +23,22 @@ namespace WildMonsters
 			Random rand = new Random();
 			
 		    double randomNumWidth = rand.NextDouble();
-			randomNumWidth *= 50.0;
+			randomNumWidth *= 40.0;
 			
 			double randomNumHeight = rand.NextDouble();
-			randomNumHeight *= 50.0;
+			randomNumHeight *= 40.0;
 			
 			Vector2 randPos = new Vector2((float)randomNumWidth, (float)randomNumHeight);
 			
 			return randPos;
 		}		
 		
-		public static void AddParticle(Scene _scene, Vector2 position, int numParticle, int type, int quadAssign)
+		public static void AddParticle(Scene _scene, Vector2 position, int numParticle, int type, int quadAssign, Colour colour)
 		{
 			for(int i = 0; i < numParticle; i++)
 			{
 				// Add particle to the list
-				objectList.Add (new Particle(_scene, position, type, quadAssign));
+				objectList.Add (new Particle(_scene, position, type, quadAssign, colour));
 			}
 		}
 		

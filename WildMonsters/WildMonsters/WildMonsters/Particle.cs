@@ -17,6 +17,7 @@ namespace WildMonsters
 		SpriteUV sprite;
 		Vector4 spriteColor;
 		private ParticleState particleState;
+		private Colour colour;
 		   
 		// Accessors:
 		public Vector2 Velocity { get; set; }        // The speed of the particle at the current instance
@@ -29,7 +30,7 @@ namespace WildMonsters
 		public ParticleState ParticleStateVar {get{return particleState;} set{particleState = value;}}
 		
 		
-		public Particle (Scene _scene, Vector2 position, int type, int quadAssign)
+		public Particle (Scene _scene, Vector2 position, int type, int quadAssign, Colour colour)
 		{
 			Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator rand;
 			
@@ -41,7 +42,7 @@ namespace WildMonsters
 			// Set velocity
 //			Vector2 velocity = new Vector2(1f * (float)(rand.NextFloat(1, 2)),
 //            							   1f * (float)(rand.NextFloat(1, 2)));
-			Vector2 velocity = new Vector2(1.0f, 1.0f);
+			Vector2 velocity = new Vector2(2.0f, 2.0f);
 			
 			// If 0, it's an explosion effect
      		if(type == 0)
@@ -135,6 +136,30 @@ namespace WildMonsters
 			
 			sprite.Color = spriteColor;
 			
+//			this.colour = colour;
+//			
+//			switch(this.colour)
+//			{
+//			case Colour.Red:
+//				sprite.Color = new Vector4((float)1.0f, (float)rand.NextFloat(-0.25f, 0.25f), (float)rand.NextFloat(-0.25f, 0.25f), 1.0f);
+//				break;
+//			case Colour.Blue:
+//				sprite.Color = new Vector4(rand.NextFloat(-0.25f, 0.25f), 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
+//				break;
+//			case Colour.Yellow:
+//				sprite.Color = new Vector4(1.0f, 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
+//				break;
+//			case Colour.Purple:
+//				sprite.Color = new Vector4(128.0f, rand.NextFloat(-0.25f, 0.25f), 128.0f, 1.0f);
+//				break;
+//			case Colour.Green:
+//				sprite.Color = new Vector4(rand.NextFloat(-0.25f, 0.25f), 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
+//				break;
+//			case Colour.Grey:
+//				sprite.Color = new Vector4(128.0f, 128.0f, 128.0f, 1.0f);
+//				break;
+//			}
+			
 			_scene.AddChild (sprite);
 			
 			
@@ -148,17 +173,43 @@ namespace WildMonsters
 		}
 		
 		public void Update()
-		{
-
+		{	
+//			Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator rand;
+//			
+//			// Generate a random number
+//			rand = new Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator(DateTime.Now.Millisecond);
+//			
+//			switch(this.colour)
+//			{
+//			case Colour.Red:
+//				sprite.Color = new Vector4((float)1.0f, (float)rand.NextFloat(-0.25f, 0.25f), (float)rand.NextFloat(-0.25f, 0.25f), 1.0f);
+//				break;
+//			case Colour.Blue:
+//				sprite.Color = new Vector4(rand.NextFloat(-0.25f, 0.25f), 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
+//				break;
+//			case Colour.Yellow:
+//				sprite.Color = new Vector4(1.0f, 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
+//				break;
+//			case Colour.Purple:
+//				sprite.Color = new Vector4(128.0f, rand.NextFloat(-0.25f, 0.25f), 128.0f, 1.0f);
+//				break;
+//			case Colour.Green:
+//				sprite.Color = new Vector4(rand.NextFloat(-0.25f, 0.25f), 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
+//				break;
+//			case Colour.Grey:
+//				sprite.Color = new Vector4(128.0f, 128.0f, 128.0f, 1.0f);
+//				break;
+//			}
+			
 			switch(particleState)
 			{
-			case 0: // Explosion
-				spriteColor.A -= 0.02f;
+			case ParticleState.Explosion:
+				spriteColor.A -= 0.025f;
 				break;
-			case (ParticleState)1: // Smoke
+			case ParticleState.Smoke:
 				spriteColor.A -= 0.008f;
 				break;
-			case (ParticleState)2: // Trail
+			case ParticleState.Trail:
 				spriteColor.A -= 0.1f;
 				break;
 			}

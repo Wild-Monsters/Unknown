@@ -18,6 +18,9 @@ namespace WildMonsters
 		private static Vector2[] explodeAtMovingArray = new Vector2[10];
 		private static bool bMoving = false;
 		private static bool bLocked = false;
+		private static Colour colourblock;
+		private static Colour[] colourBlockArray = new Colour[20];
+		private static bool bLeft = false;
 		
 		// Accessors:
 		public static bool BExploded {get{return bExploded;} set{bExploded = value;}}
@@ -26,6 +29,9 @@ namespace WildMonsters
 		public static Vector2[] ExplodeAtMovingArray {get{return explodeAtMovingArray;} set{explodeAtMovingArray = value;}}
 		public static bool BMoving {get{return bMoving;} set{bMoving = value;}}
 		public static bool BLocked {get{return bLocked;} set{bLocked = value;}}
+		public static Colour Colourblock {get{return colourblock;} set{colourblock = value;}}
+		public static Colour[] ColourBlockArray{get{return colourBlockArray;} set{colourBlockArray = value;}}
+		public static bool BLeft {get{return bLeft;} set{bLeft = value;}}
 		
 		public static void ResetExplodeAtArray()
 		{
@@ -39,7 +45,7 @@ namespace WildMonsters
 		{
 			for(int i = 0; i < 10; i++)
 			{
-				explodeAtMovingArray[i] = new Vector2(0,0);
+				explodeAtMovingArray[i] = new Vector2(-100.0f,-100.0f);
 			}
 		}
 		
@@ -101,6 +107,8 @@ namespace WildMonsters
 						
 						pBalls[k].SetState(BallState.Locked);
 						ballCollided = true;
+						
+						bMoving = false;
 					}
 				}
 				else
@@ -117,6 +125,8 @@ namespace WildMonsters
 						
 						pBalls[k].SetState(BallState.Locked);
 						ballCollided = true;
+						
+						bMoving = false;
 					}
 				}
 				
