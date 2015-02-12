@@ -14,7 +14,6 @@ using Sce.PlayStation.HighLevel.UI;
 
 namespace WildMonsters
 {
-	//DAN TESTING I HAVE MADE A CHANGE< PLEASE SEE ME GITHUB
 	public class GameScene : Sce.PlayStation.HighLevel.GameEngine2D.Scene
 	{
 		private GridProperties grid1Properties, grid2Properties;
