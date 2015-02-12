@@ -25,7 +25,10 @@ namespace WildMonsters
 		
 		private int p1Score;
 		private int p2Score;
-
+		
+		
+		private float p1YOffset;
+		private float p2YOffset;
 		
 		public Divider (Scene _scene)
 		{
@@ -43,20 +46,25 @@ namespace WildMonsters
 			//texInfo.Texture = texture;
 			
 			
+			p1YOffset = 420.0f;
+			p2YOffset = 300.0f;
+			
 			sprite = new SpriteUV();
 			sprite.TextureInfo = texInfo;
 			sprite.Quad.S = texInfo.TextureSizef;
 			sprite.Position = new Vector2(0.0f, 0.0f);
 			
 			p1ScoreLabel = new Label();
+			p1ScoreLabel.Rotate(-1.55f);
+			p1ScoreLabel.Color = Colors.White;
 			p1ScoreLabel.Position = new Vector2(0.0f, 0.0f);
 			p1ScoreLabel.Scale = new Vector2(1.5f, 1.5f);
-			p1ScoreLabel.Text = "Player 1 Score: ";
 			
 			p2ScoreLabel = new Label();
-			p2ScoreLabel.Position = new Vector2(750.0f, 0.0f);
+			p2ScoreLabel.Rotate(1.55f);
+			p2ScoreLabel.Color = Colors.White;
+			p2ScoreLabel.Position = new Vector2(0.0f, 0.0f);
 			p2ScoreLabel.Scale = new Vector2(1.5f, 1.5f);
-			p2ScoreLabel.Text = "Player 2 Score: ";
 			
 			_scene.AddChild (sprite);
 			_scene.AddChild(p1ScoreLabel);
@@ -78,8 +86,11 @@ namespace WildMonsters
 			
 			sprite.Position = new Vector2(top-(sprite.Quad.S.X/2), 0.0f);
 			
-			p1ScoreLabel.Text = "Player 1 Score: " + p1Score;
-			p2ScoreLabel.Text = "Player 2 Score: " + p2Score;
+			p1ScoreLabel.Position = new Vector2(top - 25, sprite.Position.Y + p1YOffset);
+			p1ScoreLabel.Text = "P1 Score: " + p1Score;
+			
+			p2ScoreLabel.Position = new Vector2(top + 25, - sprite.Position.Y + p2YOffset);
+			p2ScoreLabel.Text = "P2 Score: " + p2Score;
 
 		}
 		
