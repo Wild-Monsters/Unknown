@@ -27,6 +27,8 @@ namespace WildMonsters
 		private Ball[,] grid;
 		private LevelUI levelUI;
 		
+	
+		
 		public LevelGrid (GridProperties _properties, LevelUI _levelUI)
 		{
 			props = _properties;
@@ -42,13 +44,14 @@ namespace WildMonsters
 					grid[a,b] = null;
 				}
 			}
+			
 		}
 		
 		public void Update(float t)
 		{
 			levelUI.Update(t);
 			props.top = levelUI.divider.Top;
-			
+					
 			for(int y = 0; y < props.height; y++)
 			{
 				for(int x = 0; x < props.width; x++)

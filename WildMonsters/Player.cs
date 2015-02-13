@@ -19,22 +19,40 @@ namespace WildMonsters
 		private int spriteHeight = 0;
 		
 		private Colour nextColour;
+		private Colour nextColour2;
+		private Colour nextColour3;
+		
+		private Label lblNextColour;
 		//private Random rng
 		
 		private List <Ball> ballList;
+		
+		
+		private int runThroughNum;
 
 		public Player (Scene scene, bool _isLeftSide)
-		{
-			isLeftSide = _isLeftSide;
+		{			
+			runThroughNum = 1;
 			
+			isLeftSide = _isLeftSide;
+						
 			texInfo = new TextureInfo("/Application/textures/Blocks2.png");
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = new Vector2(50.0f,50.0f);
 			sprite.Position = new Vector2(0.0f, 0.0f);
 			
 			//Change colour of block
-			NextColour ();
+			//NextColour ();
+			nextColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+			float spriteWidth = 1.0f / 6.0f;
+			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
+			sprite.UV.T = new Vector2(spriteWidth * (int)nextColour, 0.0f);	
+			
+			nextColour2 = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+			nextColour3 = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
 
+
+			
 			spriteWidth = sprite.TextureInfo.Texture.Width;
 			spriteHeight = sprite.TextureInfo.Texture.Height;
 			
@@ -48,10 +66,18 @@ namespace WildMonsters
 			}
 			
 			ballList = new List<Ball>();
+			
+			lblNextColour = new Label();
+			lblNextColour.Scale = new Vector2(1.5f, 1.5f);
+			lblNextColour.Position = new Vector2(50.0f, 100.0f);
+			lblNextColour.Color = Colors.Red;
+			
 			scene.AddChild(sprite);
+			scene.AddChild(lblNextColour);
 		}
 		public void Update(Scene scene)
 		{
+
 			GamePadButtons actionButton, upButton, downButton;
 			Analog moveAnalog;
 			
@@ -96,6 +122,8 @@ namespace WildMonsters
 
 			//lock it to screen 
 			ScreenCollision();
+			
+
 		}
 		public void ScreenCollision ()
 		{
@@ -111,15 +139,28 @@ namespace WildMonsters
 		
 		public void Fire(Scene scene)// array of balls 
 		{
+			
 			Ball ball = new Ball(scene, isLeftSide);
 			ball.SetState(BallState.Rising);
 			
 			ball.Sprite.Position = this.sprite.Position;
 			
 			ball.SetColour(nextColour);
-			NextColour ();
+			float spriteWidth = 1.0f / 6.0f;
+			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
+			sprite.UV.T = new Vector2(spriteWidth * (int)nextColour2, 0.0f);	
 			
+			lblNextColour.Text = "Next colour is: " + nextColour3;
+
+			//NextColour ();
+			nextColour = nextColour2;
+			nextColour2 = nextColour3;
+			
+			nextColour3 = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
 			ballList.Add(ball);
+						
+//			colourList.RemoveAt(0);
+		//	colourList.RemoveAt(1);
 		}
 		public bool getSide()
 		{
@@ -144,12 +185,26 @@ namespace WildMonsters
 		
 		private void NextColour()
 		{
-			nextColour = (Colour)WMRandom.GetNextInt(0,5,this.GetHashCode());
+			// 0 = red
+			// 1 = blue
+			// 2 = yellow
+			// 3 = purple
+			// 4 = green
+			// 5 = Grey?
+
+	//			
+				
+				nextColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+
+				
+//				float spriteWidth = 1.0f / 6.0f;
+//				sprite.UV.S = new Vector2(spriteWidth, 1.0f);
+//				sprite.UV.T = new Vector2(spriteWidth * (int)currentColour, 0.0f);	
 			
-			float spriteWidth = 1.0f / 6.0f;
-			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
-			sprite.UV.T = new Vector2(spriteWidth * (int)nextColour, 0.0f);	
+			
 		}
+		
+		
 	}
 }
 

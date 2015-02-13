@@ -94,8 +94,19 @@ namespace WildMonsters
 				}
 				break;
 				
-			case BallState.Locked:
+			case BallState.Falling:
+				if(onLeftSide)
+				{
+					sprite.Position = new Vector2(sprite.Position.X - speed, sprite.Position.Y);
+				}
+				else
+				{
+					sprite.Position = new Vector2(sprite.Position.X + speed, sprite.Position.Y);
+				}
+				break;
 				
+			case BallState.Locked:
+					
 				Vector2 DistanceVector = gridPosition-sprite.Position;
 				
 				if(DistanceVector.Length () > 1.0f)
