@@ -18,8 +18,11 @@ namespace WildMonsters
 		private int spriteWidth = 0;
 		private int spriteHeight = 0;
 		
+		//starting colour
 		private Colour nextColour;
+		//colour immediately after fired
 		private Colour nextColour2;
+		//Colour help in label
 		private Colour nextColour3;
 		
 		private Label lblNextColour;
@@ -27,12 +30,8 @@ namespace WildMonsters
 		
 		private List <Ball> ballList;
 		
-		
-		private int runThroughNum;
-
 		public Player (Scene scene, bool _isLeftSide)
 		{			
-			runThroughNum = 1;
 			
 			isLeftSide = _isLeftSide;
 						
@@ -150,6 +149,12 @@ namespace WildMonsters
 			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
 			sprite.UV.T = new Vector2(spriteWidth * (int)nextColour2, 0.0f);	
 			
+			Ball nextBall = new Ball(scene, isLeftSide);
+			nextBall.SetState(BallState.Nostate);
+			nextBall.Sprite.Position = new Vector2(this.sprite.Position.X, 10.0f);
+			nextBall.SetColour(nextColour3);
+			nextBall.Sprite.Scale = new Vector2(0.5f, 0.5f);
+			
 			lblNextColour.Text = "Next colour is: " + nextColour3;
 
 			//NextColour ();
@@ -157,6 +162,7 @@ namespace WildMonsters
 			nextColour2 = nextColour3;
 			
 			nextColour3 = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+			
 			ballList.Add(ball);
 						
 //			colourList.RemoveAt(0);
@@ -183,26 +189,26 @@ namespace WildMonsters
 			return this.ballList;
 		}
 		
-		private void NextColour()
-		{
-			// 0 = red
-			// 1 = blue
-			// 2 = yellow
-			// 3 = purple
-			// 4 = green
-			// 5 = Grey?
-
-	//			
-				
-				nextColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-
-				
-//				float spriteWidth = 1.0f / 6.0f;
-//				sprite.UV.S = new Vector2(spriteWidth, 1.0f);
-//				sprite.UV.T = new Vector2(spriteWidth * (int)currentColour, 0.0f);	
-			
-			
-		}
+//		private void NextColour()
+//		{
+//			// 0 = red
+//			// 1 = blue
+//			// 2 = yellow
+//			// 3 = purple
+//			// 4 = green
+//			// 5 = Grey?
+//
+//	//			
+//				
+//				nextColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+//
+//				
+////				float spriteWidth = 1.0f / 6.0f;
+////				sprite.UV.S = new Vector2(spriteWidth, 1.0f);
+////				sprite.UV.T = new Vector2(spriteWidth * (int)currentColour, 0.0f);	
+//			
+//			
+//		}
 		
 		
 	}

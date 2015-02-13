@@ -8,7 +8,7 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 namespace WildMonsters
 {
 	public enum Colour {Red, Blue, Yellow, Purple, Green, Grey};
-	public enum BallState {Rising, Locked, Falling};
+	public enum BallState {Rising, Locked, Falling, Nostate};
 	
 	public class Ball
 	{
@@ -121,7 +121,9 @@ namespace WildMonsters
 					sprite.Position = gridPosition;
 				}
 
-				
+				break;
+			case BallState.Nostate:
+				//Temporary
 				break;
 			}
 				
