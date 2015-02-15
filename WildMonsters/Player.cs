@@ -25,7 +25,6 @@ namespace WildMonsters
 		//Colour help in label
 		private Colour nextColour3;
 		
-		private Label lblNextColour;
 		//private Random rng
 		
 		private List <Ball> ballList;
@@ -50,7 +49,24 @@ namespace WildMonsters
 			nextColour2 = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
 			nextColour3 = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
 
-
+			
+			//Messy test to initialise next ball display with game
+			Ball nextBall = new Ball(scene, isLeftSide);
+			nextBall.SetState(BallState.Nostate);
+			if(nextBall.OnLeftSide)
+			{
+				nextBall.Sprite.Position = new Vector2(0.0f, 0.0f);
+			}
+			else
+			{
+				nextBall.Sprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width - 25.0f, 0.0f);
+			}
+			nextBall.SetColour(nextColour3);
+			nextBall.Sprite.Scale = new Vector2(0.5f, 0.5f);
+			nextColour = nextColour2;
+			nextColour2 = nextColour3;
+			nextColour3 = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+			//end of messy test
 			
 			spriteWidth = sprite.TextureInfo.Texture.Width;
 			spriteHeight = sprite.TextureInfo.Texture.Height;
@@ -66,13 +82,7 @@ namespace WildMonsters
 			
 			ballList = new List<Ball>();
 			
-			lblNextColour = new Label();
-			lblNextColour.Scale = new Vector2(1.5f, 1.5f);
-			lblNextColour.Position = new Vector2(50.0f, 100.0f);
-			lblNextColour.Color = Colors.Red;
-			
 			scene.AddChild(sprite);
-			scene.AddChild(lblNextColour);
 		}
 		public void Update(Scene scene)
 		{
@@ -149,13 +159,20 @@ namespace WildMonsters
 			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
 			sprite.UV.T = new Vector2(spriteWidth * (int)nextColour2, 0.0f);	
 			
+			//Display for the next upcoming ball's colour
 			Ball nextBall = new Ball(scene, isLeftSide);
 			nextBall.SetState(BallState.Nostate);
-			nextBall.Sprite.Position = new Vector2(this.sprite.Position.X, 10.0f);
+			if(nextBall.OnLeftSide)
+			{
+				nextBall.Sprite.Position = new Vector2(0.0f, 0.0f);
+			}
+			else
+			{
+				nextBall.Sprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width - 25.0f, 0.0f);
+			}
 			nextBall.SetColour(nextColour3);
 			nextBall.Sprite.Scale = new Vector2(0.5f, 0.5f);
 			
-			lblNextColour.Text = "Next colour is: " + nextColour3;
 
 			//NextColour ();
 			nextColour = nextColour2;

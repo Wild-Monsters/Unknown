@@ -190,6 +190,12 @@ namespace WildMonsters
 			gridPosition = new Vector2(x,y);
 		}
 		
+		public bool OnLeftSide
+		{
+			get{ return onLeftSide; }
+			set{ onLeftSide = value; }
+		}
+		
 		
 	}
 }
