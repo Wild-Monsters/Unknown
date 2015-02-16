@@ -7,10 +7,10 @@
       <File FileName="WildMonsters\Divider.cs" Line="1" Column="1" />
       <File FileName="WildMonsters\Sidebar.cs" Line="27" Column="4" />
       <File FileName="WildMonsters\TitleScene.cs" Line="9" Column="34" />
-      <File FileName="WildMonsters\Player.cs" Line="145" Column="42" />
+      <File FileName="WildMonsters\Player.cs" Line="136" Column="4" />
       <File FileName="WildMonsters\Input.cs" Line="36" Column="18" />
       <File FileName="WildMonsters\MenuScene.cs" Line="36" Column="4" />
-      <File FileName="WildMonsters\GameScene.cs" Line="127" Column="4" />
+      <File FileName="WildMonsters\GameScene.cs" Line="149" Column="8" />
       <File FileName="WildMonsters\Ball.cs" Line="116" Column="4" />
       <File FileName="WildMonsters\WMRandom.cs" Line="18" Column="1" />
       <File FileName="WildMonsters\ParticleManager.cs" Line="57" Column="5" />
@@ -18,10 +18,31 @@
       <File FileName="WildMonsters\LevelUI.cs" Line="1" Column="1" />
       <File FileName="WildMonsters\Constants.cs" Line="20" Column="3" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="WildMonsters" expanded="True">
+            <Node name="GameScene.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>alive</Value>
+          <Value>direction</Value>
+          <Value>sprite.Position</Value>
+          <Value>i</Value>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="C:\Dev\GitRepo\Unknown\WildMonsters\WildMonsters\Input.cs" line="130" />
+      <Breakpoint file="C:\Users\Nick\Desktop\Unknown\WildMonsters\WildMonsters\WildMonsters\GameScene.cs" line="129" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
