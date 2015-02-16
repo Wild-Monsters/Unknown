@@ -1,28 +1,29 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\GameScene.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\Ball.cs">
     <Files>
       <File FileName="WildMonsters\LevelGrid.cs" Line="167" Column="22" />
-      <File FileName="WildMonsters\CollisionHandler.cs" Line="37" Column="4" />
+      <File FileName="WildMonsters\CollisionHandler.cs" Line="36" Column="68" />
       <File FileName="WildMonsters\Divider.cs" Line="1" Column="1" />
       <File FileName="WildMonsters\Sidebar.cs" Line="27" Column="4" />
       <File FileName="WildMonsters\TitleScene.cs" Line="9" Column="34" />
-      <File FileName="WildMonsters\Player.cs" Line="136" Column="4" />
+      <File FileName="WildMonsters\Player.cs" Line="155" Column="82" />
       <File FileName="WildMonsters\Input.cs" Line="36" Column="18" />
       <File FileName="WildMonsters\MenuScene.cs" Line="36" Column="4" />
-      <File FileName="WildMonsters\GameScene.cs" Line="149" Column="8" />
-      <File FileName="WildMonsters\Ball.cs" Line="116" Column="4" />
-      <File FileName="WildMonsters\WMRandom.cs" Line="18" Column="1" />
-      <File FileName="WildMonsters\ParticleManager.cs" Line="57" Column="5" />
+      <File FileName="WildMonsters\GameScene.cs" Line="130" Column="6" />
+      <File FileName="WildMonsters\Ball.cs" Line="64" Column="6" />
+      <File FileName="WildMonsters\WMRandom.cs" Line="13" Column="1" />
+      <File FileName="WildMonsters\ParticleManager.cs" Line="27" Column="45" />
       <File FileName="WildMonsters\Particle.cs" Line="137" Column="31" />
       <File FileName="WildMonsters\LevelUI.cs" Line="1" Column="1" />
       <File FileName="WildMonsters\Constants.cs" Line="20" Column="3" />
+      <File FileName="WildMonsters\AppMain.cs" Line="77" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="WildMonsters" expanded="True">
-            <Node name="GameScene.cs" selected="True" />
+            <Node name="Ball.cs" selected="True" />
           </Node>
         </State>
       </Pad>
@@ -31,10 +32,7 @@
       </Pad>
       <Pad Id="MonoDevelop.Debugger.WatchPad">
         <State>
-          <Value>alive</Value>
-          <Value>direction</Value>
-          <Value>sprite.Position</Value>
-          <Value>i</Value>
+          <Value>rightListCount</Value>
         </State>
       </Pad>
     </Pads>

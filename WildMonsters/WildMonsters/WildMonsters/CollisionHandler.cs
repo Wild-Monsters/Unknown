@@ -21,6 +21,7 @@ namespace WildMonsters
 		private static Colour colourblock;
 		private static Colour[] colourBlockArray = new Colour[20];
 		private static bool bLeft = false;
+		private static Side sSide;
 		
 		// Accessors:
 		public static bool BExploded {get{return bExploded;} set{bExploded = value;}}
@@ -32,6 +33,7 @@ namespace WildMonsters
 		public static Colour Colourblock {get{return colourblock;} set{colourblock = value;}}
 		public static Colour[] ColourBlockArray{get{return colourBlockArray;} set{colourBlockArray = value;}}
 		public static bool BLeft {get{return bLeft;} set{bLeft = value;}}
+		public static Side SSide {get{return sSide;} set{sSide = value;}}
 		
 		public static void ResetExplodeAtArray()
 		{

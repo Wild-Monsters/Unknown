@@ -59,14 +59,18 @@ namespace WildMonsters
 		{
 			//TODO: Logic to travel up to and/or lock on to grid herel
 			if(state == BallState.Rising)
-			{	
+			{
 				if(playerLeftOfScreen)
 				{
 					sprite.Position = new Vector2(sprite.Position.X + speed, sprite.Position.Y);
+					Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
+					ParticleManager.AddParticle(parent, new Vector2(sprite.Position.X, sprite.Position.Y + (float)randPos.Y), 5, 2, 0, GetColour());
 				}
 				else
 				{
 					sprite.Position = new Vector2(sprite.Position.X - speed, sprite.Position.Y);
+					Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
+					ParticleManager.AddParticle(parent, new Vector2(sprite.Position.X + 40.0f, sprite.Position.Y + (float)randPos.Y), 5, 2, 0, GetColour());
 				}
 			}
 			

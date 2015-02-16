@@ -126,7 +126,8 @@ namespace WildMonsters
 			}
 			
 			ClickParticleGenerator();
-			MovingParticleGenerator(CollisionHandler.ExplodeAtMovingArray);
+			
+			//MovingParticleGenerator(CollisionHandler.ExplodeAtMovingArray);
 			
 			ParticleManager.Update(this);
 		}

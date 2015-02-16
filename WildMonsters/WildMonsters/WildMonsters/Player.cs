@@ -144,6 +144,11 @@ namespace WildMonsters
 					
 						CollisionHandler.BLeft = getSide();
 					
+						if(CollisionHandler.BLeft == true)
+							CollisionHandler.SSide = Side.Left;
+						else
+							CollisionHandler.SSide = Side.Right;
+					
 						ballList[i].Update(getSide());
 					
 						CollisionHandler.ExplodeAtMovingArray[i].X = ballList[i].GetBounds().Min.X;
