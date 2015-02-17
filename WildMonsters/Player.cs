@@ -15,22 +15,18 @@ namespace WildMonsters
 		private TextureInfo texInfo;
 		private int movementSpeed = 50;
 		private bool isLeftSide = false;	//deciding which side the player is on
-		private int spriteWidth = 0;
 		private int spriteHeight = 0;
 		
-		//starting colour
-		private Colour firstColour;
-		//colour immediately after fired
-		private Colour secondColour;
-		//Colour help in label
-		private Colour thirdColour;
-		
-		//private Random rng
+		private Colour[] colourArray;
 		
 		private List <Ball> ballList;
 		
+		private NextBallDisplay[] nextBallArray;
+		
 		public Player (Scene scene, bool _isLeftSide)
 		{			
+			nextBallArray = new NextBallDisplay[3];
+			colourArray = new Colour[5];
 			
 			isLeftSide = _isLeftSide;
 						
@@ -38,38 +34,16 @@ namespace WildMonsters
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = new Vector2(50.0f,50.0f);
 			sprite.Position = new Vector2(0.0f, 0.0f);
+		
+			for(int i = 0; i < 5; i++)
+			{
+				colourArray[i] = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+			}
 			
-			//Change colour of block
-			//NextColour ();
-			firstColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+			//sets up the player sprite cannon/ball
 			float spriteWidth = 1.0f / 6.0f;
 			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
-			sprite.UV.T = new Vector2(spriteWidth * (int)firstColour, 0.0f);	
-			
-			secondColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-			thirdColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-
-			
-			//Messy test to initialise next ball display with game
-//			Ball nextBall = new Ball(scene, isLeftSide);
-//			nextBall.SetState(BallState.Nostate);
-//			if(nextBall.OnLeftSide)
-//			{
-//				nextBall.Sprite.Position = new Vector2(0.0f, 0.0f);
-//			}
-//			else
-//			{
-//				nextBall.Sprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width - 25.0f, 0.0f);
-//			}
-//			nextBall.SetColour(nextColour3);
-//			nextBall.Sprite.Scale = new Vector2(0.5f, 0.5f);
-//			nextColour = nextColour2;
-//			nextColour2 = nextColour3;
-//			nextColour3 = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-			//end of messy test
-			
-			spriteWidth = sprite.TextureInfo.Texture.Width;
-			spriteHeight = sprite.TextureInfo.Texture.Height;
+			sprite.UV.T = new Vector2(spriteWidth * (int)colourArray[0], 0.0f);	
 			
 			if(isLeftSide)
 			{
@@ -81,6 +55,12 @@ namespace WildMonsters
 			}
 			
 			ballList = new List<Ball>();
+			
+			for(int i = 0; i < 3; i++)
+			{
+				nextBallArray[i] = new NextBallDisplay(scene, isLeftSide, i + 1);
+				nextBallArray[i].SetColour(colourArray[i + 1]);
+			}
 			
 			scene.AddChild(sprite);
 		}
@@ -154,13 +134,13 @@ namespace WildMonsters
 			//initialise at "cannon" pos
 			ball.Sprite.Position = this.sprite.Position;
 			//next colour being a random colour 
-			ball.SetColour(firstColour);
+			ball.SetColour(colourArray[0]);
 			
 			//sets the sprite, which is the ball stationed in the cannon, to be 1/6th of the whole spritesheet
 			float spriteWidth = 1.0f / 6.0f;
 			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
 			//set the ball stationed in the colour to be the colour of 'nextcolour2' which is the second different random colour val
-			sprite.UV.T = new Vector2(spriteWidth * (int)secondColour, 0.0f);	
+			sprite.UV.T = new Vector2(spriteWidth * (int)colourArray[1], 0.0f);	
 			
 			displayNextBall(scene);
 			
@@ -171,68 +151,41 @@ namespace WildMonsters
 		}
 		
 		public void displayNextBall(Scene scene)
-		{
-			//Display for the next upcoming ball's colour
-			NextBallDisplay nextBall = new NextBallDisplay(scene, isLeftSide);			
-			//set the next ball display to be a THIRD different random colour
-			nextBall.SetColour(thirdColour);
-			//scale down the nextball display, so its smaller than the fireable balls
-			nextBall.Sprite.Scale = new Vector2(0.5f, 0.5f);
+		{	
+			for(int i = 0; i < 3; i++)
+			{
+				nextBallArray[i].SetColour(colourArray[i + 2]);
+			}
 			
-
-			//NextColour ();
+			//shift the random colours across one, and the fifth final one generates a new random coloru
+			for(int i = 0; i < 4; i++)
+			{
+				colourArray[i] = colourArray[i+1];
+			}
 			
-			//shift the random colours across one, and the third final one generates a new random coloru
-			firstColour = secondColour;
-			secondColour = thirdColour;
-			
-			thirdColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-			
-			
+			colourArray[4] = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());	
 		}
+		
 		public bool getSide()
 		{
 			return this.isLeftSide;
 		}
+		
 		private void UpdateBalls()
 		{
-				for(int i=0; i<ballList.Count; i++)
+				for(int i = 0; i < ballList.Count; i++) 
 				{
 					if (ballList[i].GetState() == BallState.Rising)
 					{
 						ballList[i].Update();
 					}
-
 				}
-		
 		}
+		
 		public List<Ball> getBalls()
 		{
 			return this.ballList;
 		}
-		
-//		private void NextColour()
-//		{
-//			// 0 = red
-//			// 1 = blue
-//			// 2 = yellow
-//			// 3 = purple
-//			// 4 = green
-//			// 5 = Grey?
-//
-//	//			
-//				
-//				nextColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-//
-//				
-////				float spriteWidth = 1.0f / 6.0f;
-////				sprite.UV.S = new Vector2(spriteWidth, 1.0f);
-////				sprite.UV.T = new Vector2(spriteWidth * (int)currentColour, 0.0f);	
-//			
-//			
-//		}
-		
-		
 	}
 }
 

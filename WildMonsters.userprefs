@@ -7,11 +7,12 @@
       <File FileName="WildMonsters\Divider.cs" Line="56" Column="4" />
       <File FileName="WildMonsters\Sidebar.cs" Line="27" Column="4" />
       <File FileName="WildMonsters\TitleScene.cs" Line="9" Column="34" />
-      <File FileName="WildMonsters\Player.cs" Line="153" Column="41" />
+      <File FileName="WildMonsters\Player.cs" Line="100" Column="4" />
+      <File FileName="WildMonsters\NextBallDisplay.cs" Line="58" Column="28" />
       <File FileName="WildMonsters\Input.cs" Line="29" Column="67" />
       <File FileName="WildMonsters\MenuScene.cs" Line="36" Column="4" />
       <File FileName="WildMonsters\GameScene.cs" Line="111" Column="21" />
-      <File FileName="WildMonsters\Ball.cs" Line="126" Column="16" />
+      <File FileName="WildMonsters\Ball.cs" Line="10" Column="20" />
       <File FileName="WildMonsters\WMRandom.cs" Line="17" Column="2" />
       <File FileName="WildMonsters\Particle.cs" Line="18" Column="3" />
       <File FileName="WildMonsters\AppMain.cs" Line="68" Column="22" />

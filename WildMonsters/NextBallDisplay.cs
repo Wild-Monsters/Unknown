@@ -15,37 +15,60 @@ namespace WildMonsters
 		private Colour colour;	
 		private bool onLeftSide;
 		
-		//starting colour
-		private Colour firstColour;
-		//colour immediately after fired
-		private Colour secondColour;
-		//Colour help in label
-		private Colour thirdColour;
+		private float yPos;
 		
-		public NextBallDisplay (Scene scene, bool onLeftSide)
+		public NextBallDisplay (Scene scene, bool onLeftSide, int displayQueuePos)
 		{
-			
+			yPos = 510.0f;
 			texInfo = new TextureInfo("/Application/textures/Blocks2.png");
 			
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = new Vector2(50.0f,50.0f);
 			sprite.VertexZ = 1.0f;
+			sprite.Scale = new Vector2(0.5f, 0.5f);
 			
 			this.onLeftSide = onLeftSide;
 			
 			if(onLeftSide)
 			{
-				sprite.Position = new Vector2(10.0f, 510.0f);
+				switch(displayQueuePos)
+				{
+				case 1:
+					sprite.Position = new Vector2(10.0f, yPos);
+					break;
+				case 2:
+					sprite.Scale = new Vector2(0.4f, 0.4f);
+					sprite.Position = new Vector2(35.0f, yPos);
+					break;
+				case 3:
+					sprite.Scale = new Vector2(0.3f, 0.3f);
+					sprite.Position = new Vector2(55.0f, yPos);
+					break;
+				}
 			}
 			else
 			{
-				sprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width - 35.0f, 510.0f);
+				switch(displayQueuePos)
+				{
+				case 1:
+					sprite.Position = new Vector2(Director.Instance.GL.Context.GetViewport().Width - 35.0f, yPos);
+					break;
+				case 2:
+					sprite.Scale = new Vector2(0.4f, 0.4f);
+					sprite.Position = new Vector2((Director.Instance.GL.Context.GetViewport().Width - 35.0f) - 20.0f, yPos);
+					break;
+				case 3:
+					sprite.Scale = new Vector2(0.3f, 0.3f);
+					sprite.Position = new Vector2((Director.Instance.GL.Context.GetViewport().Width - 35.0f) - 35.0f, yPos);
+					break;
+				}
+				
 			}
-			
-			firstColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-			secondColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-			thirdColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-			
+//			
+//			firstColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+//			secondColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+//			thirdColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+//			
 			scene.AddChild(sprite);
 		}
 		
@@ -85,23 +108,23 @@ namespace WildMonsters
 			set{ onLeftSide = value; }
 		}
 		
-		public Colour FirstColour
-		{
-			get{ return firstColour; }
-			set{ firstColour = value; }
-		}
-		
-		public Colour SecondColour
-		{
-			get{ return secondColour; }
-			set{ secondColour = value; }
-		}
-		
-		public Colour ThirdColour
-		{
-			get{ return thirdColour; }
-			set{ thirdColour = value; }
-		}
+//		public Colour FirstColour
+//		{
+//			get{ return firstColour; }
+//			set{ firstColour = value; }
+//		}
+//		
+//		public Colour SecondColour
+//		{
+//			get{ return secondColour; }
+//			set{ secondColour = value; }
+//		}
+//		
+//		public Colour ThirdColour
+//		{
+//			get{ return thirdColour; }
+//			set{ thirdColour = value; }
+//		}
 		
 		
 		
