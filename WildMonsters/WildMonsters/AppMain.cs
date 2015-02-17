@@ -26,6 +26,11 @@ namespace WildMonsters
 		private static Timer		timer;
 		private static float		deltaTime;
 		private static bool			quit;
+<<<<<<< Updated upstream:WildMonsters/WildMonsters/AppMain.cs
+=======
+		
+		private enum WMScene {Title, Game};
+>>>>>>> Stashed changes:WildMonsters/AppMain.cs
 				
 		public static void Main (string[] args)
 		{
@@ -61,6 +66,7 @@ namespace WildMonsters
 			Sce.PlayStation.HighLevel.UI.Scene blankUI = new Sce.PlayStation.HighLevel.UI.Scene();
 			UISystem.SetScene(blankUI);
 			
+<<<<<<< Updated upstream:WildMonsters/WildMonsters/AppMain.cs
 			//Create Game Scenes
 			//menuScene = new MenuScene();
 			//gameScene = new GameScene();
@@ -73,6 +79,29 @@ namespace WildMonsters
 			
 			//Run the scene.
 			Director.Instance.RunWithScene(gameScene, false);
+=======
+			WMScene startScene = WMScene.Title;
+			
+			switch(startScene)
+			{
+			case WMScene.Game:
+				gameScene = new GameScene();
+				gameScene.Camera.SetViewFromViewport();
+
+				//Run the scene.
+				Director.Instance.RunWithScene(gameScene, false);
+				break;
+				
+			case WMScene.Title:
+				titleScene = new TitleScene();
+				titleScene.Camera.SetViewFromViewport();
+
+				//Run the scene.
+				Director.Instance.RunWithScene(titleScene, false);
+				break;
+			}
+
+>>>>>>> Stashed changes:WildMonsters/AppMain.cs
 		}
 	}
 }

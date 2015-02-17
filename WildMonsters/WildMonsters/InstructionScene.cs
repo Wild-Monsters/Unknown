@@ -22,16 +22,16 @@ namespace WildMonsters
 		{
 						
 			this.Camera.SetViewFromViewport();
-			texture = new Texture2D("Application/Textures/PlaceholderTitleScreen.png", false);
+			texture = new Texture2D("Application/Textures/InstructionsPlaceholder.png", false);
 			tInfo = new TextureInfo(texture);
-			SpriteUV instrcutionScreen = new SpriteUV(tInfo);
-			instrcutionScreen.Scale = tInfo.TextureSizef;
-			instrcutionScreen.Pivot = new Vector2 (0.5f, 0.5f);
-			instrcutionScreen.Position = new Vector2(Director.Instance.GL.Context.GetViewport ().Width/2,
+			SpriteUV instructionScreen = new SpriteUV(tInfo);
+			instructionScreen.Scale = tInfo.TextureSizef;
+			instructionScreen.Pivot = new Vector2 (0.5f, 0.5f);
+			instructionScreen.Position = new Vector2(Director.Instance.GL.Context.GetViewport ().Width/2,
 			                                   Director.Instance.GL.Context.GetViewport ().Height/2);
 			
 			//Adds the instruction screen to the scene
-			this.AddChild (instrcutionScreen);
+			this.AddChild (instructionScreen);
 			
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 0, false);
 			

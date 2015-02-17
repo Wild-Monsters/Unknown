@@ -20,10 +20,18 @@ namespace WildMonsters
 		
 		private Sce.PlayStation.HighLevel.UI.Scene uiScene;
 		
-		
+		//private AudioManager audio;
+				
 		public MenuScene ()
-		{
-			this.Camera.SetViewFromViewport ();
+	{
+//			if(audio == null)
+//			{
+//				audio = new AudioManager();
+//			}
+			
+			//audio.PlayMenuMusic();
+			
+			this.Camera.SetViewFromViewport();
 			Sce.PlayStation.HighLevel.UI.Panel dialog = new Panel();
 			dialog.Width = Director.Instance.GL.Context.GetViewport ().Width;
 			dialog.Height = Director.Instance.GL.Context.GetViewport().Height;
@@ -40,8 +48,12 @@ namespace WildMonsters
 			buttonUI1.Width = 300;
 			buttonUI1.Height = 50;
 			buttonUI1.Alpha = 0.8f;
-			buttonUI1.SetPosition(dialog.Width/2 - 150, 200.0f);
+			buttonUI1.SetPosition(dialog.Width/2 - 150, 400.0f);
 			buttonUI1.TouchEventReceived += (sender, e) => {
+				
+				//audio.StopMenuMusic();
+				//audio.Dispose();
+				
 				Director.Instance.ReplaceScene (new GameScene());
 			};
 			
@@ -61,12 +73,12 @@ namespace WildMonsters
 			dialog.AddChildLast (buttonUI2);
 			uiScene = new Sce.PlayStation.HighLevel.UI.Scene();
 			uiScene.RootWidget.AddChildLast(dialog);
-			UISystem.SetScene (uiScene);
+			UISystem.SetScene(uiScene);
 			Scheduler.Instance.ScheduleUpdateForTarget (this, 0, false);
 			
 			
 			//Clears the touch data so the game does not instantly switch to the menu scene
-			Touch.GetData (0).Clear ();
+			Touch.GetData(0).Clear ();
 			
 			
 			//Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
@@ -75,16 +87,14 @@ namespace WildMonsters
 		public override void Update(float dt)
 		{
 			base.Update (dt);
-			UISystem.Render();
+			UISystem.Update(Touch.GetData(0));
 			
 			var touches = Touch.GetData (0).ToArray();
 			
 			if((touches.Length >0 && touches[0].Status == TouchStatus.Down) || Input2.GamePad0.Cross.Press)
 			{
-				Director.Instance.ReplaceScene (new GameScene());	
+				Director.Instance.ReplaceScene (new GameScene());
 			}
-			
-			
 		}
 		
 		public override void Draw()
