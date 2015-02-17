@@ -17,7 +17,7 @@ namespace WildMonsters
 		SpriteUV sprite;
 		Vector4 spriteColor;
 		private ParticleState particleState;
-		private Colour colour;
+		//private Colour colour;
 		   
 		// Accessors:
 		public Vector2 Velocity { get; set; }        // The speed of the particle at the current instance
@@ -30,7 +30,7 @@ namespace WildMonsters
 		public ParticleState ParticleStateVar {get{return particleState;} set{particleState = value;}}
 		
 		
-		public Particle (Scene _scene, Vector2 position, int type, int quadAssign, Colour colour)
+		public Particle (Scene _scene, Vector2 position, int type, int quadAssign, Colour ballColour)
 		{
 			Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator rand;
 			
@@ -66,28 +66,6 @@ namespace WildMonsters
 					velocity.Y *= rand.NextFloat(0, 1);
 					break;	
 				}
-				
-//				Random r = new Random();
-//				if(r.NextDouble() > 0.75f && r.NextDouble() < 1.0f)
-//				{
-//					velocity.X *= rand.NextFloat(-1, 0);
-//					velocity.Y *= rand.NextFloat(0, 1);
-//				}
-//				else if(r.NextDouble() > 0.5f && r.NextDouble() < 0.75f)
-//				{
-//					velocity.X *= rand.NextFloat(-1, 0);
-//					velocity.Y *= rand.NextFloat(-1, 0);
-//				}
-//				else if(r.NextDouble() > 0.25f && r.NextDouble() < 0.5f)
-//				{
-//					velocity.X *= rand.NextFloat(0, 1);
-//					velocity.Y *= rand.NextFloat(-1, 0);
-//				}
-//				else if(r.NextDouble() > 0.0f && r.NextDouble() < 0.25f)
-//				{
-//					velocity.X *= rand.NextFloat(0, 1);
-//					velocity.Y *= rand.NextFloat(0, 1);
-//				}
 			}
 			
 			// If 1, it's a fire effect
@@ -129,35 +107,36 @@ namespace WildMonsters
 			sprite.Quad.S = texInfo.TextureSizef;
 			sprite.Position = position;
 			
-			spriteColor = new Vector4((float)rand.NextFloat(0, 1),
-            				    (float)rand.NextFloat(0, 1),
-            				    (float)rand.NextFloat(0, 1),
-			                    (float)1);
+			// Random Colour
+//			spriteColor = new Vector4((float)rand.NextFloat(0, 1),
+//            				    (float)rand.NextFloat(0, 1),
+//            				    (float)rand.NextFloat(0, 1),
+//			                    (float)1);
 			
-			sprite.Color = spriteColor;
 			
-//			this.colour = colour;
-//			
-//			switch(this.colour)
+//			if(CollisionHandler.BColourChanged)
 //			{
-//			case Colour.Red:
-//				sprite.Color = new Vector4((float)1.0f, (float)rand.NextFloat(-0.25f, 0.25f), (float)rand.NextFloat(-0.25f, 0.25f), 1.0f);
-//				break;
-//			case Colour.Blue:
-//				sprite.Color = new Vector4(rand.NextFloat(-0.25f, 0.25f), 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
-//				break;
-//			case Colour.Yellow:
-//				sprite.Color = new Vector4(1.0f, 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
-//				break;
-//			case Colour.Purple:
-//				sprite.Color = new Vector4(128.0f, rand.NextFloat(-0.25f, 0.25f), 128.0f, 1.0f);
-//				break;
-//			case Colour.Green:
-//				sprite.Color = new Vector4(rand.NextFloat(-0.25f, 0.25f), 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
-//				break;
-//			case Colour.Grey:
-//				sprite.Color = new Vector4(128.0f, 128.0f, 128.0f, 1.0f);
-//				break;
+				switch(ballColour)
+				{
+				case Colour.Red:
+					spriteColor = new Vector4(1.0f, rand.NextFloat(-0.25f, 0.25f), rand.NextFloat(-0.25f, 0.25f), 1.0f);
+					break;
+				case Colour.Blue:
+					spriteColor = new Vector4(rand.NextFloat(-0.25f, 0.25f), 1.0f, 1.0f, 1.0f);
+					break;
+				case Colour.Yellow:
+					spriteColor = new Vector4(1.0f, 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
+					break;
+				case Colour.Purple:
+					spriteColor = new Vector4(128.0f, rand.NextFloat(-0.25f, 0.25f), 128.0f, 1.0f);
+					break;
+				case Colour.Green:
+					spriteColor = new Vector4(rand.NextFloat(-0.25f, 0.25f), 1.0f, rand.NextFloat(-0.25f, 0.25f), 1.0f);
+					break;
+				case Colour.Grey:
+					spriteColor = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+					break;
+				}
 //			}
 			
 			_scene.AddChild (sprite);

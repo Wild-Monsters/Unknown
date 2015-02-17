@@ -122,7 +122,7 @@ namespace WildMonsters
 			
 			if(CollisionHandler.BExploded)
 			{
-				ParticleGenerator(CollisionHandler.ExplodeAtArray);
+				//ParticleGenerator(CollisionHandler.ExplodeAtArray);
 			}
 			
 			ClickParticleGenerator();

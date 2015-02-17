@@ -22,6 +22,8 @@ namespace WildMonsters
 		private static Colour[] colourBlockArray = new Colour[20];
 		private static bool bLeft = false;
 		private static Side sSide;
+		private static bool bColourChanged;
+		private static Colour oldColour;
 		
 		// Accessors:
 		public static bool BExploded {get{return bExploded;} set{bExploded = value;}}
@@ -34,6 +36,8 @@ namespace WildMonsters
 		public static Colour[] ColourBlockArray{get{return colourBlockArray;} set{colourBlockArray = value;}}
 		public static bool BLeft {get{return bLeft;} set{bLeft = value;}}
 		public static Side SSide {get{return sSide;} set{sSide = value;}}
+		public static bool BColourChanged {get{return bColourChanged;} set{bColourChanged = value;}}
+		public static Colour OldColour {get{return oldColour;} set{oldColour = value;}}
 		
 		public static void ResetExplodeAtArray()
 		{
@@ -71,8 +75,7 @@ namespace WildMonsters
 				int row = (int)(pBalls[k].Sprite.Position.Y/50.0f);
 				
 				for(int x = 0; x < 20; x++)
-				{
-					
+				{					
 					if(gridBalls[row, x] != null && pBalls[k].GetState() == BallState.Rising)
 					{
 						if (pBalls[k].GetBounds().Overlaps(gridBalls[row,x].GetBounds()))

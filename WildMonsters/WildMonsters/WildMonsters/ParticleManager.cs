@@ -45,20 +45,6 @@ namespace WildMonsters
 			{
 				// Add particle to the list
 				objectList.Add (new Particle(_scene, position, type, quadAssign, colour));
-			
-				
-//				switch(side)
-//				{
-//					// add particle to left
-//					case Side.Left:
-//						leftList.Add (new Particle(_scene, position, type, quadAssign, colour));
-//						break;
-//					// add particle to right
-//					case Side.Right:
-//						break;
-//					default:
-//						break;
-//				}
 			}
 		}
 		
