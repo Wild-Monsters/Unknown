@@ -26,7 +26,6 @@ namespace WildMonsters
 		private GridProperties props;
 		private Ball[,] grid;
 		private LevelUI levelUI;
-		private bool bExploded;
 		
 		public LevelGrid (GridProperties _properties, LevelUI _levelUI)
 		{
@@ -43,8 +42,6 @@ namespace WildMonsters
 					grid[a,b] = null;
 				}
 			}
-			
-			bExploded = false;
 		}
 		
 		public void Update(float t)
@@ -163,18 +160,12 @@ namespace WildMonsters
 			//If more than one matching colour was found
 			if(searchIndex+1 > matchesNeeded)
 			{
-				CollisionHandler.BExploded = true;
-				CollisionHandler.ResetExplodeAtArray();
-				
 				CheckSpecialCases (specialList);
 				
 				for(int a = 0; a < searchList.Count; a++)
 				{
 					int targetY = (int)searchList[a].Y;
 					int targetX = (int)searchList[a].X;
-					
-					CollisionHandler.ExplodeAtArray[a] = new Vector2((float)grid[targetY, targetX].GetBounds().Min.X, 
-					                                         (float)grid[targetY, targetX].GetBounds().Min.Y);
 					
 					grid[targetY, targetX].RemoveObject();
 					grid[targetY, targetX] = null;	

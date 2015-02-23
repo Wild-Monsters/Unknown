@@ -12,48 +12,8 @@ namespace WildMonsters
 	public static class CollisionHandler
 	{
 		// Private variables:
-		private static bool bExploded = false;
-		private static Vector2 explodeAt = new Vector2(0.0f, 0.0f);
-		private static Vector2[] explodeAtArray = new Vector2[10];
-		private static Vector2[] explodeAtMovingArray = new Vector2[10];
-		private static bool bMoving = false;
-		private static bool bLocked = false;
-		private static Colour colourblock;
-		private static Colour[] colourBlockArray = new Colour[20];
-		private static bool bLeft = false;
-		private static Side sSide;
-		private static bool bColourChanged;
-		private static Colour oldColour;
 		
 		// Accessors:
-		public static bool BExploded {get{return bExploded;} set{bExploded = value;}}
-		public static Vector2 ExplodeAt {get {return explodeAt;} set{explodeAt = value;}}
-		public static Vector2[] ExplodeAtArray {get{return explodeAtArray;} set{explodeAtArray = value;}}
-		public static Vector2[] ExplodeAtMovingArray {get{return explodeAtMovingArray;} set{explodeAtMovingArray = value;}}
-		public static bool BMoving {get{return bMoving;} set{bMoving = value;}}
-		public static bool BLocked {get{return bLocked;} set{bLocked = value;}}
-		public static Colour Colourblock {get{return colourblock;} set{colourblock = value;}}
-		public static Colour[] ColourBlockArray{get{return colourBlockArray;} set{colourBlockArray = value;}}
-		public static bool BLeft {get{return bLeft;} set{bLeft = value;}}
-		public static Side SSide {get{return sSide;} set{sSide = value;}}
-		public static bool BColourChanged {get{return bColourChanged;} set{bColourChanged = value;}}
-		public static Colour OldColour {get{return oldColour;} set{oldColour = value;}}
-		
-		public static void ResetExplodeAtArray()
-		{
-			for(int i = 0; i < 10; i++)
-			{
-				explodeAtArray[i] = new Vector2(0,0);
-			}
-		}
-		
-		public static void ResetExplodeAtMovingArray()
-		{
-			for(int i = 0; i < 10; i++)
-			{
-				explodeAtMovingArray[i] = new Vector2(-100.0f,-100.0f);
-			}
-		}
 		
 		// Box collision
 		
@@ -90,8 +50,6 @@ namespace WildMonsters
 							
 							ballCollided = true;
 							
-							bMoving = false;
-							
 							pBalls[k].SetState(BallState.Locked);
 						}
 					}//End of 'y' for loop
@@ -112,8 +70,6 @@ namespace WildMonsters
 						
 						pBalls[k].SetState(BallState.Locked);
 						ballCollided = true;
-						
-						bMoving = false;
 					}
 				}
 				else
@@ -130,12 +86,8 @@ namespace WildMonsters
 						
 						pBalls[k].SetState(BallState.Locked);
 						ballCollided = true;
-						
-						bMoving = false;
 					}
 				}
-				
-
 				
 				//Remove the ball if it collided
 				if(ballCollided)

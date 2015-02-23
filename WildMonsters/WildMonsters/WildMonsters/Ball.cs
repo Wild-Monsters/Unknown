@@ -63,14 +63,12 @@ namespace WildMonsters
 				if(playerLeftOfScreen)
 				{
 					sprite.Position = new Vector2(sprite.Position.X + speed, sprite.Position.Y);
-					Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
-					ParticleManager.AddParticle(parent, new Vector2(sprite.Position.X, sprite.Position.Y + (float)randPos.Y), 1, 2, 0, colour);
+					ParticleManager.AddLeftTrail(parent, sprite.Position, colour);
 				}
 				else
 				{
 					sprite.Position = new Vector2(sprite.Position.X - speed, sprite.Position.Y);
-					Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
-					ParticleManager.AddParticle(parent, new Vector2(sprite.Position.X + 40.0f, sprite.Position.Y + (float)randPos.Y), 1, 2, 0, colour);
+					ParticleManager.AddRightTrail(parent, sprite.Position, colour);
 				}
 			}
 			
@@ -84,20 +82,8 @@ namespace WildMonsters
 		}
 		
 		public void RemoveObject()
-		{
-			int quadAssign = 0;
-			// Produce 10 particles per call
-			for(int i = 0; i < 16; i++)
-			{
-				quadAssign++;
-				if(quadAssign >= 4)
-				{
-					quadAssign = 0;
-				}
-				Vector2 randPos = new Vector2(ParticleManager.CreateRandomPosition().X, ParticleManager.CreateRandomPosition().Y);
-				ParticleManager.AddParticle (parent, new Vector2(sprite.Position.X + (float)randPos.X,
-					sprite.Position.Y + (float)randPos.Y), 1, 0, quadAssign, colour);
-			}
+		{			
+			ParticleManager.AddExplosion(parent, sprite.Position, colour);
 			parent.RemoveChild (this.Sprite, true);
 		}
 		
@@ -143,8 +129,6 @@ namespace WildMonsters
 			
 			SetColour (nextColour);
 		}
-		
-		
 	}
 }
 

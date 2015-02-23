@@ -124,7 +124,6 @@ namespace WildMonsters
 			ball.SetState(BallState.Rising);
 			ball.Sprite.Position = this.sprite.Position;
 			
-			CollisionHandler.Colourblock = nextColour;
 			ball.SetColour(nextColour);
 			NextColour ();
 			
@@ -140,24 +139,11 @@ namespace WildMonsters
 				{
 					if (ballList[i].GetState() == BallState.Rising)
 					{
-						CollisionHandler.BMoving = true;
-					
-						CollisionHandler.BLeft = getSide();
-					
-						if(CollisionHandler.BLeft == true)
-							CollisionHandler.SSide = Side.Left;
-						else
-							CollisionHandler.SSide = Side.Right;
-					
 						ballList[i].Update(getSide());
-					
-						CollisionHandler.ExplodeAtMovingArray[i].X = ballList[i].GetBounds().Min.X;
-						CollisionHandler.ExplodeAtMovingArray[i].Y = ballList[i].GetBounds().Min.Y;
 					}
 					else
 					{
 						ballList.Remove(ballList[i]);
-						CollisionHandler.BMoving = false;
 					}
 				}
 		}
