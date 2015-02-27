@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BE6BAB84-8282-4881-9082-553B3B60D7EA}</ProjectGuid>
+    <ProjectTypeGuids>{69878862-DA7D-4DC6-B0A1-50D8FAB4242F};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>WildMonsters</RootNamespace>
+    <AssemblyName>WildMonsters</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Sce.PlayStation.Core" />
+    <Reference Include="Sce.PlayStation.HighLevel.GameEngine2D" />
+    <Reference Include="Sce.PlayStation.HighLevel.Model" />
+    <Reference Include="Sce.PlayStation.HighLevel.Physics2D" />
+    <Reference Include="Sce.PlayStation.HighLevel.UI" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\AppMain.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\GameScene.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\MenuScene.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\CollisionHandler.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\LevelGrid.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Ball.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\LevelUI.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Divider.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Sidebar.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Input.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Player.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\TitleScene.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\InstructionScene.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Particle.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\ParticleManager.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WMRandom.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\NextBallDisplay.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Constants.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\shaders\Vertex Shader.vcg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ShaderProgram Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\shaders\Simple.fcg" />
+    <ShaderProgram Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\shaders\Simple.vcg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PsmMetadata Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\app.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\TestSprite.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Blocks.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Divider.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\SideBar.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\1.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\PlaceholderTitleScreen.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\PlaceholderMenuScreen.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Particle.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Blocks2.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Divider2.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Background.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\circle.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\diamond.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Particle_1.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Particle_old.png" />
+    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\star.png" />
+  </ItemGroup>
+</Project>
