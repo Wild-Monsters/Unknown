@@ -58,6 +58,7 @@ namespace WildMonsters
 				{
 					if(grid[y,x] != null)
 					{
+						
 						float gridPositionX;
 						float gridPositionY;
 						
@@ -65,11 +66,23 @@ namespace WildMonsters
 						{
 							gridPositionX = ((props.top - props.xMargin) - (props.cellSize*x))-props.cellSize;
 							gridPositionY = props.yMargin + (props.cellSize*y);
+							
+							if(GameOver(gridPositionX, props))
+							{
+								//Console.WriteLine("SUPER GAME OVERUUU CHAN");
+							}
+							
 						}
 						else
 						{
 							gridPositionX = (props.top + props.xMargin) + (props.cellSize*x);
 							gridPositionY = props.yMargin + (props.cellSize*y);
+							
+							if(GameOver(gridPositionX, props))
+							{
+								//Console.WriteLine("SUPER GAME OVERUUU CHAN");
+							}
+							
 						}
 						
 						grid[y,x].SetGridPosition(gridPositionX, gridPositionY);
@@ -78,6 +91,30 @@ namespace WildMonsters
 				}
 			}
 		}
+		
+		public bool GameOver(float gridPosX, GridProperties props)
+		{
+			if(props.flipped)
+			{
+				if(gridPosX < 60)
+				{
+					Console.WriteLine("Player Two wins!");
+					return true;
+				}
+			}
+			else
+			{
+				if(gridPosX > 840)
+				{
+					Console.WriteLine("Player One wins!");
+					
+					return true;
+				}
+			}
+			return false;	
+		}
+		
+		
 		
 		public void SearchGrid(int xPos, int yPos, int matchesNeeded)
 		{
@@ -224,9 +261,6 @@ namespace WildMonsters
 			
 			
 		}
-		
-
-		
 		
 		public void SetTop(float x)
 		{

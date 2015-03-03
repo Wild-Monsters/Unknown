@@ -22,6 +22,8 @@ namespace WildMonsters
 		private List <Ball> ballList;
 		
 		private NextBallDisplay[] nextBallArray;
+
+		private float p1MaxWaitTime;
 		
 		public Player (Scene scene, bool _isLeftSide)
 		{			
@@ -61,6 +63,8 @@ namespace WildMonsters
 				nextBallArray[i] = new NextBallDisplay(scene, isLeftSide, i + 1);
 				nextBallArray[i].SetColour(colourArray[i + 1]);
 			}
+			//clear any previous touches, start fresh.
+			Touch.GetData(0).Clear();
 			
 			scene.AddChild(sprite);
 		}
@@ -70,9 +74,37 @@ namespace WildMonsters
 			GamePadButtons actionButton, upButton, downButton;
 			Analog moveAnalog;
 			
+			var touches = Touch.GetData(0);
+			
 			//Set the control buttons based on which side you're on
 			if(isLeftSide)
 			{
+				//Player one touch controls
+				
+				//check there are touches first
+				if(touches.Count > 0)
+				{
+					if(touches[0].Status == TouchStatus.Down)
+					{
+					}
+					//top left quadrant of screen has been pressed
+					if(touches[0].X < 0 && touches[0].Y <= 0)
+					{
+						//touches.at(0).X
+						//Lazy bug fix for cannons moving on to sideba	
+						sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
+						if(sprite.Position.Y >= 450)
+						{
+							sprite.Position = new Vector2(sprite.Position.X, 450);
+						}
+					}
+					//Bottom left quadrant of screen has been pressed
+					else if(touches[0].X < 0 && touches[0].Y >= 0)
+					{
+						sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
+					}		
+				}
+				
 				actionButton = GamePadButtons.Right;
 				moveAnalog = Analog.leftY;
 				upButton = GamePadButtons.Up;
@@ -80,6 +112,34 @@ namespace WildMonsters
 			}
 			else
 			{
+				//Player two touch controls
+
+				//check there are touches first
+				if(touches.Count > 0)
+				{
+					//Console.WriteLine("Player two: " + touches[0].Status);
+					if(touches[0].Status == TouchStatus.Up)
+					{
+					}
+					
+					//top right quadrant of screen has been pressed
+					if(touches[0].X > 0 && touches[0].Y <= 0)
+					{
+						//touches.at(0).X
+						sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
+						if(sprite.Position.Y >= 450)
+						{
+							sprite.Position = new Vector2(sprite.Position.X, 450);
+						}
+					}
+					
+					//bottom right quadrant of screen has been pressed
+					else if(touches[0].X > 0 && touches[0].Y >= 0)
+					{				
+						sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
+					}
+				}
+				
 				actionButton = GamePadButtons.Square;
 				moveAnalog = Analog.rightY;
 				upButton = GamePadButtons.Triangle;
@@ -92,8 +152,13 @@ namespace WildMonsters
 			
 			//Use analog or the buttons to move the character
 			if (Input.AnalogPress(moveAnalog, false, deadzone, analogDelay) || Input.KeyPressed (upButton, buttonDelay)) //Go left (up)
-			{
+			{	
 				sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
+				//Lazy bug fix for cannons moving on to sidebar
+				if(sprite.Position.Y >= 450)
+				{
+					sprite.Position = new Vector2(sprite.Position.X, 450);
+				}
 			}
 			
 			if (Input.AnalogPress(moveAnalog, true, deadzone, analogDelay) || Input.KeyPressed (downButton, buttonDelay)) //go right (down)
@@ -139,7 +204,7 @@ namespace WildMonsters
 			//sets the sprite, which is the ball stationed in the cannon, to be 1/6th of the whole spritesheet
 			float spriteWidth = 1.0f / 6.0f;
 			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
-			//set the ball stationed in the colour to be the colour of 'nextcolour2' which is the second different random colour val
+			//set the ball stationed in the cannon to be the colour of 'nextcolour2' which is the second different random colour val
 			sprite.UV.T = new Vector2(spriteWidth * (int)colourArray[1], 0.0f);	
 			
 			displayNextBall(scene);

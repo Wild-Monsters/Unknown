@@ -110,6 +110,9 @@ namespace WildMonsters
 			//Collision Stuff trial 
 			CollisionHandler.CheckBlockCollision2(player1.getBalls(), grid1);
 			CollisionHandler.CheckBlockCollision2(player2.getBalls(), grid2);
+			
+			ParticleManager.AddClickTrail(this);
+			ParticleManager.Update(this);
 		}
 		
 		

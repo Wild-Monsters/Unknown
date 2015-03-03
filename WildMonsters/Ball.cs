@@ -87,10 +87,12 @@ namespace WildMonsters
 				if(onLeftSide)
 				{
 					sprite.Position = new Vector2(sprite.Position.X + speed, sprite.Position.Y);
+					ParticleManager.AddLeftTrail(parent, sprite.Position, colour);
 				}
 				else
 				{
 					sprite.Position = new Vector2(sprite.Position.X - speed, sprite.Position.Y);
+					ParticleManager.AddRightTrail(parent, sprite.Position, colour);
 				}
 				break;
 				
@@ -139,6 +141,7 @@ namespace WildMonsters
 		
 		public void RemoveObject()
 		{
+			ParticleManager.AddExplosion(parent, sprite.Position, colour);
 			parent.RemoveChild (this.Sprite, true);
 		}
 		

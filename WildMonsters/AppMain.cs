@@ -20,7 +20,6 @@ namespace WildMonsters
 		private static GameScene	gameScene;
 		private static MenuScene	menuScene;
 		private static TitleScene   	titleScene;
-		private static InstructionScene instructionScene;
 		//private static Scene		currentScene;
 		
 		private static Timer		timer;

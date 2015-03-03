@@ -39,47 +39,60 @@
     <Reference Include="Sce.PlayStation.HighLevel.Physics2D" />
     <Reference Include="Sce.PlayStation.HighLevel.UI" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\" />
+    <Folder Include="shaders\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PsmMetadata Include="app.xml" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="AppMain.cs" />
-    <Compile Include="GameScene.cs" />
-    <Compile Include="MenuScene.cs" />
-    <Compile Include="CollisionHandler.cs" />
-    <Compile Include="LevelGrid.cs" />
     <Compile Include="Ball.cs" />
-    <Compile Include="LevelUI.cs" />
+    <Compile Include="CollisionHandler.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Divider.cs" />
-    <Compile Include="Sidebar.cs" />
+    <Compile Include="GameScene.cs" />
     <Compile Include="Input.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="TitleScene.cs" />
     <Compile Include="InstructionScene.cs" />
+    <Compile Include="LevelGrid.cs" />
+    <Compile Include="LevelUI.cs" />
+    <Compile Include="MenuScene.cs" />
+    <Compile Include="NextBallDisplay.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="ParticleManager.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Sidebar.cs" />
+    <Compile Include="TitleScene.cs" />
     <Compile Include="WMRandom.cs" />
-    <Compile Include="NextBallDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
     <ShaderProgram Include="shaders\Simple.vcg" />
   </ItemGroup>
   <ItemGroup>
-    <PsmMetadata Include="app.xml" />
+    <Content Include="Textures\1.png" />
+    <Content Include="Textures\Background.png" />
+    <Content Include="Textures\Blocks.png" />
+    <Content Include="Textures\Blocks2.png" />
+    <Content Include="Textures\circle.png" />
+    <Content Include="Textures\diamond.png" />
+    <Content Include="Textures\Divider.png" />
+    <Content Include="Textures\Divider2.png" />
+    <Content Include="Textures\Particle.png" />
+    <Content Include="Textures\Particle_1.png" />
+    <Content Include="Textures\Particle_old.png" />
+    <Content Include="Textures\PlaceholderMenuScreen.png" />
+    <Content Include="Textures\PlaceholderTitleScreen.png" />
+    <Content Include="Textures\SideBar.png" />
+    <Content Include="Textures\star.png" />
+    <Content Include="Textures\TestSprite.png" />
+    <Content Include="Textures\Player\1.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="textures\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="textures\TestSprite.png" />
-    <Content Include="textures\Blocks.png" />
-    <Content Include="textures\Divider.png" />
-    <Content Include="textures\SideBar.png" />
-    <Content Include="textures\1.png" />
-    <Content Include="textures\PlaceholderTitleScreen.png" />
-    <Content Include="textures\PlaceholderMenuScreen.png" />
-    <Content Include="textures\Particle.png" />
-    <Content Include="textures\Blocks2.png" />
-    <Content Include="textures\Divider2.png" />
-    <Content Include="textures\Background.png" />
+    <None Include="Textures\Background.psd" />
+    <None Include="Textures\Divider2.psd" />
+    <None Include="Textures\sidebar.psd" />
   </ItemGroup>
 </Project>
