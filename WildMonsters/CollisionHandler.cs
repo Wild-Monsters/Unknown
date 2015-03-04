@@ -130,37 +130,37 @@ namespace WildMonsters
 			GridProperties props = levelGrid.GetProperties();
 			
 			if(props.flipped)
+			{
+				float frontOfBlock = pBalls[index].Sprite.Position.X+props.cellSize;
+				float topOfGrid = props.top-props.xMargin;
+				
+				//Set the blocks X position to 0 on the grid if it hits the top
+				if(frontOfBlock > topOfGrid
+				&& pBalls[index].GetState() == BallState.Rising)
 				{
-					float frontOfBlock = pBalls[index].Sprite.Position.X+props.cellSize;
-					float topOfGrid = props.top-props.xMargin;
+					gridBalls[row, 0] = pBalls[index];
+					levelGrid.SearchGrid(0, row, 2);
 					
-					//Set the blocks X position to 0 on the grid if it hits the top
-					if(frontOfBlock > topOfGrid
-					&& pBalls[index].GetState() == BallState.Rising)
-					{
-						gridBalls[row, 0] = pBalls[index];
-						levelGrid.SearchGrid(0, row, 2);
-						
-						pBalls[index].SetState(BallState.Locked);
-						return true;
-					}
+					pBalls[index].SetState(BallState.Locked);
+					return true;
 				}
-				else
+			}
+			else
+			{
+				float frontOfBlock = pBalls[index].Sprite.Position.X;
+				float topOfGrid = props.top+props.xMargin;
+				
+				//Set the blocks X position to 0 on the grid if it hits the top
+				if(frontOfBlock < topOfGrid
+				&& pBalls[index].GetState() == BallState.Rising)
 				{
-					float frontOfBlock = pBalls[index].Sprite.Position.X;
-					float topOfGrid = props.top+props.xMargin;
+					gridBalls[row, 0] = pBalls[index];
+					levelGrid.SearchGrid(0, row, 2);
 					
-					//Set the blocks X position to 0 on the grid if it hits the top
-					if(frontOfBlock < topOfGrid
-					&& pBalls[index].GetState() == BallState.Rising)
-					{
-						gridBalls[row, 0] = pBalls[index];
-						levelGrid.SearchGrid(0, row, 2);
-						
-						pBalls[index].SetState(BallState.Locked);
-						return true;
-					}
+					pBalls[index].SetState(BallState.Locked);
+					return true;
 				}
+			}
 			
 			return false;
 		}
@@ -189,8 +189,8 @@ namespace WildMonsters
 			Vector3 diff = new Vector3(0.0f, 0.0f, 0.0f);
 			
 			// When the particle objects are passed in, this will determine the distance between the two, and when they're close enough they'll collide
-			diff.X = particleOne.getMyPos().X - particleTwo.getMyPos().X;
-			diff.Y = particleOne.getMyPos().Y - particleTwo.getMyPos().Y;
+			//diff.X = particleOne.getMyPos().X - particleTwo.getMyPos().X;
+			//diff.Y = particleOne.getMyPos().Y - particleTwo.getMyPos().Y;
 
 			float distance = Sce.PlayStation.Core.FMath.Sqrt(diff.X*diff.X + diff.Y*diff.Y + diff.Z*diff.Z);
 			

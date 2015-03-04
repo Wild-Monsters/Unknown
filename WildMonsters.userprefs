@@ -2,12 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="WildMonsters\Player.cs">
     <Files>
-      <File FileName="WildMonsters\LevelGrid.cs" Line="114" Column="18" />
-      <File FileName="WildMonsters\CollisionHandler.cs" Line="21" Column="3" />
+      <File FileName="WildMonsters\LevelGrid.cs" Line="54" Column="6" />
+      <File FileName="WildMonsters\CollisionHandler.cs" Line="216" Column="67" />
       <File FileName="WildMonsters\Divider.cs" Line="47" Column="4" />
       <File FileName="WildMonsters\Sidebar.cs" Line="15" Column="2" />
       <File FileName="WildMonsters\TitleScene.cs" Line="41" Column="4" />
-      <File FileName="WildMonsters\Player.cs" Line="124" Column="34" />
+      <File FileName="WildMonsters\Player.cs" Line="183" Column="3" />
       <File FileName="WildMonsters\NextBallDisplay.cs" Line="11" Column="30" />
       <File FileName="WildMonsters\Input.cs" Line="100" Column="40" />
       <File FileName="WildMonsters\MenuScene.cs" Line="36" Column="4" />
@@ -17,11 +17,13 @@
       <File FileName="WildMonsters\Particle.cs" Line="50" Column="5" />
       <File FileName="WildMonsters\AppMain.cs" Line="72" Column="5" />
       <File FileName="WildMonsters\LevelUI.cs" Line="14" Column="23" />
+      <File FileName="WildMonsters\AudioManager.cs" Line="143" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="WildMonsters" expanded="True">
+            <Node name="Sounds" expanded="True" />
             <Node name="Player.cs" selected="True" />
           </Node>
         </State>

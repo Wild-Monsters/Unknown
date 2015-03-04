@@ -92,8 +92,7 @@ namespace WildMonsters
 			AngularVelocity = angularVelocity;
 			TTL = ttl;
 			
-			TextureInfo texInfo = new TextureInfo("/Application/textures/star.png");
-			//TextureInfo texInfo = new TextureInfo("/Application/textures/particle.png");
+			TextureInfo texInfo = new TextureInfo("/Application/Textures/star.png");
 			
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = texInfo.TextureSizef;
@@ -132,10 +131,6 @@ namespace WildMonsters
 			
 		}
 		
-		public Vector2 getMyPos()
-		{
-			return sprite.Position;
-		}
 		
 		public void Update()
 		{	
@@ -156,6 +151,9 @@ namespace WildMonsters
 			TTL--;
     		sprite.Position += Velocity;
     		Angle += AngularVelocity;
+			Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator rand = new Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator(DateTime.Now.Millisecond);
+			sprite.CenterSprite(TRS.Local.Center);
+			sprite.Rotate (Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.Deg2Rad(Angle));
 		}
 	}
 }

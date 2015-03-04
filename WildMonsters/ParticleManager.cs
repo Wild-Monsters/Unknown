@@ -54,13 +54,13 @@ namespace WildMonsters
 		public static void AddLeftTrail(Scene _scene, Vector2 position, Colour colour)
 		{
 			Vector2 randPos = new Vector2(CreateRandomPosition().X, CreateRandomPosition().Y);
-			AddParticle(_scene, new Vector2(position.X, position.Y + (float)randPos.Y), 1, 2, 0, colour);
+			AddParticle(_scene, new Vector2(position.X, (position.Y + 7.0f) + (float)randPos.Y), 1, 2, 0, colour);
 		}
 		
 		public static void AddRightTrail(Scene _scene, Vector2 position, Colour colour)
 		{
 			Vector2 randPos = new Vector2(CreateRandomPosition().X, CreateRandomPosition().Y);
-			AddParticle(_scene, new Vector2(position.X + 40.0f, position.Y + (float)randPos.Y), 1, 2, 0, colour);
+			AddParticle(_scene, new Vector2(position.X + 40.0f, (position.Y + 7.0f) + (float)randPos.Y), 1, 2, 0, colour);
 		}
 		
 		public static void AddClickTrail(Scene _scene)

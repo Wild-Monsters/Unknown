@@ -14,8 +14,17 @@ using Sce.PlayStation.HighLevel.UI;
 
 namespace WildMonsters
 {
+	//private AudioManager audio;
+	
 	public class GameScene : Sce.PlayStation.HighLevel.GameEngine2D.Scene
 	{
+		   /*if(audio == null)
+			{
+				audio = new AudioManager();
+			}
+			//Play in game music
+			audio.PlayGameMusic();*/
+		
 		private GridProperties grid1Properties, grid2Properties;
 		private LevelGrid grid1, grid2;
 		private LevelUI levelUI;
@@ -29,9 +38,12 @@ namespace WildMonsters
 		private Sce.PlayStation.HighLevel.UI.Scene uiScene;
 		private Sce.PlayStation.HighLevel.UI.Label p1Score;
 		
+		private SpriteUV TEMPBackgroundImage;
 		
 		public GameScene()
 		{	
+			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
+			
 			uiScene = new Sce.PlayStation.HighLevel.UI.Scene();
 			Panel panel = new Panel();
 			panel.Width = Director.Instance.GL.Context.GetViewport().Width;
@@ -57,9 +69,9 @@ namespace WildMonsters
 			
 			player1 = new Player(this, true);
 			player2 = new Player(this, false);
-						
-			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
 			
+			player1.SetLevelGrid(ref grid1);
+			player2.SetLevelGrid(ref grid2);
 
 			levelUI.divider.Top = top;
 			levelUI.divider.TopTarget = top;
@@ -99,13 +111,15 @@ namespace WildMonsters
 		}
 		public override void Update(float deltaTime)
 		{	
-			player1.Update (this);
-			player2.Update (this);
+			player1.Update (this, deltaTime);
+			player2.Update (this, deltaTime);
 			
 			levelUI.Update (deltaTime);
 			
 			grid1.Update (deltaTime);
 			grid2.Update (deltaTime);
+			
+			TEMPBackgroundImage.Angle += 0.06f;
 			
 			//Collision Stuff trial 
 			CollisionHandler.CheckBlockCollision2(player1.getBalls(), grid1);
@@ -118,10 +132,14 @@ namespace WildMonsters
 		
 		public void DrawBackgroundTempFunction()
 		{
-			TextureInfo texInfo = new TextureInfo("/Application/textures/Background.png");
+			TextureInfo texInfo = new TextureInfo("/Application/textures/MenuSpiralLight.png");
 			SpriteUV sprite = new SpriteUV(texInfo);
-			sprite.Quad.S = new Vector2(960.0f,544.0f);
-			sprite.Position = new Vector2(0.0f, 0.0f);
+			sprite.Scale =  new Vector2(1.2f,1.2f);
+			sprite.Quad.S = new Vector2(1100.0f,1100.0f);
+			sprite.Position = new Vector2(-68.0f,-280.0f);
+			sprite.Pivot = new Vector2(550.0f,550.0f);
+			
+			TEMPBackgroundImage = sprite;
 			
 			this.AddChild (sprite);
 		}

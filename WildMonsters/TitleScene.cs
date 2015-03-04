@@ -24,7 +24,7 @@ namespace WildMonsters
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 0, false);
 		
 			this.Camera.SetViewFromViewport();
-			texture = new Texture2D("Application/textures/PlaceholderTitleScreen.png", false);
+			texture = new Texture2D("Application/textures/TitleScreen.png", false);
 			tInfo = new TextureInfo(texture);
 			SpriteUV titleScreen = new SpriteUV(tInfo);
 			titleScreen.Scale = tInfo.TextureSizef;

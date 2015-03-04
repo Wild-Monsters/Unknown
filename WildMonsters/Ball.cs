@@ -24,43 +24,32 @@ namespace WildMonsters
 		
 		private Bounds2 bounds;
 		private Vector2 gridPosition;
-		
-		private Vector2 offsetPosition;
 		private Vector2 velocity;
-		private float weight;
-		private float elasticEnergy = 100.0f;
 		
 		private bool onLeftSide;
 		
 		
 		public Ball (Scene scene, bool onLeftSide)
 		{
+			//Initialise a bunch of stuff
 			parent = scene;
-			
 			state = BallState.Locked;
+			this.onLeftSide = onLeftSide;
 			
-			//weight = WMRandom.GetNextInt(8,12,this.GetHashCode ());
-			weight = 10;
-			
-			texInfo = new TextureInfo("/Application/textures/Blocks2.png");
-			
+			//Create/initialise the sprite and texture objects
+			texInfo = new TextureInfo("/Application/textures/Blocks4.png");
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = new Vector2(50.0f,50.0f);
 			
-			this.onLeftSide = onLeftSide;
-			if(onLeftSide)
-			{
-				sprite.Position = new Vector2(0.0f, 544.0f/2);
-			}
-			else
-			{
-				sprite.Position = new Vector2(960.0f, 544.0f/2);
-			}
-			
-			gridPosition = new Vector2(0.0f,0.0f);
-			
 			SetColour (Colour.Grey);
 			
+			//Initialise position values
+			SetInitialPosition(onLeftSide);
+		
+			//Rotate sprite to face the side of the screen it's on
+			SetAngleOfSprite(onLeftSide);
+			
+			//Add to scene
 			scene.AddChild(sprite);
 		}
 		
@@ -113,8 +102,7 @@ namespace WildMonsters
 				
 				if(DistanceVector.Length () > 1.0f)
 				{
-					
-					Vector2 DesiredVelocity = DistanceVector.Normalize () * (DistanceVector.Length ()/weight);
+					Vector2 DesiredVelocity = DistanceVector.Normalize () * (DistanceVector.Length ()/speed);
 
 					sprite.Position += DesiredVelocity - velocity;
 				}
@@ -141,7 +129,7 @@ namespace WildMonsters
 		
 		public void RemoveObject()
 		{
-			ParticleManager.AddExplosion(parent, sprite.Position, colour);
+			ParticleManager.AddExplosion(parent, sprite.Position, colour); 
 			parent.RemoveChild (this.Sprite, true);
 		}
 		
@@ -197,6 +185,36 @@ namespace WildMonsters
 		{
 			get{ return onLeftSide; }
 			set{ onLeftSide = value; }
+		}
+		
+		private void SetAngleOfSprite(bool onLeftSide)
+		{
+			//Set the point of rotation to the center of the sprite
+			sprite.Pivot = new Vector2(25,25);
+			
+			//Rotate sprite left or right depending on the side of the screen
+			if(onLeftSide)
+			{
+				sprite.Angle = Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.Deg2Rad(-90.0f);
+			}
+			else
+			{
+				sprite.Angle = Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.Deg2Rad(90.0f);
+			}
+		}
+		
+		private void SetInitialPosition(bool onLeftSide)
+		{
+			gridPosition = new Vector2(0.0f,0.0f);
+			
+			if(onLeftSide)
+			{
+				sprite.Position = new Vector2(0.0f, 544.0f/2);
+			}
+			else
+			{
+				sprite.Position = new Vector2(960.0f, 544.0f/2);
+			}
 		}
 		
 		
