@@ -18,16 +18,14 @@ namespace WildMonsters
 		private enum Scene {Game, Menu};
 		
 		private static GameScene	gameScene;
-		private static MenuScene	menuScene;
 		private static TitleScene   	titleScene;
-		private static InstructionScene instructionScene;
 		//private static Scene		currentScene;
 		
 		private static Timer		timer;
 		private static float		deltaTime;
 		private static bool			quit;
 		
-		private enum WMScene {Menu, Game};
+		private enum WMScene {Title, Game};
 				
 		public static void Main (string[] args)
 		{
@@ -63,7 +61,7 @@ namespace WildMonsters
 			Sce.PlayStation.HighLevel.UI.Scene blankUI = new Sce.PlayStation.HighLevel.UI.Scene();
 			UISystem.SetScene(blankUI);
 			
-			WMScene startScene = WMScene.Game;
+			WMScene startScene = WMScene.Title;
 			
 			switch(startScene)
 			{
@@ -75,12 +73,12 @@ namespace WildMonsters
 				Director.Instance.RunWithScene(gameScene, false);
 				break;
 				
-			case WMScene.Menu:
-				menuScene = new MenuScene();
-				menuScene.Camera.SetViewFromViewport();
+			case WMScene.Title:
+				titleScene = new TitleScene();
+				titleScene.Camera.SetViewFromViewport();
 
 				//Run the scene.
-				Director.Instance.RunWithScene(menuScene, false);
+				Director.Instance.RunWithScene(titleScene, false);
 				break;
 			}
 

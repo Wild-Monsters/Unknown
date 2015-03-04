@@ -92,7 +92,7 @@ namespace WildMonsters
 			AngularVelocity = angularVelocity;
 			TTL = ttl;
 			
-			TextureInfo texInfo = new TextureInfo("/Application/textures/star.png");
+			TextureInfo texInfo = new TextureInfo("/Application/Textures/star.png");
 			
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = texInfo.TextureSizef;

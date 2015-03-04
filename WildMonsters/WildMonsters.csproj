@@ -40,53 +40,69 @@
     <Reference Include="Sce.PlayStation.HighLevel.UI" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\AppMain.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\GameScene.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\MenuScene.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\CollisionHandler.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\LevelGrid.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Ball.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\LevelUI.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Divider.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Sidebar.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Input.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Player.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\TitleScene.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\InstructionScene.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Particle.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\ParticleManager.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\WMRandom.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\NextBallDisplay.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\Constants.cs" />
-    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\shaders\Vertex Shader.vcg" />
+    <Compile Include="AppMain.cs" />
+    <Compile Include="GameScene.cs" />
+    <Compile Include="MenuScene.cs" />
+    <Compile Include="CollisionHandler.cs" />
+    <Compile Include="LevelGrid.cs" />
+    <Compile Include="Ball.cs" />
+    <Compile Include="LevelUI.cs" />
+    <Compile Include="Divider.cs" />
+    <Compile Include="Sidebar.cs" />
+    <Compile Include="Input.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="TitleScene.cs" />
+    <Compile Include="InstructionScene.cs" />
+    <Compile Include="Particle.cs" />
+    <Compile Include="ParticleManager.cs" />
+    <Compile Include="WMRandom.cs" />
+    <Compile Include="NextBallDisplay.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="AudioManager.cs" />
+    <Compile Include="GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ShaderProgram Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\shaders\Simple.fcg" />
-    <ShaderProgram Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\shaders\Simple.vcg" />
+    <ShaderProgram Include="shaders\Simple.fcg" />
+    <ShaderProgram Include="shaders\Simple.vcg" />
   </ItemGroup>
   <ItemGroup>
-    <PsmMetadata Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\app.xml" />
+    <PsmMetadata Include="app.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\" />
+    <Folder Include="textures\" />
+    <Folder Include="Sounds\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\TestSprite.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Blocks.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Divider.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\SideBar.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\1.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\PlaceholderTitleScreen.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\PlaceholderMenuScreen.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Particle.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Blocks2.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Divider2.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Background.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\circle.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\diamond.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Particle_1.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\Particle_old.png" />
-    <Content Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown-master\WildMonsters\textures\star.png" />
+    <Content Include="textures\TestSprite.png" />
+    <Content Include="textures\Blocks.png" />
+    <Content Include="textures\Divider.png" />
+    <Content Include="textures\SideBar.png" />
+    <Content Include="textures\1.png" />
+    <Content Include="textures\PlaceholderTitleScreen.png" />
+    <Content Include="textures\PlaceholderMenuScreen.png" />
+    <Content Include="textures\Particle.png" />
+    <Content Include="textures\Blocks2.png" />
+    <Content Include="textures\Divider2.png" />
+    <Content Include="textures\Background.png" />
+    <Content Include="textures\Blocks3.png" />
+    <Content Include="textures\Blocks4.png" />
+    <Content Include="textures\Cannon.png" />
+    <Content Include="textures\MenuSpiralAlt3.png" />
+    <Content Include="textures\MenuSpiralAlt4.png" />
+    <Content Include="textures\MenuFrontLayer.png" />
+    <Content Include="textures\MenuLogo.png" />
+    <Content Include="textures\MenuSpiral.png" />
+    <Content Include="textures\MenuSpiralAlt.png" />
+    <Content Include="textures\MenuSpiralAlt2.png" />
+    <Content Include="textures\MenuSpiralLight.png" />
+    <Content Include="textures\Cannon2.png" />
+    <Content Include="textures\star.png" />
+    <Content Include="textures\InstructionsPlaceholder.png" />
+    <Content Include="textures\TitleScreen.png" />
+    <Content Include="Sounds\PlaceHolderblockbreak.wav" />
+    <Content Include="Sounds\PlaceHolderblockshot.wav" />
+    <Content Include="Sounds\PlaceholderGameMusic.mp3" />
+    <Content Include="Sounds\PlaceHoldermainmenu.mp3" />
   </ItemGroup>
 </Project>

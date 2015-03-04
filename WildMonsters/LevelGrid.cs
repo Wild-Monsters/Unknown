@@ -163,8 +163,6 @@ namespace WildMonsters
 			//If more than one matching colour was found
 			if(searchIndex+1 > matchesNeeded)
 			{
-				CheckSpecialCases (specialList);
-				
 				for(int a = 0; a < searchList.Count; a++)
 				{
 					int targetY = (int)searchList[a].Y;
@@ -173,17 +171,21 @@ namespace WildMonsters
 					grid[targetY, targetX].RemoveObject();
 					grid[targetY, targetX] = null;
 					
+					const float pushStrength = 10;
+					
 					if(props.flipped)
 					{
-						levelUI.divider.TopTarget = levelUI.divider.TopTarget + 10;
+						levelUI.divider.TopTarget = levelUI.divider.TopTarget + pushStrength;
 						levelUI.divider.P1Score += 1;
 					}
 					else
 					{
-						levelUI.divider.TopTarget = levelUI.divider.TopTarget - 10;
+						levelUI.divider.TopTarget = levelUI.divider.TopTarget - pushStrength;
 						levelUI.divider.P2Score += 1;
 					}
 				}
+				
+				CheckSpecialCases (specialList);
 			}
 		}
 		
@@ -212,17 +214,23 @@ namespace WildMonsters
 				int targetX = specialList[a].X;
 				int targetY = specialList[a].Y;
 				
-				Colour thisColour = grid[targetY, targetX].GetColour();
-				
-				switch(thisColour)
+				// if position isn't null do this..
+				if(CompareGridPosition(targetX, targetY))
 				{
-					case Colour.Grey:
-						grid[targetY,targetX].RandomiseColour(false);
-					break;
+					Colour thisColour = grid[targetY, targetX].GetColour();
+				
+					switch(thisColour)
+					{
+						case Colour.Grey:
+							//grid[targetY,targetX].RandomiseColour(false);
+							BombBlock(targetX, targetY);
+							grid[targetY, targetX].RemoveObject();
+							grid[targetY, targetX] = null;
+							
+						break;
+					}
 				}
 			}
-			
-			
 		}
 		
 
@@ -265,6 +273,66 @@ namespace WildMonsters
 		public GridProperties GetProperties()
 		{
 			return props;
+		}
+		
+		public List<Colour> GetColoursOnGrid()
+		{
+			List<Colour> colours = new List<Colour>();
+			
+			for(int x = 0; x < props.width; x++)
+			{
+				for(int y = 0; y < props.height; y++)
+				{
+					if(grid[y,x] != null)
+					{
+						if(grid[y,x].GetColour () != Colour.Grey && !colours.Contains (grid[y,x].GetColour()))
+						{
+							colours.Add (grid[y,x].GetColour ());
+						}
+					}
+				}
+			}
+			
+			Console.WriteLine ("####Colour List####");
+			for(int a = 0; a < colours.Count; a++)
+			{
+				Console.WriteLine (colours[a]);
+			}
+			
+			return colours;
+		}
+		
+		public Colour GetRandomAvailableColour()
+		{
+			List<Colour> colourList = GetColoursOnGrid ();
+			
+			int colourIndex = WMRandom.GetNextInt(0, colourList.Count);
+			
+			return colourList[colourIndex];
+		}
+		
+		// Bomb Test Method
+		public void BombBlock(int targetX, int targetY)
+		{
+			// Delete blocks left and right of bomb block
+			for(int x = -1; x <= 1; x+=2)
+			{
+			    if(CompareGridPosition(targetX + x, targetY))
+				{
+					grid[targetY, targetX + x].RemoveObject();
+					grid[targetY, targetX + x] = null;
+				}
+			}
+			
+			// Delete blocks north and south of bomb block
+			for(int y = -1; y <= 1; y+= 2)
+			{
+				if(CompareGridPosition(targetX, targetY + y))
+				{
+					grid[targetY + y, targetX].RemoveObject();
+					grid[targetY + y, targetX] = null;
+				}
+			}
 		}
 	}
 }

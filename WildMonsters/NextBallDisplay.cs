@@ -7,7 +7,6 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
 namespace WildMonsters
 {
-	
 	public class NextBallDisplay
 	{
 		private SpriteUV sprite;
@@ -20,7 +19,7 @@ namespace WildMonsters
 		public NextBallDisplay (Scene scene, bool onLeftSide, int displayQueuePos)
 		{
 			yPos = 510.0f;
-			texInfo = new TextureInfo("/Application/textures/Blocks2.png");
+			texInfo = new TextureInfo("/Application/textures/Blocks3.png");
 			
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = new Vector2(50.0f,50.0f);
