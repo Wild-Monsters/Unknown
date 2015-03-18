@@ -26,17 +26,21 @@ namespace WildMonsters
 		private GridProperties props;
 		private Ball[,] grid;
 		private LevelUI levelUI;
+		private GameScene gamescene;
+		private Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator rand;
 		
 	
 		
-		public LevelGrid (GridProperties _properties, LevelUI _levelUI)
+		public LevelGrid (GridProperties _properties, LevelUI _levelUI, GameScene _gamescene)
 		{
 			props = _properties;
 			
 			grid = new Ball[props.height, props.width];
 			
 			levelUI = _levelUI;
-						
+			
+			gamescene = _gamescene;
+			
 			for(int a = 0; a < props.height; a++)
 			{
 				for(int b = 0; b < props.width; b++)
@@ -44,7 +48,6 @@ namespace WildMonsters
 					grid[a,b] = null;
 				}
 			}
-			
 		}
 		
 		public void Update(float t)
@@ -220,13 +223,24 @@ namespace WildMonsters
 					Colour thisColour = grid[targetY, targetX].GetColour();
 				
 					switch(thisColour)
-					{
-						case Colour.Grey:
-							//grid[targetY,targetX].RandomiseColour(false);
+					{	
+						case Colour.Bomb:
 							BombBlock(targetX, targetY);
 							grid[targetY, targetX].RemoveObject();
 							grid[targetY, targetX] = null;
-							
+						break;
+						
+						case Colour.Rand:
+							RandColourPowerUp();
+							grid[targetY, targetX].RemoveObject();
+							grid[targetY, targetX] = null;
+						break;
+						
+						case Colour.Stone:
+							//grid[targetY,targetX].RandomiseColour(false);
+							RandGreyPowerUp();
+							grid[targetY, targetX].RemoveObject();
+							grid[targetY, targetX] = null;
 						break;
 					}
 				}
@@ -264,7 +278,7 @@ namespace WildMonsters
 		public Bounds2 GetBounds(int i, int x)//row and column
 		{
 			//how?
-			return grid[i,x].GetBounds();	
+			return grid[i,x].GetBounds();
 		}
 		
 		//write a function that gets a position in the grid 
@@ -285,7 +299,11 @@ namespace WildMonsters
 				{
 					if(grid[y,x] != null)
 					{
-						if(grid[y,x].GetColour () != Colour.Grey && !colours.Contains (grid[y,x].GetColour()))
+						if(grid[y,x].GetColour () != Colour.Grey
+						&& grid[y,x].GetColour () != Colour.Bomb
+						&& grid[y,x].GetColour () != Colour.Rand
+						&& grid[y,x].GetColour () != Colour.Stone
+						&& !colours.Contains (grid[y,x].GetColour()))
 						{
 							colours.Add (grid[y,x].GetColour ());
 						}
@@ -311,7 +329,7 @@ namespace WildMonsters
 			return colourList[colourIndex];
 		}
 		
-		// Bomb Test Method
+		// Bomb Powerup Method
 		public void BombBlock(int targetX, int targetY)
 		{
 			// Delete blocks left and right of bomb block
@@ -332,6 +350,85 @@ namespace WildMonsters
 					grid[targetY + y, targetX].RemoveObject();
 					grid[targetY + y, targetX] = null;
 				}
+			}
+		}
+		
+		// Randomise Grid Colour Method
+		public void RandGridColour()
+		{
+			for(int x = 0; x < props.width; x++)
+			{
+				for(int y = 0; y < props.height; y++)
+				{
+					if(grid[y,x] != null)
+					{
+						if(grid[y,x].GetColour () != Colour.Grey
+						&& grid[y,x].GetColour () != Colour.Bomb
+						&& grid[y,x].GetColour () != Colour.Rand
+						&& grid[y,x].GetColour () != Colour.Stone
+						   )
+						{
+							grid[y, x].RandomiseColour(false);
+						}
+					}
+				}
+			}
+		}
+		
+		// Picks which grid's colour will be randomised when the power-up has been activated, depending on who is calling the function.
+		public void RandColourPowerUp()
+		{
+			if(props.flipped)
+			{
+				gamescene.GetGrid2().RandGridColour();
+			}
+			else
+			{
+				gamescene.GetGrid1().RandGridColour();
+			}
+		}
+		
+		// Randomised the enemy's grey block locations
+		public void RandEnemyGrey()
+		{
+			int iDone = 2;
+			int x = 0;
+			int y = 0;
+			// Have a while loop that says whilst iGrey > 0 do:
+			while (iDone > 0)
+			{
+				// Generate a random number
+				rand = new Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator(DateTime.Now.Millisecond);
+				
+				// Pick a random x below props.width
+				x = (int)rand.NextFloat(0, (props.width - 1));
+				// Pick a random y below props.height
+				y = (int)rand.NextFloat(0, (props.height - 1));
+				
+				// If the block is not a grey, turn it into a grey block, then decrement iGrey.
+				if(grid[y,x] != null)
+				{
+					if(grid[y,x].GetColour() != Colour.Grey)
+					{
+						grid[y,x].SetColour(Colour.Grey);
+						iDone--;
+					}
+				}
+				
+				// If it IS a grey block, do nothing.
+			}
+		}
+		
+		// Decides which side will be randomised in grey, call this to call the RandEnemyGrey function.
+		public void RandGreyPowerUp()
+		{
+			if(props.flipped)
+			{
+				gamescene.GetGrid2().RandEnemyGrey();
+			}
+			else
+			{
+				gamescene.GetGrid1().RandEnemyGrey();
 			}
 		}
 	}

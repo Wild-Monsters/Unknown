@@ -106,8 +106,8 @@ namespace WildMonsters
 			grid2Properties.top = 960.0f/2;
 			grid2Properties.startRows = 3;
 			
-			grid1 = new LevelGrid(grid1Properties, levelUI);
-			grid2 = new LevelGrid(grid2Properties, levelUI);
+			grid1 = new LevelGrid(grid1Properties, levelUI, this);
+			grid2 = new LevelGrid(grid2Properties, levelUI, this);
 		}
 		public override void Update(float deltaTime)
 		{	
@@ -142,6 +142,16 @@ namespace WildMonsters
 			TEMPBackgroundImage = sprite;
 			
 			this.AddChild (sprite);
+		}
+		
+		public LevelGrid GetGrid1()
+		{
+			return grid1;
+		}
+		
+		public LevelGrid GetGrid2()
+		{
+			return grid2;	
 		}
 		
 	}

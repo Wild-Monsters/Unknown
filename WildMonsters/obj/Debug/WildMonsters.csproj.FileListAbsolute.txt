@@ -881,3 +881,5 @@ F:\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\obj\
 F:\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
 F:\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\obj\Debug\app.exe
 F:\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\obj\Debug\app.pdb
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\Blocks5.png
+F:\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\Blocks5.png
