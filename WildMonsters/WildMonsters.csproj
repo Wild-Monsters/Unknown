@@ -60,6 +60,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="AudioManager.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Button.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -107,5 +108,9 @@
     <Content Include="Sounds\BlockSound1.wav" />
     <Content Include="Sounds\BlockSound2.wav" />
     <Content Include="Sounds\BlockSound3.wav" />
+    <Content Include="textures\ButtonSinglePlayer.png" />
+    <Content Include="textures\ButtonVersus.png" />
+    <Content Include="textures\ButtonSinglePlayer2.png" />
+    <Content Include="textures\ButtonVersus2.png" />
   </ItemGroup>
 </Project>

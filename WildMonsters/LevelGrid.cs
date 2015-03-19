@@ -83,7 +83,28 @@ namespace WildMonsters
 				}
 			}
 		}
-		
+
+        public void UpdateBallPositions(LevelGrid Lvlgrid)
+        {
+            GridProperties props = Lvlgrid.GetProperties();
+            Ball[,] grid = Lvlgrid.getBalls();
+
+            for (int x = 0; x < props.height; x++)
+            {
+                for (int y = 0; y < props.width; y++)
+                {
+
+                    if (y > 0 && grid[x, y] != null && grid[x, y - 1] == null)
+                    {
+
+                        grid[x, y - 1] = grid[x, y];
+                        grid[x, y] = null;
+                    }
+
+                }
+            }
+        }
+
 		public void SearchGrid(int xPos, int yPos, int matchesNeeded)
 		{
 			List<Vector2i> searchList = new List<Vector2i>();
