@@ -119,11 +119,22 @@ namespace WildMonsters
 			grid1.Update (deltaTime);
 			grid2.Update (deltaTime);
 			
-			TEMPBackgroundImage.Angle += 0.06f;
+			//Rotate background; faster if it gets close to a player
+			float rotationSpeed = 0.002f*(Constants.ScreenWidth/2 - grid1.GetProperties ().top);
+			if(rotationSpeed == 0.0f) rotationSpeed = 0.04f;
+			TEMPBackgroundImage.Angle += rotationSpeed;
 			
-			//Collision Stuff trial 
-			CollisionHandler.CheckBlockCollision2(player1.getBalls(), grid1);
-			CollisionHandler.CheckBlockCollision2(player2.getBalls(), grid2);
+			//Collision Stuff 
+			//Made it so the collision check returns true if a collision was found 
+			if(CollisionHandler.CheckBlockCollision2(player1.getBalls(), grid1))
+			{
+				player1.CheckBallDisplay();
+			}
+			
+			if(CollisionHandler.CheckBlockCollision2(player2.getBalls(), grid2))
+			{
+				player2.CheckBallDisplay();
+			}
 			
 			ParticleManager.AddClickTrail(this);
 			ParticleManager.Update(this);

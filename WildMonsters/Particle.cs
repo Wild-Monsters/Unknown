@@ -92,11 +92,17 @@ namespace WildMonsters
 			AngularVelocity = angularVelocity;
 			TTL = ttl;
 			
-			TextureInfo texInfo = new TextureInfo("/Application/Textures/star.png");
+			TextureInfo texInfo = new TextureInfo("/Application/Textures/Particle.png");
 			
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = texInfo.TextureSizef;
 			sprite.Position = position;
+			
+			//Scale is given a random value between 0.5 and 1.5
+			float scale = (float)(WMRandom.GetNextInt (0,100)+50)/100.0f;
+			sprite.Scale = new Vector2(scale,scale);
+			
+			
 			
 			// Random Colour
 //			spriteColor = new Vector4((float)rand.NextFloat(0, 1),

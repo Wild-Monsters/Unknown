@@ -19,7 +19,7 @@ namespace WildMonsters
 		
 		//Blocks colliding
 		
-		public static void CheckBlockCollision2(List<Ball> pBalls, LevelGrid levelGrid)
+		public static bool CheckBlockCollision2(List<Ball> pBalls, LevelGrid levelGrid)
 		{
 			Ball[,] gridBalls = levelGrid.getBalls ();
 			GridProperties props = levelGrid.GetProperties();
@@ -68,61 +68,69 @@ namespace WildMonsters
 					pBalls.RemoveAt(k);
 				
 			}//End of 'k' for loop
+			
+			if(ballCollided)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		
 		
-		public static void CheckBlockCollision(List<Ball> pBalls, LevelGrid levelGrid)
-		{
-			//check if each member of the list has collided 
-		
-			Ball[,] gridBalls = levelGrid.getBalls ();
-			GridProperties props = levelGrid.GetProperties();
-			
-			int bound0 = gridBalls.GetUpperBound(0);
-			int bound1 = gridBalls.GetUpperBound(1);
-			
-			bool ballCollided = false;
-			
-			for (int k = 0 ; k < pBalls.Count ; k++)
-			{	
-				int row = (int)((pBalls[k].Sprite.Position.Y+1.0f)/50.0f);
-				
-				if(row >= props.height)
-				{
-					row = props.height-1;
-				}
-				
-				for(int x = 0; x < 20; x++)
-				{
-					if(gridBalls[row, x] != null && pBalls[k].GetState() == BallState.Rising)
-					{
-						if (pBalls[k].GetBounds().Overlaps(gridBalls[row,x].GetBounds()))
-						{
-							Vector2i gPos = GetGridPosition (gridBalls[row,x], props);
-							
-							//Add to the grid
-							gridBalls[gPos.Y,gPos.X] = pBalls[k];
-							
-							//Search the grid
-							levelGrid.SearchGrid(gPos.X, gPos.Y, 2);
-							
-							ballCollided = true;
-							
-							pBalls[k].SetState(BallState.Locked);
-						}
-					}//End of 'y' for loop
-				}// End of 'x' for loop
-				
-				if(ballCollided == false)
-					ballCollided = CheckCollisionWithDivider (pBalls, levelGrid, k, row);
-				
-				//Remove the ball if it collided
-				if(ballCollided)
-					pBalls.RemoveAt(k);
-				
-			}//End of 'k' for loop
-
-		}
+//		public static void CheckBlockCollision(List<Ball> pBalls, LevelGrid levelGrid)
+//		{
+//			//check if each member of the list has collided 
+//		
+//			Ball[,] gridBalls = levelGrid.getBalls ();
+//			GridProperties props = levelGrid.GetProperties();
+//			
+//			int bound0 = gridBalls.GetUpperBound(0);
+//			int bound1 = gridBalls.GetUpperBound(1);
+//			
+//			bool ballCollided = false;
+//			
+//			for (int k = 0 ; k < pBalls.Count ; k++)
+//			{	
+//				int row = (int)((pBalls[k].Sprite.Position.Y+1.0f)/50.0f);
+//				
+//				if(row >= props.height)
+//				{
+//					row = props.height-1;
+//				}
+//				
+//				for(int x = 0; x < 20; x++)
+//				{
+//					if(gridBalls[row, x] != null && pBalls[k].GetState() == BallState.Rising)
+//					{
+//						if (pBalls[k].GetBounds().Overlaps(gridBalls[row,x].GetBounds()))
+//						{
+//							Vector2i gPos = GetGridPosition (gridBalls[row,x], props);
+//							
+//							//Add to the grid
+//							gridBalls[gPos.Y,gPos.X] = pBalls[k];
+//							
+//							//Search the grid
+//							levelGrid.SearchGrid(gPos.X, gPos.Y, 2);
+//							
+//							ballCollided = true;
+//							
+//							pBalls[k].SetState(BallState.Locked);
+//						}
+//					}//End of 'y' for loop
+//				}// End of 'x' for loop
+//				
+//				if(ballCollided == false)
+//					ballCollided = CheckCollisionWithDivider (pBalls, levelGrid, k, row);
+//				
+//				//Remove the ball if it collided
+//				if(ballCollided)
+//					pBalls.RemoveAt(k);
+//				
+//			}//End of 'k' for loop
+//		}
 		
 		private static bool CheckCollisionWithDivider(List<Ball> pBalls, LevelGrid levelGrid, int index, int row)
 		{

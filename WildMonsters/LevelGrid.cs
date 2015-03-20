@@ -212,6 +212,8 @@ namespace WildMonsters
 				}
 				
 				CheckSpecialCases (specialList);
+				
+				
 			}
 		}
 		
@@ -319,22 +321,15 @@ namespace WildMonsters
 				}
 			}
 			
-			Console.WriteLine ("####Colour List####");
-			for(int a = 0; a < colours.Count; a++)
+			if(colours.Count <= 0)
 			{
-				Console.WriteLine (colours[a]);
+				for(int a = 0; a < 5; a++)
+				{
+					colours.Add ((Colour)(a));
+				}
 			}
 			
 			return colours;
-		}
-		
-		public Colour GetRandomAvailableColour()
-		{
-			List<Colour> colourList = GetColoursOnGrid ();
-			
-			int colourIndex = WMRandom.GetNextInt(0, colourList.Count);
-			
-			return colourList[colourIndex];
 		}
 		
 		// Bomb Test Method

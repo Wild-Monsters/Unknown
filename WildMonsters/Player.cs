@@ -159,9 +159,10 @@ namespace WildMonsters
 			
 			//Get the next "Current Colour"
 			currentColour = nextBallArray[0].GetColour ();
+			
 			if(colourList.Count > 0 && !colourList.Contains (currentColour))
 			{
-				currentColour = levelGrid.GetRandomAvailableColour();
+				currentColour = GetColourFromList(colourList);
 			}
 			else if(colourList.Count == 0)
 			{
@@ -175,7 +176,7 @@ namespace WildMonsters
 				
 				if(colourList.Count > 0 && !colourList.Contains (nextBallArray[i].GetColour()))
 				{
-					nextBallArray[i].SetColour (levelGrid.GetRandomAvailableColour());
+					nextBallArray[i].SetColour (GetColourFromList(colourList));
 				}
 				else if(colourList.Count == 0)
 				{
@@ -184,7 +185,37 @@ namespace WildMonsters
 			}
 			
 			//Generate a new colour for the last position of the queue
-			nextBallArray[queueSize-1].SetColour (levelGrid.GetRandomAvailableColour());
+			nextBallArray[queueSize-1].SetColour (GetColourFromList(colourList));
+		}
+		
+		public void CheckBallDisplay()
+		{
+			//Gets the colours that are available on the grid
+			List<Colour> colourList = levelGrid.GetColoursOnGrid();
+			
+			//Get the next "Current Colour"
+			if(colourList.Count > 0 && !colourList.Contains (currentColour))
+			{
+				currentColour = GetColourFromList(colourList);
+			}
+			else if(colourList.Count == 0)
+			{
+				currentColour = GetRandomColour ();
+			}
+			SetColour(currentColour);
+			
+			//Shift the queue of balls, generating new colours when a colour is no longer available
+			for(int i = 0; i < queueSize-1; i++)
+			{			
+				if(colourList.Count > 0 && !colourList.Contains (nextBallArray[i].GetColour()))
+				{
+					nextBallArray[i].SetColour (GetColourFromList(colourList));
+				}
+				else if(colourList.Count == 0)
+				{
+					nextBallArray[i].SetColour (GetRandomColour ());
+				}
+			}
 		}
 		
 		public bool getSide()
@@ -253,6 +284,12 @@ namespace WildMonsters
 			return (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
 		}
 		
+		private Colour GetColourFromList(List<Colour> colourList)
+		{
+			int colourIndex = WMRandom.GetNextInt(0, colourList.Count, this.GetHashCode());
+			
+			return colourList[colourIndex];
+		}
 	}
 }
 

@@ -1036,3 +1036,11 @@ G:\GitRepo\0603\Unknown-master\WildMonsters\obj\Debug\shaders\shaders\Simple.cgx
 G:\GitRepo\0603\Unknown-master\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
 G:\GitRepo\0603\Unknown-master\WildMonsters\obj\Debug\app.exe
 G:\GitRepo\0603\Unknown-master\WildMonsters\obj\Debug\app.pdb
+C:\Dev\GitRepo\Unknown\Unknown\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\ButtonSinglePlayer.png
+C:\Dev\GitRepo\Unknown\Unknown\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\ButtonVersus.png
+C:\Dev\GitRepo\Unknown\Unknown\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\ButtonSinglePlayer2.png
+C:\Dev\GitRepo\Unknown\Unknown\WildMonsters\bin\Debug\WildMonsters-unsigned\Application\textures\ButtonVersus2.png
+C:\Dev\GitRepo\Unknown\Unknown\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\ButtonSinglePlayer.png
+C:\Dev\GitRepo\Unknown\Unknown\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\ButtonVersus.png
+C:\Dev\GitRepo\Unknown\Unknown\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\ButtonSinglePlayer2.png
+C:\Dev\GitRepo\Unknown\Unknown\WildMonsters\bin\Debug\WildMonsters-signed\Application\textures\ButtonVersus2.png
