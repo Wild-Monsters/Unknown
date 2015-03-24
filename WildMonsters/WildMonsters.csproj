@@ -60,6 +60,7 @@
     <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\Constants.cs" />
     <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\AudioManager.cs" />
     <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\GameManager.cs" />
+    <Compile Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\PowerUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="..\..\..\..\..\Jess%27 house\Technical Games Production\Semester 2\Unknown\WildMonsters\shaders\Simple.fcg" />

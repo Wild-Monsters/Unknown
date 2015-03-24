@@ -193,7 +193,7 @@ namespace WildMonsters
 		}
 		
 		
-		private bool CompareGridPosition(int targetX, int targetY)
+		public bool CompareGridPosition(int targetX, int targetY)
 		{
 			//Check the search target is in-bounds
 			//and then check if the colour matches the target's colour
@@ -225,20 +225,19 @@ namespace WildMonsters
 					switch(thisColour)
 					{	
 						case Colour.Bomb:
-							BombBlock(targetX, targetY);
+							PowerUp.BombBlock(targetX, targetY, grid, this);
 							grid[targetY, targetX].RemoveObject();
 							grid[targetY, targetX] = null;
 						break;
 						
 						case Colour.Rand:
-							RandColourPowerUp();
+							PowerUp.RandColour(props, gamescene);
 							grid[targetY, targetX].RemoveObject();
 							grid[targetY, targetX] = null;
 						break;
 						
 						case Colour.Stone:
-							//grid[targetY,targetX].RandomiseColour(false);
-							RandGreyPowerUp();
+							PowerUp.RandGrey(props, gamescene);
 							grid[targetY, targetX].RemoveObject();
 							grid[targetY, targetX] = null;
 						break;
