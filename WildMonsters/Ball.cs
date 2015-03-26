@@ -129,6 +129,10 @@ namespace WildMonsters
 		
 		public void RemoveObject()
 		{
+			if((int)GetColour() > 5)
+			{
+				colour = Colour.Yellow;
+			}
 			ParticleManager.AddExplosion(parent, sprite.Position, colour); 
 			parent.RemoveChild (this.Sprite, true);
 		}

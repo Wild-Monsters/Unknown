@@ -27,7 +27,7 @@ namespace WildMonsters
 		private Ball[,] grid;
 		private LevelUI levelUI;
 		private GameScene gamescene;
-		private Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator rand;
+		//private Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator rand;
 		
 	
 		
@@ -226,20 +226,17 @@ namespace WildMonsters
 					{	
 						case Colour.Bomb:
 							PowerUp.BombBlock(targetX, targetY, grid, this);
-							grid[targetY, targetX].RemoveObject();
-							grid[targetY, targetX] = null;
+							RemoveAndNull(grid, targetX, targetY);
 						break;
 						
 						case Colour.Rand:
 							PowerUp.RandColour(props, gamescene);
-							grid[targetY, targetX].RemoveObject();
-							grid[targetY, targetX] = null;
+							RemoveAndNull(grid, targetX, targetY);
 						break;
 						
 						case Colour.Stone:
 							PowerUp.RandGrey(props, gamescene);
-							grid[targetY, targetX].RemoveObject();
-							grid[targetY, targetX] = null;
+							RemoveAndNull(grid, targetX, targetY);
 						break;
 					}
 				}
@@ -328,107 +325,10 @@ namespace WildMonsters
 			return colourList[colourIndex];
 		}
 		
-		// Bomb Powerup Method
-		public void BombBlock(int targetX, int targetY)
+		private void RemoveAndNull(Ball[,] grid, int targetX, int targetY)
 		{
-			// Delete blocks left and right of bomb block
-			for(int x = -1; x <= 1; x+=2)
-			{
-			    if(CompareGridPosition(targetX + x, targetY))
-				{
-					grid[targetY, targetX + x].RemoveObject();
-					grid[targetY, targetX + x] = null;
-				}
-			}
-			
-			// Delete blocks north and south of bomb block
-			for(int y = -1; y <= 1; y+= 2)
-			{
-				if(CompareGridPosition(targetX, targetY + y))
-				{
-					grid[targetY + y, targetX].RemoveObject();
-					grid[targetY + y, targetX] = null;
-				}
-			}
-		}
-		
-		// Randomise Grid Colour Method
-		public void RandGridColour()
-		{
-			for(int x = 0; x < props.width; x++)
-			{
-				for(int y = 0; y < props.height; y++)
-				{
-					if(grid[y,x] != null)
-					{
-						if(grid[y,x].GetColour () != Colour.Grey
-						&& grid[y,x].GetColour () != Colour.Bomb
-						&& grid[y,x].GetColour () != Colour.Rand
-						&& grid[y,x].GetColour () != Colour.Stone
-						   )
-						{
-							grid[y, x].RandomiseColour(false);
-						}
-					}
-				}
-			}
-		}
-		
-		// Picks which grid's colour will be randomised when the power-up has been activated, depending on who is calling the function.
-		public void RandColourPowerUp()
-		{
-			if(props.flipped)
-			{
-				gamescene.GetGrid2().RandGridColour();
-			}
-			else
-			{
-				gamescene.GetGrid1().RandGridColour();
-			}
-		}
-		
-		// Randomised the enemy's grey block locations
-		public void RandEnemyGrey()
-		{
-			int iDone = 2;
-			int x = 0;
-			int y = 0;
-			// Have a while loop that says whilst iGrey > 0 do:
-			while (iDone > 0)
-			{
-				// Generate a random number
-				rand = new Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator(DateTime.Now.Millisecond);
-				
-				// Pick a random x below props.width
-				x = (int)rand.NextFloat(0, (props.width - 1));
-				// Pick a random y below props.height
-				y = (int)rand.NextFloat(0, (props.height - 1));
-				
-				// If the block is not a grey, turn it into a grey block, then decrement iGrey.
-				if(grid[y,x] != null)
-				{
-					if(grid[y,x].GetColour() != Colour.Grey)
-					{
-						grid[y,x].SetColour(Colour.Grey);
-						iDone--;
-					}
-				}
-				
-				// If it IS a grey block, do nothing.
-			}
-		}
-		
-		// Decides which side will be randomised in grey, call this to call the RandEnemyGrey function.
-		public void RandGreyPowerUp()
-		{
-			if(props.flipped)
-			{
-				gamescene.GetGrid2().RandEnemyGrey();
-			}
-			else
-			{
-				gamescene.GetGrid1().RandEnemyGrey();
-			}
+			grid[targetY, targetX].RemoveObject();
+			grid[targetY, targetX] = null;
 		}
 	}
 }
