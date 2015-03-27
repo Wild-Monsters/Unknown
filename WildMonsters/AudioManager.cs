@@ -9,8 +9,10 @@ namespace WildMonsters
 		//method audio.play(sound name, background)
 		//dictionary <key, value > key = "audioname", value= string of location 
 		//		
-		private  SoundPlayer winampShot;
-		private  Sound blockShot;
+		private  SoundPlayer blockShot1;
+		private  SoundPlayer blockShot2;
+		private  SoundPlayer blockShot3;
+		//private  Sound blockShot;
 		
 		private  SoundPlayer winampBreak;		//fx only wav only
 		private  Sound blockBreak;
@@ -27,15 +29,14 @@ namespace WildMonsters
 		//Disposing All Assets
 		public  void Dispose()
 		{
-			if(blockShot != null)
-			{
-				blockShot.Dispose();
-			}
+			if(blockShot1 != null)
+				blockShot1.Dispose();
 			
-			if(winampShot != null)
-			{
-				winampShot.Dispose();
-			}
+			if(blockShot2 != null)
+				blockShot2.Dispose();
+			
+			if(blockShot3 != null)
+				blockShot3.Dispose();
 
 			if(blockBreak != null)
 			{
@@ -86,14 +87,40 @@ namespace WildMonsters
 		
 		public void PlayBlockShot()
 		{
-			if (winampShot == null)
+			if (blockShot1 == null)
 			{
-				blockShot = new Sound("Application/Sounds/PlaceHolderblockshot.wav");
-				winampShot = blockShot.CreatePlayer();
-				winampShot.Volume = GameManager.Instance.SoundFXVol;
-				winampShot.PlaybackRate = 1.0f;
+				Sound blockShot = new Sound("Application/Sounds/BlockSound1.wav");
+				blockShot1 = blockShot.CreatePlayer();
+				blockShot1.Volume = GameManager.Instance.SoundFXVol;
+				blockShot1.PlaybackRate = 1.0f;
+				
+				blockShot = new Sound("Application/Sounds/BlockSound2.wav");
+				blockShot2 = blockShot.CreatePlayer();
+				blockShot2.Volume = GameManager.Instance.SoundFXVol;
+				blockShot2.PlaybackRate = 1.0f;
+				
+				blockShot = new Sound("Application/Sounds/BlockSound3.wav");
+				blockShot3 = blockShot.CreatePlayer();
+				blockShot3.Volume = GameManager.Instance.SoundFXVol;
+				blockShot3.PlaybackRate = 1.0f;
 			}
-			winampShot.Play ();
+			
+			//Messy way of randomising which sound gets played, feel free to change
+			//Generally want slightly altered versions of each sound effect so it doesn't sound too repetitive
+			int rng = WMRandom.GetNextInt(0,100);
+			
+			if(rng < 30)
+			{
+				blockShot1.Play ();
+			}
+			else if(rng < 60)
+			{
+				blockShot2.Play ();
+			}
+			else
+			{
+				blockShot3.Play();
+			}
 		}
 		
 		public void PlayBlockBreak()
@@ -127,7 +154,7 @@ namespace WildMonsters
 		//Creating classes to stop the sounds
 		public void StopBlockshotSound()
 		{
-			winampShot.Stop ();
+			blockShot1.Stop ();
 		}
 		
 		public void StopMenuMusic()

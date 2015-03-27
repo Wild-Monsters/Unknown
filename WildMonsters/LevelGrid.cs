@@ -27,7 +27,6 @@ namespace WildMonsters
 		private Ball[,] grid;
 		private LevelUI levelUI;
 		private GameScene gamescene;
-		//private Sce.PlayStation.HighLevel.GameEngine2D.Base.Math.RandGenerator rand;
 		
 	
 		
@@ -40,7 +39,7 @@ namespace WildMonsters
 			levelUI = _levelUI;
 			
 			gamescene = _gamescene;
-			
+						
 			for(int a = 0; a < props.height; a++)
 			{
 				for(int b = 0; b < props.width; b++)
@@ -48,6 +47,7 @@ namespace WildMonsters
 					grid[a,b] = null;
 				}
 			}
+			
 		}
 		
 		public void Update(float t)
@@ -75,13 +75,39 @@ namespace WildMonsters
 							gridPositionY = props.yMargin + (props.cellSize*y);
 						}
 						
+						if(GameOver(gridPositionX, props))
+						{
+							//Console.WriteLine("SUPER GAME OVERUUU CHAN");
+						}
+						
 						grid[y,x].SetGridPosition(gridPositionX, gridPositionY);
 						grid[y,x].Update ();
 					}
 				}
 			}
 		}
-		
+
+        public void UpdateBallPositions(LevelGrid Lvlgrid)
+        {
+            GridProperties props = Lvlgrid.GetProperties();
+            Ball[,] grid = Lvlgrid.getBalls();
+
+            for (int x = 0; x < props.height; x++)
+            {
+                for (int y = 0; y < props.width; y++)
+                {
+
+                    if (y > 0 && grid[x, y] != null && grid[x, y - 1] == null)
+                    {
+
+                        grid[x, y - 1] = grid[x, y];
+                        grid[x, y] = null;
+                    }
+
+                }
+            }
+        }
+
 		public void SearchGrid(int xPos, int yPos, int matchesNeeded)
 		{
 			List<Vector2i> searchList = new List<Vector2i>();
@@ -189,6 +215,8 @@ namespace WildMonsters
 				}
 				
 				CheckSpecialCases (specialList);
+				
+				
 			}
 		}
 		
@@ -223,7 +251,7 @@ namespace WildMonsters
 					Colour thisColour = grid[targetY, targetX].GetColour();
 				
 					switch(thisColour)
-					{	
+					{
 						case Colour.Bomb:
 							PowerUp.BombBlock(targetX, targetY, grid, this);
 							RemoveAndNull(grid, targetX, targetY);
@@ -274,7 +302,7 @@ namespace WildMonsters
 		public Bounds2 GetBounds(int i, int x)//row and column
 		{
 			//how?
-			return grid[i,x].GetBounds();
+			return grid[i,x].GetBounds();	
 		}
 		
 		//write a function that gets a position in the grid 
@@ -307,22 +335,61 @@ namespace WildMonsters
 				}
 			}
 			
-			Console.WriteLine ("####Colour List####");
-			for(int a = 0; a < colours.Count; a++)
+			if(colours.Count <= 0)
 			{
-				Console.WriteLine (colours[a]);
+				for(int a = 0; a < 5; a++)
+				{
+					colours.Add ((Colour)(a));
+				}
 			}
 			
 			return colours;
 		}
 		
-		public Colour GetRandomAvailableColour()
+//		// Bomb Test Method
+//		public void BombBlock(int targetX, int targetY)
+//		{
+//			// Delete blocks left and right of bomb block
+//			for(int x = -1; x <= 1; x+=2)
+//			{
+//			    if(CompareGridPosition(targetX + x, targetY))
+//				{
+//					grid[targetY, targetX + x].RemoveObject();
+//					grid[targetY, targetX + x] = null;
+//				}
+//			}
+//			
+//			// Delete blocks north and south of bomb block
+//			for(int y = -1; y <= 1; y+= 2)
+//			{
+//				if(CompareGridPosition(targetX, targetY + y))
+//				{
+//					grid[targetY + y, targetX].RemoveObject();
+//					grid[targetY + y, targetX] = null;
+//				}
+//			}
+//		}
+		
+		public bool GameOver(float gridPosX, GridProperties props)
 		{
-			List<Colour> colourList = GetColoursOnGrid ();
-			
-			int colourIndex = WMRandom.GetNextInt(0, colourList.Count);
-			
-			return colourList[colourIndex];
+			if(props.flipped)
+			{
+				if(gridPosX < 60)
+				{
+					Console.WriteLine("Player Two wins!");
+					return true;
+				}
+			}
+			else
+			{
+				if(gridPosX > 840)
+				{
+					Console.WriteLine("Player One wins!");
+					
+					return true;
+				}
+			}
+			return false;	
 		}
 		
 		private void RemoveAndNull(Ball[,] grid, int targetX, int targetY)

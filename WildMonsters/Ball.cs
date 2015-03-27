@@ -28,7 +28,6 @@ namespace WildMonsters
 		
 		private bool onLeftSide;
 		
-		
 		public Ball (Scene scene, bool onLeftSide)
 		{
 			//Initialise a bunch of stuff
@@ -158,10 +157,9 @@ namespace WildMonsters
 		{
 			colour = col;
 			
-			//float spriteWidth = 1.0f / 6.0f;
 			float spriteWidth = 1.0f / 9.0f;
 			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
-			sprite.UV.T = new Vector2(spriteWidth * (int)colour, 0.0f);
+			sprite.UV.T = new Vector2(spriteWidth * (int)colour, 0.0f);	
 		}
 		
 		public void RandomiseColour(bool specials)
@@ -171,7 +169,6 @@ namespace WildMonsters
 			//Generate special blocks or not? (grey blocks etc)
 			if(specials)
 			{
-				//nextColour = (Colour)(int)FMath.Floor(WMRandom.GetNextInt(0,9,this.GetHashCode ()));
 				nextColour = (Colour)(int)FMath.Floor(WMRandom.GetNextInt(0,9,this.GetHashCode ()));
 			}
 			else

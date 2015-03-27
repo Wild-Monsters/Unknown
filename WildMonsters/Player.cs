@@ -24,67 +24,62 @@ namespace WildMonsters
 		private float totalTime = 0.0f;
 		//--------------------
 		
-		private Colour[] colourArray;
-		
 		private List <Ball> ballList;
 		private LevelGrid levelGrid;
 		
+		const int queueSize = 3;
 		private NextBallDisplay[] nextBallArray;
+		private Colour currentColour;
 		
 		int spriteSheetLength = 5;
 		
 		public Player (Scene scene, bool _isLeftSide)
 		{	
-			if(audio == null)
-			{
-				audio = new AudioManager();
-			}
-			
-			nextBallArray = new NextBallDisplay[3];
-			colourArray = new Colour[5];
-			
-			isLeftSide = _isLeftSide;
-						
+			//Set up sprite		
 			texInfo = new TextureInfo("/Application/textures/Cannon2.png");
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = new Vector2(50.0f,50.0f);
 			
-		
-			for(int i = 0; i < 5; i++)
-			{
-				colourArray[i] = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-			}
-			
-			//sets up the player sprite cannon/ball
+			//Sets up the player sprite cannon/ball
 			float spriteWidth = 1.0f / spriteSheetLength;
 			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
-			sprite.UV.T = new Vector2(spriteWidth * (int)colourArray[0], 0.0f);	
 			
-			if(isLeftSide)
-			{
-				sprite.Position = new Vector2(0, 250);
-			}
-			else
-			{
-				sprite.Position = new Vector2(910, 250);
-			}
-			
-			ballList = new List<Ball>();
-			
-			for(int i = 0; i < 3; i++)
-			{
-				nextBallArray[i] = new NextBallDisplay(scene, isLeftSide, i + 1);
-				nextBallArray[i].SetColour(colourArray[i + 1]);
-			}
-			
-			//Flip sprite based on the side of the screen
+			//Initialise stuff based on the side the player is on
+			isLeftSide = _isLeftSide;
 			SetAngleOfSprite (isLeftSide);
 			
+			if(isLeftSide)
+				sprite.Position = new Vector2(0, 250);
+			
+			if(!isLeftSide)
+				sprite.Position = new Vector2(910, 250);
+			
+			//List that stores the balls that are currently being fired
+			ballList = new List<Ball>();
+			
+			//Set up nextBall display
+			currentColour = GetRandomColour ();
+			SetColour (currentColour);
+			
+			nextBallArray = new NextBallDisplay[queueSize];
+			
+			for(int i = 0; i < queueSize; i++)
+			{
+				Colour newColour = GetRandomColour ();
+				nextBallArray[i] = new NextBallDisplay(scene, isLeftSide, i + 1);
+				nextBallArray[i].SetColour(newColour);
+			}
+			
+			//Audio Stuff
+			if(audio == null)
+				audio = new AudioManager();
+			
+			//Add to the scene
 			scene.AddChild(sprite);
 		}
+		
 		public void Update(Scene scene, float deltaTime)
 		{
-
 			GamePadButtons actionButton, upButton, downButton;
 			Analog moveAnalog;
 			
@@ -149,39 +144,77 @@ namespace WildMonsters
 		
 		public void Fire(Scene scene)// array of balls 
 		{
-			if(totalTime > fireDelay)
-			{
-				audio.PlayBlockShot();
-				CreateNewBall(scene);
-				totalTime = 0.0f;
-			}
-						
-//			colourList.RemoveAt(0);
-		//	colourList.RemoveAt(1);
+			audio.PlayBlockShot();
+			CreateNewBall(scene);
+			
+			//Push the queue of balls along, changing the current colour
+			DisplayNextBall(scene);
+			SetColour (currentColour);
 		}
 		
-		public void displayNextBall(Scene scene)
+		public void DisplayNextBall(Scene scene)
 		{	
-			int queueSize = 4;
-			
+			//Gets the colours that are available on the grid
 			List<Colour> colourList = levelGrid.GetColoursOnGrid();
-
-			//shift the random colours across one, and the fifth final one generates a new random coloru
-			for(int i = 0; i < queueSize; i++)
+			
+			//Get the next "Current Colour"
+			currentColour = nextBallArray[0].GetColour ();
+			
+			if(colourList.Count > 0 && !colourList.Contains (currentColour))
 			{
-				if(!colourList.Contains (colourArray[i+1]))
-				{
-					colourArray[i+1] = levelGrid.GetRandomAvailableColour();
-				}
-				
-				colourArray[i] = colourArray[i+1];
+				currentColour = GetColourFromList(colourList);
+			}
+			else if(colourList.Count == 0)
+			{
+				currentColour = GetRandomColour ();
 			}
 			
-			colourArray[queueSize] = levelGrid.GetRandomAvailableColour();
-			
-			for(int i = 0; i < 3; i++)
+			//Shift the queue of balls, generating new colours when a colour is no longer available
+			for(int i = 0; i < queueSize-1; i++)
 			{
-				nextBallArray[i].SetColour(colourArray[i + 2]);
+				nextBallArray[i].SetColour (nextBallArray[i+1].GetColour());
+				
+				if(colourList.Count > 0 && !colourList.Contains (nextBallArray[i].GetColour()))
+				{
+					nextBallArray[i].SetColour (GetColourFromList(colourList));
+				}
+				else if(colourList.Count == 0)
+				{
+					nextBallArray[i].SetColour (GetRandomColour ());
+				}
+			}
+			
+			//Generate a new colour for the last position of the queue
+			nextBallArray[queueSize-1].SetColour (GetColourFromList(colourList));
+		}
+		
+		public void CheckBallDisplay()
+		{
+			//Gets the colours that are available on the grid
+			List<Colour> colourList = levelGrid.GetColoursOnGrid();
+			
+			//Get the next "Current Colour"
+			if(colourList.Count > 0 && !colourList.Contains (currentColour))
+			{
+				currentColour = GetColourFromList(colourList);
+			}
+			else if(colourList.Count == 0)
+			{
+				currentColour = GetRandomColour ();
+			}
+			SetColour(currentColour);
+			
+			//Shift the queue of balls, generating new colours when a colour is no longer available
+			for(int i = 0; i < queueSize-1; i++)
+			{			
+				if(colourList.Count > 0 && !colourList.Contains (nextBallArray[i].GetColour()))
+				{
+					nextBallArray[i].SetColour (GetColourFromList(colourList));
+				}
+				else if(colourList.Count == 0)
+				{
+					nextBallArray[i].SetColour (GetRandomColour ());
+				}
 			}
 		}
 		
@@ -192,13 +225,13 @@ namespace WildMonsters
 		
 		private void UpdateBalls()
 		{
-				for(int i = 0; i < ballList.Count; i++) 
+			for(int i = 0; i < ballList.Count; i++) 
+			{
+				if (ballList[i].GetState() == BallState.Rising)
 				{
-					if (ballList[i].GetState() == BallState.Rising)
-					{
-						ballList[i].Update();
-					}
+					ballList[i].Update();
 				}
+			}
 		}
 		
 		public List<Ball> getBalls()
@@ -232,20 +265,30 @@ namespace WildMonsters
 			//the firing ball moving across the screen
 			Ball ball = new Ball(scene, isLeftSide);
 			ball.SetState(BallState.Rising);
-			//initialise at "cannon" pos
-			ball.Sprite.Position = this.sprite.Position;
-			//next colour being a random colour 
-			ball.SetColour(colourArray[0]);
-			
-			//sets the sprite, which is the ball stationed in the cannon, to be 1/6th of the whole spritesheet
-			float spriteWidth = 1.0f / spriteSheetLength;
-			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
-			//set the ball stationed in the colour to be the colour of 'nextcolour2' which is the second different random colour val
-			sprite.UV.T = new Vector2(spriteWidth * (int)colourArray[1], 0.0f);	
-			
-			displayNextBall(scene);
+			ball.Sprite.Position = this.sprite.Position; 
+			ball.SetColour(currentColour);
 			
 			ballList.Add(ball);
+		}
+		
+		private void SetColour(Colour col)
+		{
+			//Sets the sprite of the cannon to the current colour
+			float spriteWidth = 1.0f / spriteSheetLength;
+			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
+			sprite.UV.T = new Vector2(spriteWidth * (int)col, 0.0f);	
+		}
+		
+		private Colour GetRandomColour()
+		{
+			return (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
+		}
+		
+		private Colour GetColourFromList(List<Colour> colourList)
+		{
+			int colourIndex = WMRandom.GetNextInt(0, colourList.Count, this.GetHashCode());
+			
+			return colourList[colourIndex];
 		}
 	}
 }

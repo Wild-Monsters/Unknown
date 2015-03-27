@@ -63,11 +63,7 @@ namespace WildMonsters
 				}
 				
 			}
-//			
-//			firstColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-//			secondColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-//			thirdColour = (Colour)WMRandom.GetNextInt(0, 5, this.GetHashCode());
-//			
+
 			scene.AddChild(sprite);
 		}
 		
@@ -89,7 +85,6 @@ namespace WildMonsters
 		{
 			texInfo.Dispose();
 			sprite = null;
-			//alive = false;
 		}			
 		
 		public void SetColour(Colour col)
@@ -107,24 +102,10 @@ namespace WildMonsters
 			set{ onLeftSide = value; }
 		}
 		
-//		public Colour FirstColour
-//		{
-//			get{ return firstColour; }
-//			set{ firstColour = value; }
-//		}
-//		
-//		public Colour SecondColour
-//		{
-//			get{ return secondColour; }
-//			set{ secondColour = value; }
-//		}
-//		
-//		public Colour ThirdColour
-//		{
-//			get{ return thirdColour; }
-//			set{ thirdColour = value; }
-//		}
-		
+		public Colour GetColour()
+		{
+			return colour;
+		}
 		
 		
 	}

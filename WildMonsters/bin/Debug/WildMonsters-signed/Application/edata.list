@@ -31,3 +31,17 @@ textures/MenuSpiralAlt.png
 textures/MenuSpiralAlt2.png
 textures/MenuSpiralLight.png
 textures/Cannon2.png
+textures/star.png
+textures/InstructionsPlaceholder.png
+textures/TitleScreen.png
+Sounds/PlaceHolderblockbreak.wav
+Sounds/PlaceHolderblockshot.wav
+Sounds/PlaceholderGameMusic.mp3
+Sounds/PlaceHoldermainmenu.mp3
+Sounds/BlockSound1.wav
+Sounds/BlockSound2.wav
+Sounds/BlockSound3.wav
+textures/ButtonSinglePlayer.png
+textures/ButtonVersus.png
+textures/ButtonSinglePlayer2.png
+textures/ButtonVersus2.png
