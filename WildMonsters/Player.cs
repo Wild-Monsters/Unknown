@@ -16,6 +16,7 @@ namespace WildMonsters
 		private SpriteUV sprite;
 		private TextureInfo texInfo;
 		private int movementSpeed = 50;
+		private int touchMovementSpeed = 7;
 		private bool isLeftSide = false;	//deciding which side the player is on
 		private int spriteHeight = 0;
 		
@@ -114,6 +115,19 @@ namespace WildMonsters
 				sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
 			}
 			
+			//------touch screen movement
+			
+			var touches = Touch.GetData(0).ToArray();
+		
+			if(touches.Length > 0 && (touches[0].Status == TouchStatus.Down || touches[0].Status == TouchStatus.Move))
+			{
+				//Translates the weird touch values into actual coordinates
+				Vector2 touchPos = GetTouchPosition(touches[0], Constants.ScreenWidth, Constants.ScreenHeight);
+				
+				touchMovement(touchPos);
+			}
+			//-------
+			
 			// For fire delay
 			totalTime += deltaTime;
 			
@@ -122,6 +136,34 @@ namespace WildMonsters
 			{
 				Fire (scene);
 			}
+			
+			//Touch screen Fire, using either flick or double Tap
+			Sce.PlayStation.HighLevel.UI.FlickGestureDetector flickDetector = new Sce.PlayStation.HighLevel.UI.FlickGestureDetector();
+			
+			flickDetector.Direction = Sce.PlayStation.HighLevel.UI.FlickDirection.Horizontal;
+			flickDetector.MinSpeed = 0.1f;
+			
+			flickDetector.FlickDetected += 
+			delegate(object sender, Sce.PlayStation.HighLevel.UI.FlickEventArgs e) 
+			{
+				//TODO Check position of flick, using e (args)
+				Console.WriteLine("Flick");
+				System.Diagnostics.Debug.WriteLine("Flick!");
+				//TODO: seperate flick 'Fire' calls out to player 1 and player 2
+				Fire (scene);
+			
+			};
+			
+			Sce.PlayStation.HighLevel.UI.DoubleTapGestureDetector doubleTapDetector = new Sce.PlayStation.HighLevel.UI.DoubleTapGestureDetector();
+			
+			doubleTapDetector.DoubleTapDetected +=
+			delegate(object sender, Sce.PlayStation.HighLevel.UI.DoubleTapEventArgs e)
+			{
+				Console.WriteLine("Double clicked!");
+				Fire (scene);
+				
+			};
+		
 		
 			UpdateBalls();
 
@@ -129,6 +171,54 @@ namespace WildMonsters
 			ScreenCollision();
 			
 
+		}
+		
+		private void touchMovement(Vector2 touchPos)
+		{
+				//four quadrants to screen
+				if(touchPos.X < (Constants.ScreenWidth / 2) && touchPos.Y < (Constants.ScreenHeight / 2))
+				{
+					//top left quadrant touched
+					if(isLeftSide)
+					{
+						sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + touchMovementSpeed);
+					}
+				}
+				
+				else if(touchPos.X < (Constants.ScreenWidth / 2) && touchPos.Y > (Constants.ScreenHeight / 2))
+			    {
+					//bottom left quadrant pressed
+					if(isLeftSide)
+					{
+						sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - touchMovementSpeed);
+					}
+				}
+				
+				else if(touchPos.X > (Constants.ScreenWidth / 2) && touchPos.Y < (Constants.ScreenHeight / 2))
+			    {
+					//Top right quadrant pressed
+					if(!isLeftSide)
+					{
+						sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + touchMovementSpeed);
+					}
+				}
+				
+				else if(touchPos.X > (Constants.ScreenWidth / 2) && touchPos.Y > (Constants.ScreenHeight / 2))
+			    {
+					//Bottom right quadrant pressed
+					if(!isLeftSide)
+					{
+						sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - touchMovementSpeed);
+					}
+				}
+			
+		}
+		private Vector2 GetTouchPosition(TouchData touch, float screenWidth, float screenHeight)
+		{
+			float touchX =  (int)((touch.X + 0.5f) * screenWidth);
+			float touchY =  (int)((touch.Y + 0.5f) * screenHeight);
+			
+			return new Vector2(touchX, touchY);
 		}
 		public void ScreenCollision ()
 		{
