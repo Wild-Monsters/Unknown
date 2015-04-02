@@ -119,6 +119,7 @@ namespace WildMonsters
 			grid1.Update (deltaTime);
 			grid2.Update (deltaTime);
 			
+			grid1.UpdateBallPositions(grid1);
 			//Rotate background; faster if it gets close to a player
 			float rotationSpeed = 0.002f*(Constants.ScreenWidth/2 - grid1.GetProperties ().top);
 			if(rotationSpeed == 0.0f) rotationSpeed = 0.04f;

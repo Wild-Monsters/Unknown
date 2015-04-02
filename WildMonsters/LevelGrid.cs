@@ -26,11 +26,16 @@ namespace WildMonsters
 		private GridProperties props;
 		private Ball[,] grid;
 		private LevelUI levelUI;
-		
+		private Ball[] shootables;
+		private	Timer timer;
+		private Timer time2;
+
 	
 		
 		public LevelGrid (GridProperties _properties, LevelUI _levelUI)
 		{
+			timer = new Timer();
+			time2 = new Timer();
 			props = _properties;
 			
 			grid = new Ball[props.height, props.width];
@@ -46,7 +51,25 @@ namespace WildMonsters
 			}
 			
 		}
-		
+		public void UpdateBallPositions(LevelGrid Lvlgrid)
+		{
+			GridProperties props = Lvlgrid.GetProperties();
+			Ball[,] grid = Lvlgrid.getBalls();
+			
+			for(int x = 0; x < props.height; x++)
+			{
+				for(int y = 0; y < props.width; y++)
+				{
+					if(y > 0 && grid[x,y] !=  null && grid[x , y - 1] == null)
+					{ 
+						//grid[x, y] we will save 
+						grid[x, y - 1] = grid[x,y] ;
+						grid[x, y] = null;	
+					}	
+				}
+			}
+		}
+
 		public void Update(float t)
 		{
 			levelUI.Update(t);
@@ -83,27 +106,79 @@ namespace WildMonsters
 				}
 			}
 		}
+				public void StoreTopLevelBalls(LevelGrid Lvlgrid, Player player, Scene scene)
+		{
+			//colour refers to current player colour
+			//this method is used for the ai part of the game 
+			//it grabs and stores the balls that the ai can shoot at 
+			GridProperties props = Lvlgrid.GetProperties();
+			Ball[,] grid = Lvlgrid.getBalls();
+			Colour playerColour = player.GetCurrentColour();
+			
+			shootables = new Ball[10];
+			int count = 0;
+			for(int x = 0; x < props.height;x++)
+			{
+				for(int y = 0; y < props.width; y++)
+				{
+					if(y >= 0 && grid[x,y] !=  null && grid[x , y + 1] == null)
+					{ 			
+						//grid[x, y] we will save 
+						shootables[count] = grid[x,y];
+						count++;
+					}	
+				}
+			}
+			//Currently we have the correct colours of the top level grid 
+			Console.WriteLine("-----------------------------------");
+			for (int i =0; i< 10; i++ )
+			{
+				if(shootables[i] != null)
+				{
+					Console.WriteLine(shootables[i].GetColour().ToString());
+				}
+			}
+			Console.WriteLine("-----------------------------------");
+			
+			//Determine which one to fire at 
+			Random rand = new Random();
+			int theOne = rand.Next(0, count);
+			
+			if(shootables[theOne] != null && playerColour == shootables[theOne].GetColour())//this means that the player can make a match 
+			{
+				if(player.Sprite.Position.Y > shootables[theOne].Sprite.Position.Y)
+				{
+					player.MoveDown();		
+					Console.WriteLine("Player move down");
+				}
+				if(player.Sprite.Position.Y < shootables[theOne].Sprite.Position.Y)
+				{
+					player.MoveUp();		
+					Console.WriteLine("Player move down");
+				}
+				if(player.Sprite.Position.Y == shootables[theOne].Sprite.Position.Y)
+				{
+					if(timer.Seconds() >= 1.0)
+					{
+						player.Fire(scene);
+						timer.Reset();
+						timer = new Timer();
+					}
+				}
+			}
+			else
+			{
+				//move randomly and shoot 	
+				if(time2.Seconds() >= 1.0)
+				{
+					player.Fire(scene);	
+					time2.Reset();
+					time2 = new Timer();
+				}
+			}
+		}
 
-        public void UpdateBallPositions(LevelGrid Lvlgrid)
-        {
-            GridProperties props = Lvlgrid.GetProperties();
-            Ball[,] grid = Lvlgrid.getBalls();
-
-            for (int x = 0; x < props.height; x++)
-            {
-                for (int y = 0; y < props.width; y++)
-                {
-
-                    if (y > 0 && grid[x, y] != null && grid[x, y - 1] == null)
-                    {
-
-                        grid[x, y - 1] = grid[x, y];
-                        grid[x, y] = null;
-                    }
-
-                }
-            }
-        }
+       
 
 		public void SearchGrid(int xPos, int yPos, int matchesNeeded)
 		{

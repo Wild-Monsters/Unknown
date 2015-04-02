@@ -61,6 +61,7 @@
     <Compile Include="AudioManager.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="AIGameScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />

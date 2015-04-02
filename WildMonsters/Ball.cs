@@ -113,7 +113,6 @@ namespace WildMonsters
 
 				break;
 			case BallState.Nostate:
-				//Temporary
 				break;
 			}
 				

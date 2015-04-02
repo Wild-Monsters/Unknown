@@ -78,7 +78,11 @@ namespace WildMonsters
 			//Add to the scene
 			scene.AddChild(sprite);
 		}
-		
+		public SpriteUV Sprite
+		{
+			get{ return sprite; }
+			set{ sprite = value; }
+		}
 		public void Update(Scene scene, float deltaTime)
 		{
 			GamePadButtons actionButton, upButton, downButton;
@@ -213,6 +217,7 @@ namespace WildMonsters
 				}
 			
 		}
+		
 		private Vector2 GetTouchPosition(TouchData touch, float screenWidth, float screenHeight)
 		{
 			float touchX =  (int)((touch.X + 0.5f) * screenWidth);
@@ -220,6 +225,7 @@ namespace WildMonsters
 			
 			return new Vector2(touchX, touchY);
 		}
+		
 		public void ScreenCollision ()
 		{
 			if((sprite.Position.Y + spriteHeight )>= 544 )
@@ -315,12 +321,9 @@ namespace WildMonsters
 		
 		private void UpdateBalls()
 		{
-			for(int i = 0; i < ballList.Count; i++) 
+			foreach(Ball ball in ballList)
 			{
-				if (ballList[i].GetState() == BallState.Rising)
-				{
-					ballList[i].Update();
-				}
+				ball.Update();
 			}
 		}
 		
@@ -328,7 +331,11 @@ namespace WildMonsters
 		{
 			return this.ballList;
 		}
-		
+		public Colour GetCurrentColour()
+		{
+			return this.currentColour;
+		}
+
 		private void SetAngleOfSprite(bool onLeftSide)
 		{
 			//Set the point of rotation to the center of the sprite
@@ -380,6 +387,16 @@ namespace WildMonsters
 			
 			return colourList[colourIndex];
 		}
+				
+		public void MoveDown()
+		{
+			sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
+		}
+		public void MoveUp()
+		{
+			sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
+		}
+
 	}
 }
 

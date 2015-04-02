@@ -58,7 +58,7 @@ namespace WildMonsters
 			
 			if(spButton.GetState () == ButtonState.Released)
 			{
-				//Code to go to singleplayer mode
+					Director.Instance.ReplaceScene (new AIGameScene());
 			}
 			
 			if(vsButton.GetState () == ButtonState.Released)
