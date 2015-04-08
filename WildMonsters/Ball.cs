@@ -162,14 +162,18 @@ namespace WildMonsters
 			sprite.UV.T = new Vector2(spriteWidth * (int)colour, 0.0f);	
 		}
 		
-		public void RandomiseColour(bool specials)
+		public void RandomiseColour(bool grey, bool special)
 		{
 			Colour nextColour;
 
 			//Generate special blocks or not? (grey blocks etc)
-			if(specials)
+			if(grey) // && numberOfSpecialsAlreadyOnBoard < 4
 			{
-				nextColour = (Colour)(int)FMath.Floor(WMRandom.GetNextInt(0,9,this.GetHashCode ()));
+				nextColour = (Colour)(int)FMath.Floor(WMRandom.GetNextInt(0,6,this.GetHashCode ()));
+			}
+			else if (special)
+			{
+				nextColour = (Colour)(int)FMath.Floor(WMRandom.GetNextInt(6,9,this.GetHashCode ()));
 			}
 			else
 			{

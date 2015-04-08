@@ -252,6 +252,10 @@ namespace WildMonsters
 				
 					switch(thisColour)
 					{
+						case Colour.Grey:
+							grid[targetY, targetX].RandomiseColour(false, false);
+						break;
+						
 						case Colour.Bomb:
 							PowerUp.BombBlock(targetX, targetY, grid, this);
 							RemoveAndNull(grid, targetX, targetY);
@@ -281,17 +285,20 @@ namespace WildMonsters
 		}
 		
 		public void Draw(Scene _scene)
-		{
+		{	
 			//Adds objects to the scene, the Director handles the actual drawing automatically
 			for(int a = 0; a < props.height; a++)
 			{
 				for(int b = 0; b < props.startRows; b++)
 				{
 					Ball ball = new Ball(_scene, props.flipped);
-					ball.RandomiseColour(true);
+					ball.RandomiseColour(true, false);
+
 					grid[a,b] = ball;
 				}
 			}
+			
+			DrawPowerUps();
 		}
 		
 		public Ball[,] getBalls()
@@ -396,6 +403,24 @@ namespace WildMonsters
 		{
 			grid[targetY, targetX].RemoveObject();
 			grid[targetY, targetX] = null;
+		}
+		
+		private void DrawPowerUps()
+		{
+			for(int i = 0; i < 6; i++)
+			{
+				Vector2i pos = GetRandomBlockPos();
+				
+				grid[pos.Y, pos.X].RandomiseColour(false, true);
+			}
+		}
+		
+		private Vector2i GetRandomBlockPos()
+		{
+			int x = WMRandom.GetNextInt(1, 3);
+			int y = WMRandom.GetNextInt(1, 10);
+			
+			return new Vector2i(x, y);
 		}
 	}
 }

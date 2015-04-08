@@ -65,7 +65,7 @@ namespace WildMonsters
 						&& grid[y,x].GetColour () != Colour.Stone
 						   )
 						{
-							grid[y, x].RandomiseColour(false);
+							grid[y, x].RandomiseColour(false, false);
 						}
 					}
 				}
