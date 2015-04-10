@@ -81,7 +81,6 @@ namespace WildMonsters
 			
 			UISystem.SetScene(uiScene);
 			
-
 			
 		}
 		private void InitialiseGrids()
@@ -95,6 +94,7 @@ namespace WildMonsters
 			grid1Properties.yMargin = 0.0f;
 			grid1Properties.top = 960.0f/2;
 			grid1Properties.startRows = 3;
+			grid1Properties.powerUps = true;
 			
 			grid2Properties = new GridProperties();
 			grid2Properties.height = 10;
@@ -105,9 +105,10 @@ namespace WildMonsters
 			grid2Properties.yMargin = 0.0f;
 			grid2Properties.top = 960.0f/2;
 			grid2Properties.startRows = 3;
+			grid2Properties.powerUps = true;
 			
-			grid1 = new LevelGrid(grid1Properties, levelUI);
-			grid2 = new LevelGrid(grid2Properties, levelUI);
+			grid1 = new LevelGrid(grid1Properties, levelUI, this);
+			grid2 = new LevelGrid(grid2Properties, levelUI, this);
 		}
 		public override void Update(float deltaTime)
 		{	
@@ -120,6 +121,8 @@ namespace WildMonsters
 			grid2.Update (deltaTime);
 			
 			grid1.UpdateBallPositions(grid1);
+			grid2.UpdateBallPositions(grid2);
+			
 			//Rotate background; faster if it gets close to a player
 			float rotationSpeed = 0.002f*(Constants.ScreenWidth/2 - grid1.GetProperties ().top);
 			if(rotationSpeed == 0.0f) rotationSpeed = 0.04f;
@@ -154,6 +157,16 @@ namespace WildMonsters
 			TEMPBackgroundImage = sprite;
 			
 			this.AddChild (sprite);
+		}
+		
+		public LevelGrid GetGrid1()
+		{
+			return grid1;
+		}
+		
+		public LevelGrid GetGrid2()
+		{
+			return grid2;	
 		}
 		
 	}

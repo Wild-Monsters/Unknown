@@ -38,7 +38,7 @@ namespace WildMonsters
 		{
 			int quadAssign = 0;
 			// Produce 10 particles per call
-			for(int i = 0; i < 16; i++)
+			for(int i = 0; i < 8; i++)
 			{
 				quadAssign++;
 				if(quadAssign >= 4)

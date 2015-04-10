@@ -7,7 +7,7 @@ using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
 namespace WildMonsters
 {
-	public enum Colour {Red, Blue, Yellow, Purple, Green, Grey};
+	public enum Colour {Red, Blue, Yellow, Purple, Green, Grey, Bomb, Rand, Stone};
 	public enum BallState {Rising, Locked, Falling, Nostate};
 	
 	public class Ball
@@ -37,7 +37,7 @@ namespace WildMonsters
 			this.onLeftSide = onLeftSide;
 			
 			//Create/initialise the sprite and texture objects
-			texInfo = new TextureInfo("/Application/textures/Blocks4.png");
+			texInfo = new TextureInfo("/Application/textures/Blocks5.png");
 			sprite = new SpriteUV(texInfo);
 			sprite.Quad.S = new Vector2(50.0f,50.0f);
 			
@@ -128,6 +128,10 @@ namespace WildMonsters
 		
 		public void RemoveObject()
 		{
+			if((int)GetColour() > 5)
+			{
+				colour = Colour.Yellow;
+			}
 			ParticleManager.AddExplosion(parent, sprite.Position, colour); 
 			parent.RemoveChild (this.Sprite, true);
 		}
@@ -153,19 +157,28 @@ namespace WildMonsters
 		{
 			colour = col;
 			
-			float spriteWidth = 1.0f / 6.0f;
+			float spriteWidth = 1.0f / 9.0f;
 			sprite.UV.S = new Vector2(spriteWidth, 1.0f);
 			sprite.UV.T = new Vector2(spriteWidth * (int)colour, 0.0f);	
 		}
 		
-		public void RandomiseColour(bool specials)
+		public void AddExplosion()
+		{
+			ParticleManager.AddExplosion(parent,sprite.Position,colour);
+		}
+		
+		public void RandomiseColour(bool grey, bool special)
 		{
 			Colour nextColour;
-
+			
 			//Generate special blocks or not? (grey blocks etc)
-			if(specials)
+			if(grey) // && numberOfSpecialsAlreadyOnBoard < 4
 			{
 				nextColour = (Colour)(int)FMath.Floor(WMRandom.GetNextInt(0,6,this.GetHashCode ()));
+			}
+			else if (special)
+			{
+				nextColour = (Colour)(int)FMath.Floor(WMRandom.GetNextInt(6,9,this.GetHashCode ()));
 			}
 			else
 			{

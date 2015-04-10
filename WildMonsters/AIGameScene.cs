@@ -95,6 +95,7 @@ namespace WildMonsters
 			grid1Properties.yMargin = 0.0f;
 			grid1Properties.top = 960.0f/2;
 			grid1Properties.startRows = 3;
+			grid1Properties.powerUps = false;
 			
 			grid2Properties = new GridProperties();
 			grid2Properties.height = 10;
@@ -105,10 +106,12 @@ namespace WildMonsters
 			grid2Properties.yMargin = 0.0f;
 			grid2Properties.top = 960.0f/2;
 			grid2Properties.startRows = 3;
+			grid2Properties.powerUps = false;
 			
-			grid1 = new LevelGrid(grid1Properties, levelUI);
-			grid2 = new LevelGrid(grid2Properties, levelUI);
+			grid1 = new LevelGrid(grid1Properties, levelUI, null);
+			grid2 = new LevelGrid(grid2Properties, levelUI, null);
 		}
+		
 		public override void Update(float deltaTime)
 		{	
 			player1.Update (this, deltaTime);

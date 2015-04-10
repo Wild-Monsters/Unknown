@@ -42,7 +42,7 @@ namespace WildMonsters
 				}
 				
 				//Check if the space infront of the brick is occupied
-				if(column != 0 && gridBalls[row, column-1] != null)
+				if(column > 0 && gridBalls[row, column-1] != null)
 				{
 					//Add to the grid
 					gridBalls[row, column] = pBalls[k];

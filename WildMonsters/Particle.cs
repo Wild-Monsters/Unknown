@@ -100,7 +100,8 @@ namespace WildMonsters
 			
 			//Scale is given a random value between 0.5 and 1.5
 			float scale = (float)(WMRandom.GetNextInt (0,100)+50)/100.0f;
-			sprite.Scale = new Vector2(scale,scale);
+			float scaleMod = 2.0f;
+			sprite.Scale = new Vector2(scale*scaleMod,scale*scaleMod);
 			
 			
 			

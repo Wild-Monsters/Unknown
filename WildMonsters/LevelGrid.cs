@@ -19,6 +19,7 @@ namespace WildMonsters
 		//to know which player we are
 		public bool flipped;
 		public float top;
+		public bool powerUps;
 	};
 	
 	public class LevelGrid
@@ -29,10 +30,10 @@ namespace WildMonsters
 		private Ball[] shootables;
 		private	Timer timer;
 		private Timer time2;
-
+		private GameScene gamescene;
 	
 		
-		public LevelGrid (GridProperties _properties, LevelUI _levelUI)
+		public LevelGrid (GridProperties _properties, LevelUI _levelUI, GameScene _gamescene)
 		{
 			timer = new Timer();
 			time2 = new Timer();
@@ -41,6 +42,7 @@ namespace WildMonsters
 			grid = new Ball[props.height, props.width];
 			
 			levelUI = _levelUI;
+			gamescene = _gamescene;
 						
 			for(int a = 0; a < props.height; a++)
 			{
@@ -49,8 +51,9 @@ namespace WildMonsters
 					grid[a,b] = null;
 				}
 			}
-			
 		}
+		
+		
 		public void UpdateBallPositions(LevelGrid Lvlgrid)
 		{
 			GridProperties props = Lvlgrid.GetProperties();
@@ -293,7 +296,7 @@ namespace WildMonsters
 		}
 		
 		
-		private bool CompareGridPosition(int targetX, int targetY)
+		public bool CompareGridPosition(int targetX, int targetY)
 		{
 			//Check the search target is in-bounds
 			//and then check if the colour matches the target's colour
@@ -325,11 +328,29 @@ namespace WildMonsters
 					switch(thisColour)
 					{
 						case Colour.Grey:
-							//grid[targetY,targetX].RandomiseColour(false);
-							BombBlock(targetX, targetY);
-							grid[targetY, targetX].RemoveObject();
-							grid[targetY, targetX] = null;
-							
+							grid[targetY, targetX].RandomiseColour(false, false);
+							grid[targetY, targetX].AddExplosion();
+						break;
+						
+						case Colour.Bomb:
+							PowerUp.BombBlock(targetX, targetY, grid, this);
+							RemoveAndNull(grid, targetX, targetY);
+						break;
+						
+						case Colour.Rand:
+							if(gamescene != null)
+							{
+								PowerUp.RandColour(props, gamescene);
+								RemoveAndNull(grid, targetX, targetY);
+							}
+						break;
+						
+						case Colour.Stone:
+							if(gamescene != null)
+							{
+								PowerUp.RandGrey(props, gamescene);
+								RemoveAndNull(grid, targetX, targetY);
+							}
 						break;
 					}
 				}
@@ -353,10 +374,12 @@ namespace WildMonsters
 				for(int b = 0; b < props.startRows; b++)
 				{
 					Ball ball = new Ball(_scene, props.flipped);
-					ball.RandomiseColour(true);
+					ball.RandomiseColour(true, false);
 					grid[a,b] = ball;
 				}
 			}
+			
+			DrawPowerUps();
 		}
 		
 		public Ball[,] getBalls()
@@ -388,7 +411,11 @@ namespace WildMonsters
 				{
 					if(grid[y,x] != null)
 					{
-						if(grid[y,x].GetColour () != Colour.Grey && !colours.Contains (grid[y,x].GetColour()))
+						if(grid[y,x].GetColour () != Colour.Grey
+						&& grid[y,x].GetColour () != Colour.Bomb
+						&& grid[y,x].GetColour () != Colour.Rand
+						&& grid[y,x].GetColour () != Colour.Stone
+						&& !colours.Contains (grid[y,x].GetColour()))
 						{
 							colours.Add (grid[y,x].GetColour ());
 						}
@@ -429,6 +456,37 @@ namespace WildMonsters
 					grid[targetY + y, targetX] = null;
 				}
 			}
+		}
+		
+		private void RemoveAndNull(Ball[,] grid, int targetX, int targetY)
+		{
+			grid[targetY, targetX].RemoveObject();
+			grid[targetY, targetX] = null;
+		}
+		
+		private void DrawPowerUps()
+		{
+			for(int i = 0; i < 6; i++)
+			{
+				Vector2i pos = GetRandomBlockPos();
+				
+				if(props.powerUps)
+				{
+					grid[pos.Y, pos.X].RandomiseColour(false, true);
+				}
+				else
+				{
+					grid[pos.Y, pos.X].RandomiseColour(true,false);
+				}
+			}
+		}
+		
+		private Vector2i GetRandomBlockPos()
+		{
+			int x = WMRandom.GetNextInt(1, 3);
+			int y = WMRandom.GetNextInt(1, 10);
+			
+			return new Vector2i(x, y);
 		}
 		
 		public bool GameOver(float gridPosX, GridProperties props)
