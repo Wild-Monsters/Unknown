@@ -62,6 +62,7 @@
     <Compile Include="GameManager.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="AIGameScene.cs" />
+    <Compile Include="PowerUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -113,5 +114,6 @@
     <Content Include="textures\ButtonVersus.png" />
     <Content Include="textures\ButtonSinglePlayer2.png" />
     <Content Include="textures\ButtonVersus2.png" />
+    <Content Include="textures\Blocks5.png" />
   </ItemGroup>
 </Project>
