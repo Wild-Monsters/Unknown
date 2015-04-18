@@ -141,7 +141,7 @@ namespace WildMonsters
 			
 			
 		
-			//GC.GetTotalMemory(true);
+			GC.GetTotalMemory(true);
 			
 			
 			//Rotate background; faster if it gets close to a player

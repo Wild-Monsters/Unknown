@@ -46,3 +46,13 @@ textures/ButtonVersus.png
 textures/ButtonSinglePlayer2.png
 textures/ButtonVersus2.png
 textures/Blocks5.png
+textures/ButtonContinue.png
+textures/ButtonQuit.png
+textures/ButtonRestart.png
+textures/Player2Wins.png
+textures/Player1Wins.png
+textures/TouchscreenButton.png
+Sounds/PushWars Menu Loop.wav
+Sounds/MainGameLoop.wav
+Sounds/MainGameLoop.mp3
+Sounds/PushWarsMenuLoop.mp3

@@ -474,5 +474,3 @@ C:\Users\ShadowStall\Desktop\Latest TGP\even newer one\Latest TGP\Unknown-master
 C:\Users\ShadowStall\Desktop\Latest TGP\even newer one\Latest TGP\Unknown-master\WildMonsters\obj\Debug\convertedpdb\app.exe.mdb
 C:\Users\ShadowStall\Desktop\Latest TGP\even newer one\Latest TGP\Unknown-master\WildMonsters\obj\Debug\app.exe
 C:\Users\ShadowStall\Desktop\Latest TGP\even newer one\Latest TGP\Unknown-master\WildMonsters\obj\Debug\app.pdb
-C:\Users\Dex\Desktop\Push Wars\WildMonsters\obj\Debug\app.exe
-C:\Users\Dex\Desktop\Push Wars\WildMonsters\obj\Debug\app.pdb
