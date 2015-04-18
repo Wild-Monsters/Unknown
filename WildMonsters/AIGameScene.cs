@@ -39,15 +39,32 @@ namespace WildMonsters
 		private Sce.PlayStation.HighLevel.UI.Label p1Score;
 		
 		private SpriteUV TEMPBackgroundImage;
-		
+		private Timer AIShootDelay;
+        private const double AITimeDelay = 700.0;
+		private AudioManager audio;
+		private string name = "AI";
+		public string GetName()
+		{
+			return this.name;
+		}
 		public AIGameScene()
 		{	
 			Scheduler.Instance.ScheduleUpdateForTarget(this, 1, false);	// Tells the director to call the update function of this "node"
+			
+			if(audio == null)
+			{
+				audio = new AudioManager();
+			}
+			//Play in game music
+			audio.PlayGameMusic();
 			
 			uiScene = new Sce.PlayStation.HighLevel.UI.Scene();
 			Panel panel = new Panel();
 			panel.Width = Director.Instance.GL.Context.GetViewport().Width;
 			panel.Height = Director.Instance.GL.Context.GetViewport().Height;
+			
+			//Ai shooting delay 
+            AIShootDelay = new Timer();
 
 			
 			p1Score = new Sce.PlayStation.HighLevel.UI.Label();
@@ -68,6 +85,7 @@ namespace WildMonsters
 			grid2.Draw (this);
 			
 			player1 = new Player(this, true);
+			player1.CanMove(false);
 			player2 = new Player(this, false);
 			
 			player1.SetLevelGrid(ref grid1);
@@ -108,8 +126,8 @@ namespace WildMonsters
 			grid2Properties.startRows = 3;
 			grid2Properties.powerUps = false;
 			
-			grid1 = new LevelGrid(grid1Properties, levelUI, null);
-			grid2 = new LevelGrid(grid2Properties, levelUI, null);
+			grid1 = new LevelGrid(grid1Properties, levelUI, null, this);
+			grid2 = new LevelGrid(grid2Properties, levelUI, null, this);
 		}
 		
 		public override void Update(float deltaTime)
@@ -119,8 +137,8 @@ namespace WildMonsters
 			
 			levelUI.Update (deltaTime);
 			
-			grid1.Update (deltaTime);
-			grid2.Update (deltaTime);
+			grid1.Update (deltaTime, ref audio);
+			grid2.Update (deltaTime, ref audio);
 			
 			TEMPBackgroundImage.Angle += 0.06f;
 			
@@ -128,13 +146,27 @@ namespace WildMonsters
 			CollisionHandler.CheckBlockCollision2(player1.getBalls(), grid1);
 			CollisionHandler.CheckBlockCollision2(player2.getBalls(), grid2);
 			
-			grid1.UpdateBallPositions(grid1);
-			grid2.UpdateBallPositions(grid2);
+			grid1.UpdateBallPositions();
+			grid2.UpdateBallPositions();
 			
-			grid1.StoreTopLevelBalls(grid1, player1, this);
+			if(AIShootDelay.Milliseconds() >= AITimeDelay)
+            {
+ 
+                grid1.StoreTopLevelBalls(grid1, player1, this);
+                AIShootDelay.Reset();
+            }
+            
+            //Console.WriteLine("Available memory " + GC.GetTotalMemory(true).ToString()); //retrieves the total number of bytes currently allocated
 			
 			ParticleManager.AddClickTrail(this);
 			ParticleManager.Update(this);
+			    if(Input2.GamePad0.Start.Press)
+            {
+                audio.StopGameMusic();
+                audio.Dispose ();
+				Director.Instance.ReplaceScene(new PauseScreen("AI"));
+                //Director.Instance.PushScene(new PauseScreen("AI"));
+            }
 		}
 		
 		
@@ -151,6 +183,10 @@ namespace WildMonsters
 			
 			this.AddChild (sprite);
 		}
-		
+		public void SetGameOver()
+		{
+ 			player1.SetGameOver (true);
+			player2.SetGameOver (true);
+		} 
 	}
 }

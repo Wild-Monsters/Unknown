@@ -74,7 +74,7 @@ namespace WildMonsters
 		{
 			if (mainMenu == null)
 			{
-				mainMenu = new Bgm("Application/Sounds/PlaceHoldermainmenu.mp3");
+				mainMenu = new Bgm("Application/Sounds/PushWarsMenuLoop.mp3");
 			}
 			if (bgmMenu == null)
 			{
@@ -139,7 +139,7 @@ namespace WildMonsters
 		{
 			if (InGameMusic1 == null)
 			{
-				InGameMusic1 = new Bgm("Application/Sounds/PlaceholderGameMusic.mp3");
+				InGameMusic1 = new Bgm("Application/Sounds/MainGameLoop.mp3");
 			}
 			
 			if (bgmIngame1 == null)

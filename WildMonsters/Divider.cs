@@ -47,7 +47,7 @@ namespace WildMonsters
 			
 			
 			p1YOffset = 420.0f;
-			p2YOffset = 300.0f;
+			p2YOffset = 80.0f;
 			
 			sprite = new SpriteUV();
 			sprite.TextureInfo = texInfo;

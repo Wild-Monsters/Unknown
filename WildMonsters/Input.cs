@@ -18,6 +18,7 @@ namespace WildMonsters
 		private static bool[]   analogDown = new bool[8];
 		private static float[]  analogTimer = new float[8];
 		
+		
 		//////////////////
 		//// ANALOG INPUTS
 		// Analog = gets the x or y position of the specified analog stick

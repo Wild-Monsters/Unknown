@@ -35,7 +35,7 @@ namespace WildMonsters
 			parent = scene;
 			state = BallState.Locked;
 			this.onLeftSide = onLeftSide;
-			
+			texInfo = null;
 			//Create/initialise the sprite and texture objects
 			texInfo = new TextureInfo("/Application/textures/Blocks5.png");
 			sprite = new SpriteUV(texInfo);
@@ -52,6 +52,7 @@ namespace WildMonsters
 			//Add to scene
 			scene.AddChild(sprite);
 		}
+		
 		
 		public Bounds2 GetBounds()
 		{
@@ -123,7 +124,8 @@ namespace WildMonsters
 		{
 			texInfo.Dispose();
 			sprite = null;
-			//alive = false;
+			//alive = false;private Scene parent;
+		
 		}
 		
 		public void RemoveObject()

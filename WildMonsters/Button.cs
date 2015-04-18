@@ -95,7 +95,7 @@ namespace WildMonsters
 			float touchX =  (int)((touch.X + 0.5f) * screenWidth);
 			float touchY =  (int)((touch.Y + 0.5f) * screenHeight);
 			
-			return new Vector2(touchX, touchY);
+			return new Vector2(touchX, Constants.ScreenHeight-touchY);
 		}
 	}
 }

@@ -9,7 +9,7 @@ using Sce.PlayStation.Core.Audio;
 
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
-
+ 
 using Sce.PlayStation.HighLevel.UI;
 
 
@@ -32,6 +32,7 @@ namespace WildMonsters
 			
 		public MenuScene ()
 		{
+			
 			this.Camera.SetViewFromViewport();
 			Scheduler.Instance.ScheduleUpdateForTarget (this, 0, false);
 			
@@ -40,7 +41,7 @@ namespace WildMonsters
 			
 			if(audio == null)
 				audio = new AudioManager();
-			
+			audio.PlayMenuMusic();
 			CreateMenuLayers ();
 			CreateButtons ();
 		}
@@ -58,11 +59,16 @@ namespace WildMonsters
 			
 			if(spButton.GetState () == ButtonState.Released)
 			{
-					Director.Instance.ReplaceScene (new AIGameScene());
+				audio.StopMenuMusic();
+				audio.Dispose();
+				Director.Instance.ReplaceScene (new AIGameScene());
 			}
 			
 			if(vsButton.GetState () == ButtonState.Released)
 			{
+				
+				audio.StopMenuMusic();
+				audio.Dispose();
 				Director.Instance.ReplaceScene (new GameScene());
 			}
 		}

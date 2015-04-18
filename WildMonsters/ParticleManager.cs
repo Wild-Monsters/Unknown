@@ -38,7 +38,7 @@ namespace WildMonsters
 		{
 			int quadAssign = 0;
 			// Produce 10 particles per call
-			for(int i = 0; i < 8; i++)
+			for(int i = 0; i < 2; i++)
 			{
 				quadAssign++;
 				if(quadAssign >= 4)
@@ -53,26 +53,26 @@ namespace WildMonsters
 		
 		public static void AddLeftTrail(Scene _scene, Vector2 position, Colour colour)
 		{
-			Vector2 randPos = new Vector2(CreateRandomPosition().X, CreateRandomPosition().Y);
-			AddParticle(_scene, new Vector2(position.X, (position.Y + 7.0f) + (float)randPos.Y), 1, 2, 0, colour);
+//			Vector2 randPos = new Vector2(CreateRandomPosition().X, CreateRandomPosition().Y);
+//			AddParticle(_scene, new Vector2(position.X, (position.Y + 7.0f) + (float)randPos.Y), 1, 2, 0, colour);
 		}
 		
 		public static void AddRightTrail(Scene _scene, Vector2 position, Colour colour)
 		{
-			Vector2 randPos = new Vector2(CreateRandomPosition().X, CreateRandomPosition().Y);
-			AddParticle(_scene, new Vector2(position.X + 40.0f, (position.Y + 7.0f) + (float)randPos.Y), 1, 2, 0, colour);
+//			Vector2 randPos = new Vector2(CreateRandomPosition().X, CreateRandomPosition().Y);
+//			AddParticle(_scene, new Vector2(position.X + 40.0f, (position.Y + 7.0f) + (float)randPos.Y), 1, 2, 0, colour);
 		}
 		
 		public static void AddClickTrail(Scene _scene)
 		{
-			List<TouchData> touches = Touch.GetData(0);
-			
-			foreach(TouchData data in touches)
-			{
-				Vector2 randPos = new Vector2(CreateRandomPosition().X, CreateRandomPosition().Y);
-				AddParticle (_scene, new Vector2((((data.X + 0.5f) * Constants.ScreenWidth) + (float)randPos.X),
-						Constants.ScreenHeight - ((data.Y + 0.5f) * Constants.ScreenHeight) + (float)randPos.Y), 1, 1, 0, Colour.Yellow);
-			}
+//			List<TouchData> touches = Touch.GetData(0);
+//			
+//			foreach(TouchData data in touches)
+//			{
+//				Vector2 randPos = new Vector2(CreateRandomPosition().X, CreateRandomPosition().Y);
+//				AddParticle (_scene, new Vector2((((data.X + 0.5f) * Constants.ScreenWidth) + (float)randPos.X),
+//						Constants.ScreenHeight - ((data.Y + 0.5f) * Constants.ScreenHeight) + (float)randPos.Y), 1, 1, 0, Colour.Yellow);
+//			}
 		}
 		
 		public static void AddParticle(Scene _scene, Vector2 position, int numParticle, int type, int quadAssign, Colour colour) // playerid var, if 1 it's left and if 2 it's right

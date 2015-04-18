@@ -16,9 +16,17 @@ namespace WildMonsters
 		private SpriteUV sprite;
 		private TextureInfo texInfo;
 		private int movementSpeed = 50;
-		private int touchMovementSpeed = 7;
+		private int touchMovementSpeed = 50;
 		private bool isLeftSide = false;	//deciding which side the player is on
 		private int spriteHeight = 0;
+		
+		private Timer playerShootTimer;
+        private const float playerShootDelay = 700;
+		
+		private Vector2 initialTouchPosition;
+		private Vector2 currentTouchPosition;
+		private bool screenTouched = false;
+		private bool canFire = false;
 		
 		// Vars for fire delay
 		private float fireDelay = 0.6f;
@@ -34,8 +42,31 @@ namespace WildMonsters
 		
 		int spriteSheetLength = 5;
 		
+		private bool bCanMove = true;
+		
+		private bool gameOver = false;
+		
+		//touch screen pressed booleans
+		bool topLeftTouched = false;
+		bool bottomLeftTouched = false;
+		bool topRightTouched = false;
+		bool bottomRightTouched = false;
+		
+		//bool[] touchButtons = new bool[4];
+		
+		//touch screen Delays
+		
+		float topLeftDelay = 8.0f;
+		float topRightDelay = 8.0f;
+		float bottomLeftDelay = 8.0f;
+		float bottomRightDelay = 8.0f;
+		
+		float touchDelay = 8.0f;
+		
 		public Player (Scene scene, bool _isLeftSide)
 		{	
+			playerShootTimer = new Timer();
+			
 			//Set up sprite		
 			texInfo = new TextureInfo("/Application/textures/Cannon2.png");
 			sprite = new SpriteUV(texInfo);
@@ -85,138 +116,297 @@ namespace WildMonsters
 		}
 		public void Update(Scene scene, float deltaTime)
 		{
-			GamePadButtons actionButton, upButton, downButton;
-			Analog moveAnalog;
-			
-			//Set the control buttons based on which side you're on
-			if(isLeftSide)
+			if(!gameOver)
 			{
-				actionButton = GamePadButtons.Right;
-				moveAnalog = Analog.leftY;
-				upButton = GamePadButtons.Up;
-				downButton = GamePadButtons.Down;
+				alignCannon();
+				
+				GamePadButtons actionButton, upButton, downButton;
+				Analog moveAnalog;
+				
+				//Set the control buttons based on which side you're on
+				if(isLeftSide)
+				{
+					actionButton = GamePadButtons.Right;
+					moveAnalog = Analog.leftY;
+					upButton = GamePadButtons.Up;
+					downButton = GamePadButtons.Down;
+				}
+				else
+				{
+					actionButton = GamePadButtons.Square;
+					moveAnalog = Analog.rightY;
+					upButton = GamePadButtons.Triangle;
+					downButton = GamePadButtons.Cross;
+				}
+				
+				float analogDelay = 8.0f;
+				float buttonDelay = 8.0f;
+				float deadzone = 0.5f;
+				
+				if (!(Input.KeyDown (upButton) && Input.KeyDown (downButton)))
+				{	
+					//Use analog or the buttons to move the character
+					if (Input.AnalogPress(moveAnalog, false, deadzone, analogDelay) || Input.KeyPressed (upButton, buttonDelay) && bCanMove) //Go left (up)
+					{
+						sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
+					}
+					
+					if (Input.AnalogPress(moveAnalog, true, deadzone, analogDelay) || Input.KeyPressed (downButton, buttonDelay) && bCanMove) //go right (down)
+					{
+						sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
+					}
+				}
+				if(bCanMove)
+				{
+					TouchScreenControls(scene);
+				}
+				
+				// For fire delay
+				totalTime += deltaTime;
+				
+				//Perform action
+				if(Input.KeyPressed(actionButton) && bCanMove)
+				{
+					Fire (scene);
+				}
+				
+				//Touch screen Fire, using either flick or double Tap
+	//			Sce.PlayStation.HighLevel.UI.FlickGestureDetector flickDetector = new Sce.PlayStation.HighLevel.UI.FlickGestureDetector();
+	//			
+	//			flickDetector.Direction = Sce.PlayStation.HighLevel.UI.FlickDirection.Horizontal;
+	//			flickDetector.MinSpeed = 0.1f;
+	//			flickDetector.MaxSpeed = 10000.0f;
+	//       
+	//			
+	//			flickDetector.FlickDetected += 
+	//			delegate(object sender, Sce.PlayStation.HighLevel.UI.FlickEventArgs e) 
+	//			{
+	//				//TODO Check position of flick, using e (args)
+	//	
+	//				System.Diagnostics.Debug.WriteLine("Flick!");
+	//				//TODO: seperate flick 'Fire' calls out to player 1 and player 2
+	//				Fire (scene);
+	//			
+	//			};
+	//			
+	//			Sce.PlayStation.HighLevel.UI.DoubleTapGestureDetector doubleTapDetector = new Sce.PlayStation.HighLevel.UI.DoubleTapGestureDetector();
+	//			
+	//			doubleTapDetector.DoubleTapDetected +=
+	//			delegate(object sender, Sce.PlayStation.HighLevel.UI.DoubleTapEventArgs e)
+	//			{
+	//				Console.WriteLine("Double clicked!");
+	//				Fire (scene);
+	//				
+	//			};
+			
+			
+				UpdateBalls();
+	
+				//lock it to screen 
+				ScreenCollision();
+			}
+
+		}
+		
+		private bool ScreenTouched()
+		{
+			var touches = Touch.GetData(0).ToArray();
+			return (touches.Length > 0 && (touches[0].Status == TouchStatus.Down || touches[0].Status == TouchStatus.Move));
+		}
+		
+		private bool FlickGesture(bool leftSide)
+		{
+			float yDiff = (initialTouchPosition.Y - currentTouchPosition.Y);
+			float maxYDiff = 30.0f;
+			
+			if(leftSide)
+			{
+				return (currentTouchPosition.Distance(initialTouchPosition) > 40.0f 
+					&& initialTouchPosition.X < currentTouchPosition.X && (yDiff < maxYDiff && yDiff > -maxYDiff));
 			}
 			else
 			{
-				actionButton = GamePadButtons.Square;
-				moveAnalog = Analog.rightY;
-				upButton = GamePadButtons.Triangle;
-				downButton = GamePadButtons.Cross;
+				return (currentTouchPosition.Distance(initialTouchPosition) > 40.0f 
+					&& initialTouchPosition.X > currentTouchPosition.X && (yDiff < maxYDiff && yDiff > -maxYDiff));
 			}
-			
-			float analogDelay = 8.0f;
-			float buttonDelay = 8.0f;
-			float deadzone = 0.5f;
-			
-			//Use analog or the buttons to move the character
-			if (Input.AnalogPress(moveAnalog, false, deadzone, analogDelay) || Input.KeyPressed (upButton, buttonDelay)) //Go left (up)
-			{
-				sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
-			}
-			
-			if (Input.AnalogPress(moveAnalog, true, deadzone, analogDelay) || Input.KeyPressed (downButton, buttonDelay)) //go right (down)
-			{
-				sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y - movementSpeed);
-			}
-			
-			//------touch screen movement
-			
+		}
+		
+		private bool PositionOnPlayersSide(Vector2 position)
+		{
+			return ((position.X < Constants.ScreenWidth/2) == isLeftSide);
+		}
+		
+		private void TouchScreenControls(Scene scene)
+		{
 			var touches = Touch.GetData(0).ToArray();
 		
-			if(touches.Length > 0 && (touches[0].Status == TouchStatus.Down || touches[0].Status == TouchStatus.Move))
+			if(ScreenTouched ())
 			{
-				//Translates the weird touch values into actual coordinates
-				Vector2 touchPos = GetTouchPosition(touches[0], Constants.ScreenWidth, Constants.ScreenHeight);
+				if(screenTouched == false)
+				{
+					screenTouched = true;
+					initialTouchPosition = GetTouchPosition(touches[0], Constants.ScreenWidth, Constants.ScreenHeight);
+				}
 				
-				touchMovement(touchPos);
-			}
-			//-------
-			
-			// For fire delay
-			totalTime += deltaTime;
-			
-			//Perform action
-			if(Input.KeyPressed(actionButton))
-			{
-				Fire (scene);
-			}
-			
-			//Touch screen Fire, using either flick or double Tap
-			Sce.PlayStation.HighLevel.UI.FlickGestureDetector flickDetector = new Sce.PlayStation.HighLevel.UI.FlickGestureDetector();
-			
-			flickDetector.Direction = Sce.PlayStation.HighLevel.UI.FlickDirection.Horizontal;
-			flickDetector.MinSpeed = 0.1f;
-			
-			flickDetector.FlickDetected += 
-			delegate(object sender, Sce.PlayStation.HighLevel.UI.FlickEventArgs e) 
-			{
-				//TODO Check position of flick, using e (args)
-				Console.WriteLine("Flick");
-				System.Diagnostics.Debug.WriteLine("Flick!");
-				//TODO: seperate flick 'Fire' calls out to player 1 and player 2
-				Fire (scene);
-			
-			};
-			
-			Sce.PlayStation.HighLevel.UI.DoubleTapGestureDetector doubleTapDetector = new Sce.PlayStation.HighLevel.UI.DoubleTapGestureDetector();
-			
-			doubleTapDetector.DoubleTapDetected +=
-			delegate(object sender, Sce.PlayStation.HighLevel.UI.DoubleTapEventArgs e)
-			{
-				Console.WriteLine("Double clicked!");
-				Fire (scene);
+				currentTouchPosition = GetTouchPosition(touches[0], Constants.ScreenWidth, Constants.ScreenHeight);
+					
+				if(canFire && FlickGesture(isLeftSide))
+				{
+					if(PositionOnPlayersSide(currentTouchPosition))
+					{
+						canFire = false;
+						Fire(scene);
+					}
+				}
+
+                touchMovement(currentTouchPosition);
 				
-			};
-		
-		
-			UpdateBalls();
-
-			//lock it to screen 
-			ScreenCollision();
-			
-
+			}
+			else
+			{
+				screenTouched = false;
+				canFire = true;
+			}
 		}
 		
 		private void touchMovement(Vector2 touchPos)
 		{
-				//four quadrants to screen
-				if(touchPos.X < (Constants.ScreenWidth / 2) && touchPos.Y < (Constants.ScreenHeight / 2))
+			float touchZone = 100.0f;
+			
+			if(isLeftSide)
+			{
+				if(touchPos.X < (Constants.ScreenWidth / 2) && touchPos.Y < touchZone)
 				{
-					//top left quadrant touched
-					if(isLeftSide)
+					topLeftTouched = true;
+					bottomLeftTouched = false;
+					
+					if(topLeftTouched)
 					{
-						sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + touchMovementSpeed);
+						if(topLeftDelay < 1.0f)
+						{
+							topLeftDelay = touchDelay;
+							//top left quadrant touched
+							sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + touchMovementSpeed);
+						}
+						else
+						{
+							topLeftDelay--;
+						}
+					}
+					else
+					{
+						topLeftDelay = 0.0f;
 					}
 				}
-				
-				else if(touchPos.X < (Constants.ScreenWidth / 2) && touchPos.Y > (Constants.ScreenHeight / 2))
+			 
+				if(touchPos.X < (Constants.ScreenWidth / 2) && touchPos.Y > (Constants.ScreenHeight - touchZone))
 			    {
-					//bottom left quadrant pressed
-					if(isLeftSide)
+					bottomLeftTouched = true;
+					topLeftTouched = false;
+					if(bottomLeftTouched)
 					{
-						sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - touchMovementSpeed);
+						if(bottomLeftDelay < 1.0f)
+						{
+							bottomLeftDelay = touchDelay;
+							//bottom left quadrant pressed
+							sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - touchMovementSpeed);
+						}
+						else
+						{
+							bottomLeftDelay--;
+						}
 					}
-				}
-				
-				else if(touchPos.X > (Constants.ScreenWidth / 2) && touchPos.Y < (Constants.ScreenHeight / 2))
+					else
+					{
+						bottomLeftDelay = 0.0f;
+					}
+				}	
+			}
+			
+			if(!isLeftSide)
+			{
+				if(touchPos.X > (Constants.ScreenWidth / 2) && touchPos.Y < touchZone)
 			    {
-					//Top right quadrant pressed
-					if(!isLeftSide)
+					topRightTouched = true;
+					bottomRightTouched = false;
+					if(topRightTouched)
 					{
-						sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + touchMovementSpeed);
+						if(topRightDelay < 1.0f)
+						{
+							topRightDelay = touchDelay;
+							//Top right quadrant pressed
+							sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + touchMovementSpeed);
+						}
+						else
+						{
+							topRightDelay--;
+						}
 					}
-				}
-				
-				else if(touchPos.X > (Constants.ScreenWidth / 2) && touchPos.Y > (Constants.ScreenHeight / 2))
-			    {
-					//Bottom right quadrant pressed
-					if(!isLeftSide)
+					else
 					{
-						sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - touchMovementSpeed);
+						topRightDelay = 0.0f;
 					}
+					
 				}
 			
+				if(touchPos.X > (Constants.ScreenWidth / 2) && touchPos.Y > (Constants.ScreenHeight - touchZone))
+			    {
+					
+					topRightTouched = false;
+					bottomRightTouched = true;
+					if(bottomRightTouched)
+					{
+						if(bottomRightDelay < 1.0f)
+						{
+							bottomRightDelay = touchDelay;
+							//Bottom right quadrant pressed
+							sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - touchMovementSpeed);
+						}
+						else
+						{
+							bottomRightDelay--;
+						}
+					}
+					else
+					{
+						bottomRightDelay = 0.0f;
+					}
+				}
+			}
 		}
+		
+		private double Distance(Vector2 pointA, Vector2 pointB)
+        {
+            return FMath.Sqrt((pointB.X - pointA.X) * (pointB.X - pointA.X) + (pointB.Y - pointA.Y) * (pointB.Y - pointA.Y));
+            
+        }
+        
+        private void alignCannon()
+        {
+            //0 to 450
+            if(sprite.Position.Y % 50 != 0)
+            {
+                //not aligned, because not divisible by 50
+                
+                //loop 0 to 450 in increments of 25
+                for(int i = 0; i < 450; i+=50)
+                {
+                    //loop for subtraction
+                    if(sprite.Position.Y > i && sprite.Position.Y < i+25)
+                    {
+                        sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - 1);
+                    }
+                }
+                for(int i = 25; i < 450; i+=50)
+                {
+                    //loop for addition
+                    if(sprite.Position.Y >= i && sprite.Position.Y < i+25)
+                    {
+                        sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + 1);
+                    }
+                }
+            }
+        }
 		
 		private Vector2 GetTouchPosition(TouchData touch, float screenWidth, float screenHeight)
 		{
@@ -228,9 +418,11 @@ namespace WildMonsters
 		
 		public void ScreenCollision ()
 		{
-			if((sprite.Position.Y + spriteHeight )>= 544 )
+			//if((sprite.Position.Y + spriteHeight )>= 544 )
+			if((sprite.Position.Y + spriteHeight )>= 450 )
 			{
-				sprite.Position = new Vector2(sprite.Position.X, 544 - spriteHeight - 44);
+				//sprite.Position = new Vector2(sprite.Position.X, 544 - spriteHeight - 44);
+				sprite.Position = new Vector2(sprite.Position.X, 450 - spriteHeight);
 			}
 			if((sprite.Position.Y ) < 0 )
 			{
@@ -247,6 +439,17 @@ namespace WildMonsters
 			DisplayNextBall(scene);
 			SetColour (currentColour);
 		}
+		
+		public void AIFiresDifferently(Scene scene)// array of balls 
+        {
+            audio.PlayBlockShot();
+            CreateNewBall(scene);
+            
+            //Push the queue of balls along, changing the current colour
+            DisplayNextBall(scene);
+            SetColour (currentColour);
+            
+        }
 		
 		public void DisplayNextBall(Scene scene)
 		{	
@@ -396,7 +599,15 @@ namespace WildMonsters
 		{
 			sprite.Position = new Vector2 (sprite.Position.X, sprite.Position.Y + movementSpeed);
 		}
-
+		
+		public void CanMove(bool bCanMove)
+		{
+			this.bCanMove = bCanMove;
+		}
+		public void SetGameOver(bool b)
+		{
+			gameOver = b;
+		}
 	}
 }
 

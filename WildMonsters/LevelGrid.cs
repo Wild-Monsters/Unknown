@@ -28,15 +28,39 @@ namespace WildMonsters
 		private Ball[,] grid;
 		private LevelUI levelUI;
 		private Ball[] shootables;
+		private Ball[] matchedBalls;
 		private	Timer timer;
 		private Timer time2;
+		private Random random; 
+        private bool canShoot;
+        private const double AITimeDelay = 700.0;
 		private GameScene gamescene;
-	
-		
-		public LevelGrid (GridProperties _properties, LevelUI _levelUI, GameScene _gamescene)
+		private Timer delayGameOver;
+		private Timer delayGameOver2;
+		private bool onOffTimer;
+		private AudioManager audio;
+		private AIGameScene AiGameScene;
+		private int playerWon = 0;
+		private string gameSceneName;
+		public LevelGrid (GridProperties _properties, LevelUI _levelUI, GameScene _gamescene, AIGameScene SetAiGameScene)
 		{
+			if(_gamescene != null)
+			{
+				gameSceneName = _gamescene.GetName();
+			}
+			if(SetAiGameScene != null)
+			{
+				AiGameScene = SetAiGameScene;
+				gameSceneName = AiGameScene.GetName();
+			}
+			if(audio == null)
+			{
+				audio = new AudioManager();
+			}
+			
 			timer = new Timer();
 			time2 = new Timer();
+			random = new Random();
 			props = _properties;
 			
 			grid = new Ball[props.height, props.width];
@@ -51,21 +75,18 @@ namespace WildMonsters
 					grid[a,b] = null;
 				}
 			}
+			onOffTimer = false;
 		}
 		
 		
-		public void UpdateBallPositions(LevelGrid Lvlgrid)
-		{
-			GridProperties props = Lvlgrid.GetProperties();
-			Ball[,] grid = Lvlgrid.getBalls();
-			
+		public void UpdateBallPositions()
+		{		
 			for(int x = 0; x < props.height; x++)
 			{
 				for(int y = 0; y < props.width; y++)
 				{
 					if(y > 0 && grid[x,y] !=  null && grid[x , y - 1] == null)
 					{ 
-						//grid[x, y] we will save 
 						grid[x, y - 1] = grid[x,y] ;
 						grid[x, y] = null;	
 					}	
@@ -73,8 +94,13 @@ namespace WildMonsters
 			}
 		}
 
-		public void Update(float t)
+		public void Update(float t, ref AudioManager audioMag)
 		{
+			if (onOffTimer && delayGameOver == null)
+			{
+				delayGameOver = new Timer();
+				onOffTimer = false;
+			}
 			levelUI.Update(t);
 			props.top = levelUI.divider.Top;
 					
@@ -98,26 +124,43 @@ namespace WildMonsters
 							gridPositionY = props.yMargin + (props.cellSize*y);
 						}
 						
-						if(GameOver(gridPositionX, props))
-						{
-							//Console.WriteLine("SUPER GAME OVERUUU CHAN");
-						}
-						
 						grid[y,x].SetGridPosition(gridPositionX, gridPositionY);
 						grid[y,x].Update ();
+						
+						GameOver(gridPositionX, props, ref  audio);
+				
 					}
 				}
 			}
+			Console.WriteLine(gameSceneName);
+//			if(!(props.flipped))
+//			{
+//				this.DestroyAll();
+//			}
+			
+			ZeroBlocksGameOver();
+			
+			if(delayGameOver != null)
+			{
+			//	Console.WriteLine(onOffTimer +"    " + delayGameOver.Milliseconds());		
+				if(delayGameOver.Milliseconds() > 1200.0)
+				{
+					audioMag.StopGameMusic();	
+					audioMag.Dispose();
+					Director.Instance.ReplaceScene (new EndGameScene(playerWon, true, gameSceneName));
+				}
+			}
 		}
-				public void StoreTopLevelBalls(LevelGrid Lvlgrid, Player player, Scene scene)
+		public void StoreTopLevelBalls(LevelGrid Lvlgrid, Player player, Scene scene)
 		{
 			//colour refers to current player colour
 			//this method is used for the ai part of the game 
 			//it grabs and stores the balls that the ai can shoot at 
-			GridProperties props = Lvlgrid.GetProperties();
-			Ball[,] grid = Lvlgrid.getBalls();
-			Colour playerColour = player.GetCurrentColour();
+			Colour playerColour = player.GetCurrentColour();	
 			
+			matchedBalls = new Ball[10];
+			
+			canShoot = false;
 			shootables = new Ball[10];
 			int count = 0;
 			for(int x = 0; x < props.height;x++)
@@ -133,51 +176,223 @@ namespace WildMonsters
 				}
 			}
 			//Currently we have the correct colours of the top level grid 
-			Console.WriteLine("-----------------------------------");
-			for (int i =0; i< 10; i++ )
+			//create a different array of the correct colours 
+			int counted = 0;
+			for(int i =0; i < count; i++)
 			{
-				if(shootables[i] != null)
+				if(shootables[i].GetColour() == playerColour)
 				{
-					Console.WriteLine(shootables[i].GetColour().ToString());
+					//save the shootable
+					matchedBalls[counted] = shootables[i];
+					counted++;
 				}
 			}
-			Console.WriteLine("-----------------------------------");
 			
 			//Determine which one to fire at 
 			Random rand = new Random();
-			int theOne = rand.Next(0, count);
+			int theOne = rand.Next(0, counted);
 			
-			if(shootables[theOne] != null && playerColour == shootables[theOne].GetColour())//this means that the player can make a match 
+			if(matchedBalls[theOne] != null && playerColour == matchedBalls[theOne].GetColour())//this means that the player can make a match 
 			{
-				if(player.Sprite.Position.Y > shootables[theOne].Sprite.Position.Y)
+				canShoot = true;
+				
+				if(player.Sprite.Position.Y > matchedBalls[theOne].Sprite.Position.Y && time2.Milliseconds() >= AITimeDelay)
 				{
-					player.MoveDown();		
-					Console.WriteLine("Player move down");
+					player.MoveDown();
+					time2.Reset();
 				}
-				if(player.Sprite.Position.Y < shootables[theOne].Sprite.Position.Y)
+				if(player.Sprite.Position.Y < matchedBalls[theOne].Sprite.Position.Y && time2.Milliseconds() >= AITimeDelay)
 				{
 					player.MoveUp();		
-					Console.WriteLine("Player move down");
+					time2.Reset();
 				}
-				if(player.Sprite.Position.Y == shootables[theOne].Sprite.Position.Y)
+				if(player.Sprite.Position.Y == matchedBalls[theOne].Sprite.Position.Y)
 				{
-					if(timer.Seconds() >= 1.0)
-					{
-						player.Fire(scene);
-						timer.Reset();
-						timer = new Timer();
-					}
+					player.AIFiresDifferently(scene);
+					canShoot = false;
+
 				}
 			}
-			else
+			else if(!canShoot)
 			{
+			
+				MoveRandomnly(ref player);
 				//move randomly and shoot 	
-				if(time2.Seconds() >= 1.0)
+				player.AIFiresDifferently(scene);
+				time2.Reset();
+				time2 = new Timer();
+			}
+			
+		}
+		private void MoveRandomnly(ref Player player)
+		{
+			int dir = random.Next(0, 10);	 //0 - 5 = up 6-10 = down
+			int maxLength = 0;
+			//determine how much the ai can move by its position on the grid
+			//using its direction so that it doesn't try to go over the grid
+			string pos = player.Sprite.Position.Y.ToString();
+			switch(pos)
+			{
+			case "500":
 				{
-					player.Fire(scene);	
-					time2.Reset();
-					time2 = new Timer();
+					if(dir <= 5){
+						maxLength = 9;
+					}
+					else{
+						maxLength = 0;
+					}
+					break;
 				}
+			case "450":
+				{
+					if(dir <= 5){
+						maxLength = 8;
+					}
+					else{
+						maxLength = 1;
+					}
+				break;
+				}
+			case "400":
+				{
+					if(dir <= 5){
+						maxLength = 7;
+					}
+					else{
+						maxLength = 2;
+					}
+				break;
+				}
+			case "350":
+				{
+					if(dir <= 5){
+						maxLength = 6;
+					}
+					else{
+						maxLength = 3;
+					}
+				break;
+				}
+			case "300":
+				{
+					if(dir <= 5){
+						maxLength = 5;
+					}
+					else{
+						maxLength = 4;
+					}
+				break;
+				}
+			case "250":
+				{
+					if(dir <= 5){
+						maxLength = 4;
+					}
+					else{
+						maxLength = 5;
+					}
+				break;
+				}
+			case "200":
+				{
+					if(dir <= 5){
+						maxLength = 3;
+					}
+					else{
+						maxLength = 6;
+					}
+				break;
+				}
+			case "150":
+				{
+					if(dir <= 5){
+						maxLength = 2;
+					}
+					else{
+						maxLength = 7;
+					}
+				break;
+				}
+			case "100":
+				{
+					if(dir <= 5){
+						maxLength = 1;
+					}
+					else{
+						maxLength = 8;
+					}
+				break;
+				}
+			case "50":
+				{
+					if(dir <= 5){
+						maxLength = 0;
+					}
+					else{
+						maxLength = 9;
+					}
+				break;
+				}
+			}
+			
+			int length = random.Next(0, maxLength); //how much 
+			for (int i = 0;i< length; i++)
+			{
+				if (dir <= 5)
+				{
+					player.MoveDown();
+					//Console.WriteLine("direction 1 down and 0 up" + dir);
+				}
+				else if(dir >= 6)
+				{
+					player.MoveUp();
+					//Console.WriteLine("direction 1 down and 0 up" + dir);
+				}
+			}
+			
+		}
+		private bool MissOrNot(string difficutlty)
+		{
+			switch(difficutlty)
+			{
+				
+			case "Easy":
+				{
+					if(true)
+					{
+						return true;
+					}
+					else 
+					{
+						return false;
+					}
+				}
+			case "Medium":
+				{
+					if(true)
+					{
+						return true;
+					}
+					else 
+					{
+						return false;
+					}
+				}
+				
+			case "Hard":
+				{
+					if(true)
+					{
+						return true;
+					}
+					else 
+					{
+						return false;
+					}
+				}
+			default:
+				return true;
+					
 			}
 		}
 
@@ -422,40 +637,9 @@ namespace WildMonsters
 					}
 				}
 			}
-			
-			if(colours.Count <= 0)
-			{
-				for(int a = 0; a < 5; a++)
-				{
-					colours.Add ((Colour)(a));
-				}
-			}
+
 			
 			return colours;
-		}
-		
-		// Bomb Test Method
-		public void BombBlock(int targetX, int targetY)
-		{
-			// Delete blocks left and right of bomb block
-			for(int x = -1; x <= 1; x+=2)
-			{
-			    if(CompareGridPosition(targetX + x, targetY))
-				{
-					grid[targetY, targetX + x].RemoveObject();
-					grid[targetY, targetX + x] = null;
-				}
-			}
-			
-			// Delete blocks north and south of bomb block
-			for(int y = -1; y <= 1; y+= 2)
-			{
-				if(CompareGridPosition(targetX, targetY + y))
-				{
-					grid[targetY + y, targetX].RemoveObject();
-					grid[targetY + y, targetX] = null;
-				}
-			}
 		}
 		
 		private void RemoveAndNull(Ball[,] grid, int targetX, int targetY)
@@ -466,7 +650,7 @@ namespace WildMonsters
 		
 		private void DrawPowerUps()
 		{
-			for(int i = 0; i < 6; i++)
+			for(int i = 0; i < 3; i++)
 			{
 				Vector2i pos = GetRandomBlockPos();
 				
@@ -489,26 +673,110 @@ namespace WildMonsters
 			return new Vector2i(x, y);
 		}
 		
-		public bool GameOver(float gridPosX, GridProperties props)
+		public void GameOver(float gridPosX, GridProperties props, ref AudioManager audioMag)
 		{
 			if(props.flipped)
 			{
 				if(gridPosX < 60)
 				{
-					Console.WriteLine("Player Two wins!");
-					return true;
+					onOffTimer = true;
+					this.DestroyAll();
+					playerWon = 2;
+					if(gamescene != null)
+					{
+						gamescene.SetGameOver();
+					} 
+					else if(AiGameScene != null)
+					{
+						AiGameScene.SetGameOver();
+					}
 				}
 			}
 			else
 			{
 				if(gridPosX > 840)
 				{
-					Console.WriteLine("Player One wins!");
-					
-					return true;
+					onOffTimer = true;
+					this.DestroyAll();
+					playerWon = 1;
+					if(gamescene != null)
+					{
+						gamescene.SetGameOver();
+					} 
+					else if(AiGameScene != null)
+					{
+						AiGameScene.SetGameOver();
+					}
 				}
 			}
-			return false;	
+		}
+		
+		public void ZeroBlocksGameOver()
+		{
+			if(props.flipped)
+			{
+				if(ZeroBlocks())
+				{
+					onOffTimer = true;
+					playerWon = 1;
+					if(gamescene != null)
+					{
+						gamescene.SetGameOver();
+					} 
+					else if(AiGameScene != null)
+					{
+						AiGameScene.SetGameOver();
+					}
+				}
+			}
+			else
+			{
+				if(ZeroBlocks())
+				{
+					onOffTimer = true;
+					playerWon = 2;
+					if(gamescene != null)
+					{
+						gamescene.SetGameOver();
+					} 
+					else if(AiGameScene != null)
+					{
+						AiGameScene.SetGameOver();
+					}
+				}
+			}
+		}
+        
+        public void DestroyAll()
+        {
+            for(int x = 0; x < props.width; x++)
+            {
+                for(int y = 0; y < props.height; y++)
+                {
+                    if(grid[y,x] != null)
+                    {
+                        grid[y,x].RemoveObject();
+                        grid[y,x] = null;
+                    }
+                }
+            }
+        }
+		
+		public bool ZeroBlocks() // Checks to see if a player has successfully destroyed all of their own blocks. If so, end the game.
+		{
+			bool noBlocks = true;
+			for(int x = 0; x < props.width; x++)
+            {
+                for(int y = 0; y < props.height; y++)
+                {
+					if(grid[y,x] != null)
+					{
+						noBlocks = false;
+					}
+				}
+			}
+			
+			return noBlocks;
 		}
 	}
 }

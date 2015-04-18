@@ -63,6 +63,8 @@
     <Compile Include="Button.cs" />
     <Compile Include="AIGameScene.cs" />
     <Compile Include="PowerUp.cs" />
+    <Compile Include="EndGameScene.cs" />
+    <Compile Include="PauseScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <ShaderProgram Include="shaders\Simple.fcg" />
@@ -115,5 +117,15 @@
     <Content Include="textures\ButtonSinglePlayer2.png" />
     <Content Include="textures\ButtonVersus2.png" />
     <Content Include="textures\Blocks5.png" />
+    <Content Include="textures\ButtonContinue.png" />
+    <Content Include="textures\ButtonQuit.png" />
+    <Content Include="textures\ButtonRestart.png" />
+    <Content Include="textures\Player2Wins.png" />
+    <Content Include="textures\Player1Wins.png" />
+    <Content Include="textures\TouchscreenButton.png" />
+    <Content Include="Sounds\PushWars Menu Loop.wav" />
+    <Content Include="Sounds\MainGameLoop.wav" />
+    <Content Include="Sounds\MainGameLoop.mp3" />
+    <Content Include="Sounds\PushWarsMenuLoop.mp3" />
   </ItemGroup>
 </Project>

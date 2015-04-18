@@ -29,6 +29,7 @@ namespace WildMonsters
 				{
 					if(grid[y,x].GetColour() != Colour.Grey)
 					{
+						grid[y,x].AddExplosion();
 						grid[y,x].SetColour(Colour.Grey);
 						iDone--;
 					}
